@@ -1,0 +1,183 @@
+
+My form-validation.html  Path - users/forms/form-validation.html
+http://127.0.0.1:8000/users/form/
+
+To open MSSQL for Query:
+STEPS:
+# Open sqlcmd with Windows authentication
+sqlcmd -S localhost -d db.mssql-jidox -E
+or
+sqlcmd -S localhost -d db.mssql-jidox -U your_username -P your_password
+
+
+# Query all tables in the database
+SELECT table_name
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE';
+GO
+
+# Query the schema of the users_user table
+EXEC sp_columns 'users_user';
+GO
+
+# Display all records of users_user
+SELECT * FROM users_user;
+GO
+
+# Exit the sqlcmd interface
+exit
+
+
+========================= 
+sqlite> SELECT full_name, phone_no, company, service_type, location, username, port_number, rdp_password, node FROM users_customuser;
+========================
+
+"username", "company", "full_name", "phone_number", "alternate_number", "email", "email_password", "service_type", "location", "branch_code", "node", "port_number", "rdp_password", "internal_ip", "pb_id", "pb_password", "extension_number", "notes", "user_creation_date", "status"
+----------------------------------------
+"username", "full_name", "company", "service_type","phone_number", "email", "node", "port_number", "extension_number", "status"
+==============================
+
+======================
+
+username,
+company,full_name,node,service_type,email,email_password,phone_number,
+alternate_number,location,extension_number,port_number,rdp_password,internal_ip,branch_code,pb_id,pb_password,notes,user_creation_date,status
+==========================
+
+
+=====================================================
+JIDOX Project Folder structure
+C:\Users\Public\Jidox>  
+    │     
+    ├───apps/
+    │      ├───__pychache__/
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───models.py
+    │      ├───tests.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───components/
+    │      │  
+    │      ├───__pychache__/
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───models.py
+    │      ├───testx.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───custom/
+    │      ├───__pychache__/
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───models.py
+    │      ├───tests.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───jidox/
+    │      ├───__pychache__/
+    │      ├───__init__.py
+    │      ├───asgi.py
+    │      ├───settings.py
+    │      ├───urls.py
+    │      ├───view.py
+    │      └───wsgi.py
+    │
+    ├───layouts/
+    │      ├───__pychache__/
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───models.py
+    │      ├───tests.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───node_modules/
+    │
+    ├───static/
+    │      ├───css/
+    │      ├───data/
+    │      ├───fonts/
+    │      ├───images/
+    │      ├───js/
+    │      └───vendor/
+    ├───templates/
+    │      ├───account/
+    │      │      ├───account_inactive.html
+    │      │      ├───base.html
+    │      │      ├───email.html
+    │      │      ├───login.html
+    │      │      ├───logout.html
+    │      │      ├───password_reset_done.html
+    │      │      ├───Other .html files here ...
+    │      │      └───signup.html
+    │      ├───apps/
+    │      │      ├───apps-calendar.html
+    │      │      ├───apps-chat.html
+    │      │      ├───apps-email-inbox.html
+    │      │      ├───apps-email-read.html
+    │      │      ├───apps-file-manager.html
+    │      │      ├───password_reset_done.html
+    │      │      ├───apps-kanban.html
+    │      │      ├───apps-tasks-details.html
+    │      │      └───apps-tasks.html
+    │      ├───components/
+    │      │      ├───base-us/
+    │      │      ├───charts/
+    │      │      ├───extended-ui/
+    │      │      ├───forms/
+    │      │      │      ├───form-elements.html
+    │      │      │      ├───form-fileuploads.html
+    │      │      │      ├───form-editors.html
+    │      │      │      ├───form-billing.html
+    │      │      │      └───form-validation.html
+    │      │      ├───icons
+    │      │      ├───maps
+    │      │      ├───tables
+    │      │      │      ├───tables-basic.html
+    │      │      │      ├───tables-billing.html
+    │      │      │      └───tables-datatable.html
+    │      │      └───widgets/
+    │      │ 
+    │      ├───custom/
+    │      ├───partials/
+    │      └───index.html
+    ├───users/
+    │      ├───__pychache__/
+    │      ├───migrations/
+    │      │       └───commands/
+    │      │              └───data.csv
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───adapters.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───forms.py
+    │      ├───models.py
+    │      ├───tests.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───venv/
+    │
+    │  
+    ├───gulpfile.js
+    │  
+    ├───manage.py
+    │  
+    ├───package-lock.json
+    │ 
+    ├───package.json
+    │
+    └───requirements.txt

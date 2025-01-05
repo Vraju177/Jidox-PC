@@ -1,0 +1,151 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Datatables{% endblock title %}
+
+{% block extra_css %}
+    <!-- Datatables css -->
+    <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+
+{% block pagetitle %}
+    {% include "partials/page-title.html" with pagetitle="Tables" title="Data Tables" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Active Users</h4>
+                <table id="user-datatable" class="table table-striped w-100 nowrap">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Company</th>
+                            <th>Service Type</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Node</th>
+                            <th>Port Number</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.full_name }}</td>
+                                <td>{{ user.company }}</td>
+                                <td>{{ user.service_type }}</td>
+                                <td>{{ user.phone_number }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.node }}</td>
+                                <td>{{ user.port_number }}</td>
+                                <td>{{ user.status }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm view-button" data-user-id="{{ user.id }}" data-bs-toggle="modal" data-bs-target="#viewUserModal{{ user.id }}">
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="viewUserModal{{ user.id }}" tabindex="-1" aria-labelledby="viewUserModalLabel{{ user.id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="viewUserModalLabel{{ user.id }}">User Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Username:</strong> <span id="modalUsername{{ user.id }}"></span></p>
+                                            <p><strong>Full Name:</strong> <span id="modalFullName{{ user.id }}"></span></p>
+                                            <p><strong>Company:</strong> <span id="modalCompany{{ user.id }}"></span></p>
+                                            <p><strong>Service Type:</strong> <span id="modalServiceType{{ user.id }}"></span></p>
+                                            <p><strong>Phone Number:</strong> <span id="modalPhoneNumber{{ user.id }}"></span></p>
+                                            <p><strong>Email:</strong> <span id="modalEmail{{ user.id }}"></span></p>
+                                            <p><strong>Node:</strong> <span id="modalNode{{ user.id }}"></span></p>
+                                            <p><strong>Port Number:</strong> <span id="modalPortNumber{{ user.id }}"></span></p>
+                                            <p><strong>Extension Number:</strong> <span id="modalExtensionNumber{{ user.id }}"></span></p>
+                                            <p><strong>Status:</strong> <span id="modalStatus{{ user.id }}"></span></p>
+                                            <p><strong>Notes:</strong> <span id="modalNotes{{ user.id }}"></span></p>
+                                            <p><strong>User Creation Date:</strong> <span id="modalCreationDate{{ user.id }}"></span></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div> <!-- end row-->
+{% endblock content %}
+
+{% block extra_js %}
+    <!-- Datatables js -->
+    <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-select/js/dataTables.select.min.js' %}"></script>
+
+    <script>
+        // Initialize DataTables
+        $(document).ready(function() {
+            $('#user-datatable').DataTable();
+        });
+
+        // This function fetches the user details using AJAX
+        function fetchUserDetails(userId) {
+            $.ajax({
+                url: '/users/user/' + userId + '/details/',  // New URL pattern
+                method: 'GET',
+                success: function(response) {
+                    // Populate modal fields with the fetched data
+                    $('#modalUsername' + userId).text(response.username);
+                    $('#modalFullName' + userId).text(response.full_name);
+                    $('#modalCompany' + userId).text(response.company);
+                    $('#modalServiceType' + userId).text(response.service_type);
+                    $('#modalPhoneNumber' + userId).text(response.phone_number);
+                    $('#modalEmail' + userId).text(response.email);
+                    $('#modalNode' + userId).text(response.node);
+                    $('#modalPortNumber' + userId).text(response.port_number);
+                    $('#modalExtensionNumber' + userId).text(response.extension_number);
+                    $('#modalStatus' + userId).text(response.status);
+                    $('#modalNotes' + userId).text(response.notes);
+                    $('#modalCreationDate' + userId).text(response.user_creation_date);
+                },
+                error: function() {
+                    alert("Error loading user details.");
+                }
+            });
+        }
+
+        // Use this function when the "View" button is clicked
+        $('.view-button').click(function() {
+            const userId = $(this).data('user-id');  // Get the user ID from the button
+            fetchUserDetails(userId);
+        });
+    </script>
+{% endblock extra_js %}

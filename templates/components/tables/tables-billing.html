@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing Records</title>
+</head>
+<body>
+    <h1>All Billing Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Billing Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for billing in billing_records %}
+                <tr>
+                    <td>{{ billing.id }}</td>
+                    <td>{{ billing.customer_name }}</td>
+                    <td>{{ billing.billing_amount }}</td>
+                    <td>{{ billing.due_date }}</td>
+                    <td>{{ billing.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

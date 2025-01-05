@@ -1,0 +1,68 @@
+How to upload csv file on to your django project.
+
+- Before uploading, make sure your models.py and your csv column names are same.
+Jidox/
+├── apps/
+│
+├── users/
+│      └── management/
+│             └── commands/
+│                     └── import_csv.py
+│                     └── data.csv
+└── manage.py
+- Upload the data.csv file in any folder in your project and run below command as per the path stored,
+>> python manage.py import_csv apps/users/management/commands/data.csv
+
+- Create a file name - import_csv.py and update the upload the below code in it,
+from django.core.management.base import BaseCommand
+from users.models import User
+import csv
+from datetime import datetime
+
+class Command(BaseCommand):
+    help = 'Import user data from a CSV file into the users_user table'
+
+    def add_arguments(self, parser):
+        parser.add_argument('csv_file', type=str, help='Path to the CSV file')
+
+    def handle(self, *args, **options):
+        csv_file_path = options['csv_file']
+        try:
+            with open(csv_file_path, 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    try:
+                        user_creation_date = datetime.strptime(row['user_creation_date'], '%Y-%m-%d').date()
+                    except ValueError:
+                        user_creation_date = None
+
+                    user = User(
+                        username=row['username'],
+                        company=row.get('company', ''),
+                        full_name=row.get('full_name', ''),
+                        node=row.get('node', ''),
+                        service_type=row.get('service_type', ''),
+                        email=row.get('email', ''),
+                        email_password=row.get('email_password', ''),
+                        phone_no=row.get('phone_no', ''),
+                        alternate_no=row.get('alternate_no', ''),
+                        location=row.get('location', ''),
+                        voip_ext=row.get('voip_ext', ''),
+                        port_no=row.get('port_no', ''),
+                        rdp_password=row.get('rdp_password', ''),
+                        internal_ip=row.get('internal_ip', None),
+                        branch=row.get('branch', ''),
+                        pb_id=row.get('pb_id', ''),
+                        pb_password=row.get('pb_password', ''),
+                        comments=row.get('comments', ''),
+                        user_creation_date=user_creation_date,
+                        status=row['status'],
+                    )
+                    user.save()
+
+            self.stdout.write(self.style.SUCCESS(f'Successfully imported data from {csv_file_path}'))
+
+        except Exception as e:
+            self.stderr.write(self.style.ERROR(f'Error: {e}'))
+
+- Done.

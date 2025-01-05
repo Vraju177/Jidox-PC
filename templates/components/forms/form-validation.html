@@ -1,0 +1,277 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}New User Creation{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Forms" title="New User Creation" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <form id="user-form" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Full Name -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="validationCustom01">Full Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Full Name" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                    
+                            <!-- Username -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="validationCustomUsername">Username</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">/</span>
+                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" required>
+                                        <div class="invalid-feedback">Please choose a username.</div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Company -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="company">Company</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="company" placeholder="Company">
+                                </div>
+                            </div>
+                    
+                            <!-- Phone Number -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="phoneNumber">Phone Number</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                </div>
+                            </div>
+                    
+                            <!-- Alternate Number -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="alternateNumber">Alternate Number</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="alternateNumber" placeholder="Alternate Number">
+                                </div>
+                            </div>
+                    
+                            <!-- Email -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="email">Email</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <div class="invalid-feedback">Please choose a username.</div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Email Password -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="emailPassword">Email Password</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" id="emailPassword" placeholder="Email Password">
+                                </div>
+                            </div>
+                    
+                            <!-- Service Type -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="validationTooltip05">Service Type</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="validationTooltip05" placeholder="Service Type" required>
+                                    <div class="invalid-tooltip">Please provide a valid Service Type.</div>
+                                </div>
+                            </div>
+                    
+                            <!-- Location -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="location">Location</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="location" placeholder="Location">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="branchCode">Branch Code</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="branchCode" placeholder="Branch Code">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+
+
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Node -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="validationCustom03">Node</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="validationCustom03" placeholder="Node" required>
+                                <div class="invalid-feedback">Please provide a Node.</div>
+                            </div>
+                        </div>
+                
+                        <!-- Port Number -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="portNumber">Port Number</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="portNumber" placeholder="Port Number">
+                            </div>
+                        </div>
+                
+                        <!-- RDP Password -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="rdpPassword">RDP Password</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="rdpPassword" placeholder="RDP Password">
+                            </div>
+                        </div>
+                
+                        <!-- Internal IP -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="internalIp">Internal IP</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="internalIp" placeholder="Internal IP">
+                            </div>
+                        </div>
+                
+                        <!-- PB ID -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="pbId">PB ID</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="pbId" placeholder="PB ID">
+                            </div>
+                        </div>
+                
+                        <!-- PB Password -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="pbPassword">PB Password</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="pbPassword" placeholder="PB Password">
+                            </div>
+                        </div>
+                
+                        <!-- Extension Number -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="extensionNumber">Extension Number</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="extensionNumber" placeholder="Extension Number">
+                            </div>
+                        </div>
+                
+                        <!-- Notes -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="notes">Notes</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="notes" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                
+                        <!-- User Creation Date -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="validationTooltip06">Creation Date</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="validationTooltip06" placeholder="User Creation Date" required>
+                                <div class="invalid-tooltip">Please provide a valid Date.</div>
+                            </div>
+                        </div>
+                
+                        <!-- Status -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="validationTooltip01">Status</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="validationTooltip01" placeholder="Status" required>
+                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="invalid-tooltip">Please enter Status.</div>
+                            </div>
+                        </div>
+                
+                        <!-- Submit Button -->
+                        <div class="row mb-3">
+                            <div class="col-md-9 offset-md-3">
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+{% endblock content %}
+
+{% block extra_js %}
+    <script>
+        // Get CSRF token from the document cookie
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        document.querySelector('form.needs-validation').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Format the date correctly (you can customize this as needed)
+            let dateInput = document.getElementById('validationTooltip06').value;
+            let formattedDate = new Date(dateInput).toISOString().split('T')[0]; // This ensures 'YYYY-MM-DD' format
+
+            let formData = new FormData();
+            formData.append('full_name', document.getElementById('validationCustom01').value);
+            formData.append('username', document.getElementById('validationCustomUsername').value);
+            formData.append('company', document.getElementById('company').value);
+            formData.append('phone_number', document.getElementById('phoneNumber').value);
+            formData.append('alternate_number', document.getElementById('alternateNumber').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('email_password', document.getElementById('emailPassword').value);
+            formData.append('service_type', document.getElementById('validationTooltip05').value);
+            formData.append('location', document.getElementById('location').value);
+            formData.append('branch_code', document.getElementById('branchCode').value);
+            formData.append('node', document.getElementById('validationCustom03').value);
+            formData.append('port_number', document.getElementById('portNumber').value);
+            formData.append('rdp_password', document.getElementById('rdpPassword').value);
+            formData.append('internal_ip', document.getElementById('internalIp').value);
+            formData.append('pb_id', document.getElementById('pbId').value);
+            formData.append('pb_password', document.getElementById('pbPassword').value);
+            formData.append('extension_number', document.getElementById('extensionNumber').value);
+            formData.append('notes', document.getElementById('notes').value);
+            formData.append('user_creation_date', formattedDate); // Use the formatted date
+            formData.append('status', document.getElementById('validationTooltip01').value);
+
+            // Include CSRF token in the request headers
+            fetch("{% url 'users:create_user' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrftoken, // Adding CSRF token
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show message or redirect on success
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+    <!-- App js -->
+    <script src="{% static 'js/app.min.js' %}"></script>
+
+{% endblock extra_js %}

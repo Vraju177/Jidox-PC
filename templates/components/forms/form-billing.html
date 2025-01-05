@@ -1,0 +1,188 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Billing Form{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Forms" title="Billing Form" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <form id="billing-form" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Client Name -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="clientName">Client Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="clientName" placeholder="Client Name" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                            <!-- Client Address -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="clientAddress">Client Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="clientAddress" placeholder="Client Address" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                            <!-- Billing To -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="billingTo">Billing To</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="billingTo" placeholder="Billing To" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                            <!-- Service Type -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="serviceType">Service Type</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="serviceType" placeholder="Service Type" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                            <!-- Bill Description -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="billDescription">Bill Description</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="billDescription" placeholder="Bill Description" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                            <!-- Ticket ID -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="ticketId">Ticket ID</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" id="ticketId" placeholder="Ticket ID" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Created Date -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="createdDate">Created Date</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="createdDate" required>
+                                <div class="invalid-feedback">Please provide a valid date.</div>
+                            </div>
+                        </div>
+
+                        <!-- Emailed -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="emailed">Emailed</label>
+                            <div class="col-md-9">
+                                <select class="form-control" id="emailed" required>
+                                    <option value="NO">No</option>
+                                    <option value="YES">Yes</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose an option.</div>
+                            </div>
+                        </div>
+
+                        <!-- Comments -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="comments">Comments</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" id="comments" placeholder="Comments"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Invoice Number -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="invoiceNo">Invoice Number</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="invoiceNo" placeholder="Invoice Number">
+                            </div>
+                        </div>
+
+                        <!-- Invoice Date -->
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label" for="invoiceDate">Invoice Date</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="invoiceDate" placeholder="Invoice Date">
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="row mb-3">
+                            <div class="col-md-9 offset-md-3">
+                                <button class="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+{% endblock content %}
+
+{% block extra_js %}
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        document.querySelector('form.needs-validation').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let formData = new FormData();
+            formData.append('client_name', document.getElementById('clientName').value);
+            formData.append('client_address', document.getElementById('clientAddress').value);
+            formData.append('billing_to', document.getElementById('billingTo').value);
+            formData.append('service_type', document.getElementById('serviceType').value);
+            formData.append('bill_description', document.getElementById('billDescription').value);
+            formData.append('ticket_id', document.getElementById('ticketId').value);
+            formData.append('created_date', document.getElementById('createdDate').value);
+            formData.append('emailed', document.getElementById('emailed').value);
+            formData.append('comments', document.getElementById('comments').value);
+            formData.append('invoice_no', document.getElementById('invoiceNo').value);
+            formData.append('invoice_date', document.getElementById('invoiceDate').value);
+
+            fetch("{% url 'billing:create_billing' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrftoken,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+    <!-- App js -->
+    <script src="{% static 'js/app.min.js' %}"></script>
+
+{% endblock extra_js %}
