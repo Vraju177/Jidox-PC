@@ -1,0 +1,166 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Billing Entry Creation{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Forms" title="Billing Entry Creation" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <form id="billing-form" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Client Name -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="clientName">Client Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="clientName" name="client_name" placeholder="Client Name" required>
+                                    <div class="invalid-feedback">Client Name is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Client Address -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="clientAddress">Client Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="clientAddress" name="client_address" placeholder="Client Address">
+                                </div>
+                            </div>
+
+                            <!-- Billing To -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="billingTo">Billing To</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="billingTo" name="billing_to" placeholder="Billing To">
+                                </div>
+                            </div>
+
+                            <!-- Service Type -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="serviceType">Service Type</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="serviceType" name="service_type" placeholder="Service Type">
+                                </div>
+                            </div>
+
+                            <!-- Bill Description -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="billDescription">Bill Description</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="billDescription" name="bill_description" placeholder="Bill Description"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Ticket ID -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="ticketId">Ticket ID</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="ticketId" name="ticket_id" placeholder="Ticket ID">
+                                </div>
+                            </div>
+
+                            <!-- Emailed -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="emailed">Emailed</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" class="form-check-input" id="emailed" name="emailed">
+                                    <label class="form-check-label" for="emailed">Mark as emailed</label>
+                                </div>
+                            </div>
+
+                            <!-- Invoice Number -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="invoiceNo">Invoice Number</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="invoiceNo" name="invoice_no" placeholder="Invoice Number" required>
+                                    <div class="invalid-feedback">Invoice Number is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Invoice Date -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="invoiceDate">Invoice Date</label>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" id="invoiceDate" name="invoice_date" required>
+                                    <div class="invalid-feedback">Invoice Date is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="row mb-3">
+                                <div class="col-md-9 offset-md-3">
+                                    <button class="btn btn-primary" type="submit">Submit Billing</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+{% endblock content %}
+
+
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get CSRF token from the document
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Add event listener to the form
+        const billingForm = document.querySelector('#billing-form');
+        billingForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            const formData = new FormData(billingForm);
+
+            // Send the data via Fetch API
+            fetch("{% url 'users:create_billing' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // Mark the request as an AJAX call
+                    'X-CSRFToken': csrftoken,             // Include CSRF token
+                },
+            })
+            .then(response => {
+                // Check if the response is OK
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the server's response
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    alert('Billing record created successfully!');
+                    // Optionally, reset the form
+                    billingForm.reset();
+                }
+            })
+            .catch(error => {
+                // Handle errors in the request
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form. Please try again.');
+            });
+        });
+    });
+</script>
+
+
+
+<!-- App js -->
+<script src="{% static 'js/app.min.js' %}"></script>
+{% endblock extra_js %}

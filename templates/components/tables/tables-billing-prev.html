@@ -1,0 +1,167 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Billing Records{% endblock title %}
+
+{% block extra_css %} 
+
+        <!-- Datatables css -->
+        <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- Custom CSS for table alignment and pagination -->
+    <style>
+        /* Ensure DataTables pagination is aligned and styled correctly */
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Make sure the table is responsive */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        /* Style for pagination section */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-left: 5px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock extra_css %} 
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Tables" title="Billing Records" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Billing Records</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="billingTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Client Name</th>
+                                <th>Client Address</th>
+                                <th>Billing To</th>
+                                <th>Service Type</th>
+                                <th>Bill Description</th>
+                                <th>Ticket ID</th>
+                                <th>Comments</th>
+                                <th>Billing Date</th>
+                                <th>Emailed</th>
+                                <th>Invoice No</th>
+                                <th>Invoice Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for billing in billing_data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ billing.client_name }}</td>
+                                <td>{{ billing.client_address }}</td>
+                                <td>{{ billing.billing_to }}</td>
+                                <td>{{ billing.service_type }}</td>
+                                <td>{{ billing.bill_description|truncatewords:10 }}</td>
+                                <td>{{ billing.ticket_id }}</td>
+                                <td>{{ billing.comments }}</td>
+                                <td>{{ billing.billing_date }}</td>
+                                <td>
+                                    {% if billing.emailed %}
+                                    <span class="badge bg-success">Yes</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">No</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ billing.invoice_no }}</td>
+                                <td>{{ billing.invoice_date|date:"d M Y" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="11" class="text-center">No records found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+
+<!-- DataTables JS -->
+<script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-select/js/dataTables.select.min.js' %}"></script>
+
+<!-- DataTables Initialization -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const billingTable = document.getElementById("billingTable");
+
+    if (billingTable) {
+        new DataTable(billingTable, {
+            paging: true,
+            searching: true,
+            ordering: true,
+            responsive: true,
+            lengthChange: true,
+
+            columns: [
+                { title: "#" },
+                { title: "Client Name", data: "client_name" },
+                { title: "Client Address", data: "client_address" },
+                { title: "Billing To", data: "billing_to" },
+                { title: "Service Type", data: "service_type" },
+                { title: "Bill Description", data: "bill_description" },
+                { title: "Ticket ID", data: "ticket_id" },
+                { title: "Comments", data: "comments" },
+                { title: "Billing Date", data: "billing_date" }
+                { title: "Emailed", data: "emailed" },
+                { title: "Invoice No", data: "invoice_no" },
+                { title: "Invoice Date", data: "invoice_date" }
+            ]
+        });
+    }
+});
+</script>
+
+{% endblock extra_js %}
+

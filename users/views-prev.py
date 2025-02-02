@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,6 +7,11 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
 from .forms import UserForm
+from .models import BillingModel
+from .forms import BillingModelForm
+from django.contrib import messages
+from django.db.models import Q
+import logging
 
 User = get_user_model()
 
@@ -132,18 +137,24 @@ def user_details_view(request, user_id):
         'company': user.company,
         'service_type': user.service_type,
         'phone_number': user.phone_number,
+        'alternate_number': user. alternate_number,
+        'location': user.location,
+        'branch_code': user.branch_code,
         'email': user.email,
+        'email_password': user.email_password,
         'node': user.node,
         'port_number': user.port_number,
+        'rdp_password': user.rdp_password,
+        'internal_ip': user.internal_ip,
+        'pb_id': user.pb_id,
+        'pb_password': user.pb_password,
         'extension_number': user.extension_number,
         'status': user.status,
         'notes': user.notes,
-        'user_creation_date': user.user_creation_date.strftime('%Y-%m-%d %H:%M:%S'),  # Format the date if necessary
+        'user_creation_date': user.user_creation_date.strftime('%d-%m-%Y'),  # Format the date if necessary
     }
     
     return JsonResponse(data)
-
-
 
 
 
@@ -152,39 +163,317 @@ from django.shortcuts import render
 from .models import User
 
 def get_stats(request):
-    print("Client_name1",client_name)
-
     client_name = request.GET.get('client_name')
-    print("Client_name2",client_name)
-  
+    print("Client_name:", client_name)
+
+    # Case when 'client_name' is provided or 'Total' is selected
     if client_name:
-        # Remove any leading/trailing spaces and handle case-insensitive matching
         client_name = client_name.strip()
-        print("Client_name",client_name)
 
-        stats = {
-            'active_users': User.objects.filter(company__iexact=client_name)  # Case-insensitive match for company
-                .exclude(full_name__isnull=True)
-                .exclude(full_name='')
-                #.print(f"Active users count for '{client_name}': {active_users.count()}"),
-                .count(),
-            'active_rdp': User.objects.filter(company__iexact=client_name)  # Case-insensitive match for company
-                .exclude(node__isnull=True)
-                .exclude(node='')
-                .count(),
-            'active_emails': User.objects.filter(company__iexact=client_name)  # Case-insensitive match for company
-                .exclude(email__isnull=True)
-                .exclude(email='')
-                .count(),
-            'active_voip': User.objects.filter(company__iexact=client_name)  # Case-insensitive match for company
-                .exclude(extension_number__isnull=True)
-                .exclude(extension_number='')
-                .count(),
+        if client_name == "All Clients":
+            # Calculate totals for all clients
+            stats = {
+                'active_users': User.objects.exclude(full_name__isnull=True).exclude(full_name='').count(),
+                'active_rdp': User.objects.exclude(node__isnull=True).exclude(node='').count(),
+                'active_emails': User.objects.exclude(email__isnull=True).exclude(email='').count(),
+                'active_voip': User.objects.exclude(extension_number__isnull=True).exclude(extension_number='').count(),
             }
-        #print(f"Active users count: {active_users}")  
-        return JsonResponse({'stats': stats})
+        else:
+            # Filter by client name if specific client is selected
+            stats = {
+                'active_users': User.objects.filter(company__iexact=client_name)
+                    .exclude(full_name__isnull=True).exclude(full_name='').count(),
+                'active_rdp': User.objects.filter(company__iexact=client_name)
+                    .exclude(node__isnull=True).exclude(node='').count(),
+                'active_emails': User.objects.filter(company__iexact=client_name)
+                    .exclude(email__isnull=True).exclude(email='').count(),
+                'active_voip': User.objects.filter(company__iexact=client_name)
+                    .exclude(extension_number__isnull=True).exclude(extension_number='').count(),
+            }
+
+        # Fetch the first service_type if available for the selected client
+        first_service_type = User.objects.filter(company__iexact=client_name).values('service_type').first()
+        service_type = first_service_type['service_type'] if first_service_type else None
+
+        # Return the response with stats and service_type
+        return JsonResponse({
+            'stats': stats,         # Stats dictionary (active_users, active_rdp, etc.)
+            'service_type': service_type  # The extracted service_type
+        })
     else:
-        return JsonResponse({'error': 'Client name not provided or invalid'}, status=400)
+        # If no 'client_name' is provided in the request, return an error
+        return JsonResponse({'error': 'Invalid client name'}, status=400)
+
+
+def get_all_clients_stats(request):
+    # Get all unique client names
+    client_names = User.objects.values_list('company', flat=True).distinct()
+
+    # Initialize dictionary for aggregate stats
+    total_stats = {
+        'active_users': 0,
+        'active_rdp': 0,
+        'active_emails': 0,
+        'active_voip': 0,
+    }
+
+    client_stats = []
+
+    for client_name in client_names:
+        stats = {
+            'client_name': client_name,
+            'active_users': User.objects.filter(company__iexact=client_name)
+                .exclude(full_name__isnull=True).exclude(full_name='').count(),
+            'active_rdp': User.objects.filter(company__iexact=client_name)
+                .exclude(node__isnull=True).exclude(node='').count(),
+            'active_emails': User.objects.filter(company__iexact=client_name)
+                .exclude(email__isnull=True).exclude(email='').count(),
+            'active_voip': User.objects.filter(company__iexact=client_name)
+                .exclude(extension_number__isnull=True).exclude(extension_number='').count(),
+        }
+        
+        # Aggregate stats
+        total_stats['active_users'] += stats['active_users']
+        total_stats['active_rdp'] += stats['active_rdp']
+        total_stats['active_emails'] += stats['active_emails']
+        total_stats['active_voip'] += stats['active_voip']
+
+        client_stats.append(stats)
+
+    return JsonResponse({
+        'clients': client_stats,  # Stats per client
+        'totalStats': total_stats  # Total aggregated stats
+    })
+
+
+#================================================================================
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from datetime import datetime
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import render
+from .models import BillingModel
+from django.forms.models import model_to_dict
+
+@require_http_methods(["GET", "POST"])
+@csrf_exempt  # Use only if CSRF issues arise during testing (not recommended for production)
+def create_billing(request):
+    """
+    Handle GET and POST requests for creating a billing record.
+    """
+    if request.method == 'GET':
+        # Render the billing form (HTML page)
+        return render(request, 'components/forms/form-billing.html')
+
+    if request.method == 'POST':
+        try:
+            # Handle both JSON and form data submissions
+            if request.content_type == 'application/json':
+                # Parse JSON data
+                data = json.loads(request.body)
+            else:
+                # Use `request.POST` for form-encoded data
+                data = request.POST
+
+            # Extract billing data
+            client_name = data.get('client_name')
+            client_address = data.get('client_address')
+            billing_to = data.get('billing_to')
+            service_type = data.get('service_type')
+            bill_description = data.get('bill_description')
+            ticket_id = data.get('ticket_id')
+            emailed = data.get('emailed')
+            comments = data.get('comments')
+            invoice_no = data.get('invoice_no')
+            invoice_date = data.get('invoice_date')
+
+             # Handle the `emailed` checkbox
+            emailed = data.get('emailed', '0')  # Default to 'off' if not provided
+            emailed = '1' if emailed == 'on' else '2'  # Convert 'on' to 1 , otherwise 2
+
+            comments = 'Comments'
+
+            # Validate the required fields
+            if not client_name or not client_address or not billing_to or not service_type or not bill_description or not ticket_id or not invoice_no:
+                return JsonResponse({'error': 'Missing required fields.'}, status=400)
+
+            # Convert invoice_date to a datetime object, if provided
+            if invoice_date:
+                invoice_date = datetime.strptime(invoice_date, '%Y-%m-%d')
+
+            # Simulate saving the data to the database (replace with actual DB operations)
+            billing_record_data = {
+                'client_name': client_name,
+                'client_address': client_address,
+                'billing_to': billing_to,
+                'service_type': service_type,
+                'bill_description': bill_description,
+                'ticket_id': ticket_id,
+                'emailed': emailed,
+                'comments': comments,
+                'invoice_no': invoice_no,
+              #  'invoice_date': invoice_date.strftime('%Y-%m-%d') if invoice_date else None,
+              "invoice_date": str(invoice_date) if invoice_date else None,
+            }
+             
+            billing_record = BillingModel(**billing_record_data)
+
+            # Debug message for development
+            print(f"Billing record created: {billing_record}")
+         
+            # billing_record.save()
+
+            try:
+             billing_record.save()
+             print(f"Billing record saved: {billing_record}")
+            except Exception as e:
+             import traceback
+             print(f"Error saving billing record: {e}")
+             traceback.print_exc()  # Prints full error stack trace
+            
+            # Return success response
+            return JsonResponse({
+           'message': 'Billing record created successfully!',
+           'data': model_to_dict(billing_record)
+            }, status=200)
+
+        except Exception as e:
+            # Handle errors gracefully
+            return JsonResponse({'error': f'Error processing request: {str(e)}'}, status=400)
+
+    # Return 405 if the method is not allowed (optional, as require_http_methods ensures this)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
 
+
+
+def billing_table_view(request):
+    billings = BillingModel.objects.all()  # Get all records
+    billing_data = [
+        {
+            'client_name': billing.client_name,
+            'client_address': billing.client_address,
+            'billing_to': billing.billing_to,
+            'service_type': billing.service_type,
+            'bill_description': billing.bill_description,
+            'ticket_id': billing.ticket_id,
+            'comments': billing.comments,
+            'emailed': billing.emailed,
+            'created_date': billing.created_date,
+            'invoice_no': billing.invoice_no,
+            'invoice_date': billing.invoice_date,
+        }
+        for billing in billings
+    ]
+    return render(request, "components/tables/tables-billing.html", {"billing_data": billing_data})
+
+
+# =========================================================================
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from .models import InventoryModel  # Assuming your Inventory model is named InventoryModel
+from django.forms.models import model_to_dict
+
+@require_http_methods(["GET", "POST"])
+@csrf_exempt  # Use only if CSRF issues arise during testing (not recommended for production)
+def create_inventory(request):
+    """
+    Handle GET and POST requests for creating an inventory record.
+    """
+    if request.method == 'GET':
+        # Render the inventory form (HTML page)
+        return render(request, 'components/forms/form-inventory.html')
+
+    if request.method == 'POST':
+        try:
+            # Handle both JSON and form data submissions
+            if request.content_type == 'application/json':
+                # Parse JSON data
+                data = json.loads(request.body)
+            else:
+                # Use `request.POST` for form-encoded data
+                data = request.POST
+
+            # Extract inventory data
+            manufacturer = data.get('manufacturer')
+            product_item = data.get('product_item')
+            description = data.get('description')
+            total_ins = data.get('total_ins')
+            total_outs = data.get('total_outs')
+            stock_inhand = data.get('stock_inhand')
+            sr_no = data.get('sr_no')
+            mac_product_no = data.get('mac_product_no')
+            ticket_id = data.get('ticket_id')
+            inventory_comments = data.get('inventory_comments')
+
+            # Validate the required fields
+            if not manufacturer or not product_item or not description or not total_ins or not total_outs or not sr_no or not ticket_id:
+                return JsonResponse({'error': 'Missing required fields.'}, status=400)
+
+            # Simulate saving the data to the database (replace with actual DB operations)
+            inventory_data = {
+                'manufacturer': manufacturer,
+                'product_item': product_item,
+                'description': description,
+                'total_ins': total_ins,
+                'total_outs': total_outs,
+                'stock_inhand': stock_inhand,
+                'sr_no': sr_no,
+                'mac_product_no': mac_product_no,
+                'ticket_id': ticket_id,
+                'inventory_comments': inventory_comments,
+            }
+
+            inventory_record = InventoryModel(**inventory_data)
+
+            # Debug message for development
+            print(f"Inventory record created: {inventory_record}")
+         
+            # Save the inventory record to the database
+            try:
+                inventory_record.save()
+                print(f"Inventory record saved: {inventory_record}")
+            except Exception as e:
+                import traceback
+                print(f"Error saving inventory record: {e}")
+                traceback.print_exc()  # Prints full error stack trace
+            
+            # Return success response
+            return JsonResponse({
+                'message': 'Inventory record created successfully!',
+                'data': model_to_dict(inventory_record)
+            }, status=200)
+
+        except Exception as e:
+            # Handle errors gracefully
+            return JsonResponse({'error': f'Error processing request: {str(e)}'}, status=400)
+
+    # Return 405 if the method is not allowed (optional, as require_http_methods ensures this)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+def inventory_table_view(request):
+    inventories = InventoryModel.objects.all()  # Get all inventory records
+    inventory_list = [
+        {
+            'manufacturer': inventory.manufacturer,
+            'product_item': inventory.product_item,
+            'description': inventory.description,
+            'total_ins': inventory.total_ins,
+            'total_outs': inventory.total_outs,
+            'stock_inhand': inventory.stock_inhand,
+            'sr_no': inventory.sr_no,
+            'mac_product_no': inventory.mac_product_no,
+            'ticket_id': inventory.ticket_id,
+            'inventory_comments': inventory.inventory_comments,
+            'created_date': inventory.created_date,
+        }
+        for inventory in inventories
+    ]
+    return render(request, "components/tables/table-inventory.html", {"inventory_list": inventory_list})

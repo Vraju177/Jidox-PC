@@ -10,11 +10,26 @@ or
 sqlcmd -S localhost -d db.mssql-jidox -U your_username -P your_password
 
 
+
 # Query all tables in the database
+
+SELECT name AS TableName
+FROM sys.tables;
+GO
+
+or
+
 SELECT table_name
 FROM information_schema.tables
 WHERE table_type = 'BASE TABLE';
 GO
+
+- Check Scheka of the Table:
+SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'users_billingmodel';
+GO
+
 
 # Query the schema of the users_user table
 EXEC sp_columns 'users_user';
@@ -155,9 +170,12 @@ C:\Users\Public\Jidox>
     │      └───index.html
     ├───users/
     │      ├───__pychache__/
-    │      ├───migrations/
+    │      ├───management/
     │      │       └───commands/
-    │      │              └───data.csv
+    │      │              ├───billing.csv
+    │      │              ├───data.csv
+    │      │              ├───upload.billing.py
+    │      │              └───import_csv.py
     │      ├───migrations/
     │      ├───__init__.py
     │      ├───adapters.py

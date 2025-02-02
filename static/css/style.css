@@ -1,0 +1,1337 @@
+/* Resetting margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Layout */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #f4f4f4;
+}
+
+
+/* **** START of Header Section **** */
+/* **** START of Header Section **** */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 15px 30px;
+    color: white;
+}
+
+/* Title styling with logo */
+header .title {
+    display: flex;
+    align-items: center; /* Align the logo and title text horizontally */
+    margin-left: 250px; /* Creates space between the title and left side (adjust as needed) */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Logo styling */
+header .logo {
+    width: 250px; /* Adjust the size of the logo */
+    height: 60px;
+    margin-right: 60px; /* Space between the logo and the title text */
+}
+
+/* Profile and Logout section */
+header .profile-logout {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile logo styling */
+header .profile-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer; /* Make the profile image clickable */
+}
+
+/* Dropdown container */
+
+.dropdown-content {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.profile .dropdown-content {
+    display: none;
+}
+
+.profile:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+header .dropdown {
+    position: relative;
+}
+
+/* Dropdown content hidden by default */
+header .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #2c3e50;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Rounded corners */
+    z-index: 1;
+}
+
+/* Hover effect on profile or dropdown container to show the dropdown */
+header .profile:hover .dropdown-content,
+header .dropdown-content:hover {
+    display: block;
+}
+
+/* Dropdown item styling */
+header .dropdown-content a, header .dropdown-content button {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex; /* Align icon and text side-by-side */
+    align-items: center; /* Vertically align icons and text */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Icon styling */
+header .dropdown-content a i, header .dropdown-content button i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+/* Dropdown item hover effect */
+header .dropdown-content a:hover, header .dropdown-content button:hover {
+    background-color: #2c3e50;
+}
+
+/* Log out button styling */
+header .logout-button {
+    color: white;
+    background-color: #f44336;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+header .logout-button:hover {
+    background-color: #d32f2f;
+}
+
+/* **** END of Header Section **** */
+
+
+
+
+
+/* **** START of Sidebar Styling **** */
+
+/* Set the size of the sidebar icons */
+.sidebar-icon {
+    width: 40px; /* Adjust the size as needed */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+
+.sidebar {
+    background-color: #2c3e50; /* Dark Blue-Grey background */
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 100;
+    transition: width 0.3s ease, padding 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+    flex-grow: 1;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+    color: #ecf0f1;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.sidebar-link .icon {
+    font-size: 24px; /* Icon size */
+    margin-right: 10px; /* Space between icon and text */
+    display: inline-block;
+}
+
+/* Sidebar Link Hover */
+.sidebar-link:hover {
+    background-color: #3498db; /* Bright Blue color on hover */
+    color: white;
+}
+
+/* *** START of Sidebar Toggle Button *** */
+/* *** START of Sidebar Toggle Button *** */
+.sidebar .sidebar-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: -20px; /* Adjusted to make space for the smaller button */
+    background-color: #3498db59;
+    border: none;
+    border-radius: 50%;
+    padding: 6px; /* Reduced padding to make the button smaller */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px; /* Smaller font size for the button */
+}
+
+.sidebar .sidebar-toggle-btn:hover {
+    background-color: #2980b9;
+}
+
+.sidebar .sidebar-toggle-btn:focus {
+    outline: none;
+}
+
+/* Modify the arrow design and size */
+.sidebar .sidebar-toggle-btn i {
+    font-size: 12px; /* Smaller arrow */
+    color: #fff; /* White color for the arrow */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for the arrow */
+.sidebar .sidebar-toggle-btn:hover i {
+    color: #007bff; /* Change to blue on hover */
+    transform: scale(1.2); /* Slightly enlarge the arrow on hover */
+}
+
+/* Sidebar Menu Layout */
+.sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+/* For Collapsed Sidebar */
+.sidebar.collapsed {
+    width: 70px; /* Narrow width when collapsed */
+    padding: 20px 0;
+}
+
+.sidebar.collapsed .link-text {
+    display: none; /* Hide text when collapsed */
+}
+
+.sidebar.collapsed .sidebar-link {
+    justify-content: center;
+}
+
+/* Show Icons Only When Collapsed */
+.sidebar.collapsed .icon {
+    font-size: 28px; /* Increase icon size when collapsed */
+    margin-right: 0; /* Remove margin for better icon alignment */
+}
+
+/* Add hover effect for collapsed mode */
+.sidebar.collapsed:hover {
+    width: 250px; /* Expand width on hover */
+}
+
+.sidebar.collapsed .sidebar-toggle-btn {
+    transform: rotate(180deg); /* Rotate arrow to point left when collapsed */
+}
+
+/* Media Query for Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+}
+/* *** END of Sidebar Toggle Button *** */
+
+/* *** END of Side-bar Toggle Button *** */
+
+
+/* Content Section */
+.content {
+    margin-left: 250px;
+    padding: 40px 20px 20px; /* Added top padding to move content down */
+    flex: 1;
+}
+
+/* START of Stats Section */
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-box {
+    padding: 30px;
+    width: 23%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;  /* To ensure that the icon is aligned properly */
+    background: linear-gradient(to bottom right, #5dade2, #2c3e50); /* Blue gradient */
+}
+
+.stat-box:hover {
+    transform: translateY(-15px); /* Slight hover effect to raise the box */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);  /* Increased shadow on hover */
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.stat-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon img {
+    width: 50px;  /* Adjust the size of the icon */
+    height: 50px;
+}
+
+.stat-box h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.stat-box p {
+    font-size: 30px;
+    color: #ecf0f1; /* Lighter color for contrast */
+    margin-top: 15px;
+}
+
+/* Optional: Adjusting colors for the stat boxes with different blue tones */
+.stat-box:nth-child(1) {
+    background: linear-gradient(to bottom right, #2980b9, #1abc9c); /* Active Users */
+}
+
+.stat-box:nth-child(2) {
+    background: linear-gradient(to bottom right, #3498db, #2980b9); /* Active RDP */
+}
+
+.stat-box:nth-child(3) {
+    background: linear-gradient(to bottom right, #5dade2, #2980b9); /* Active Emails */
+}
+
+.stat-box:nth-child(4) {
+    background: linear-gradient(to bottom right, #6bb9f0, #2980b9); /* Active Alerts */
+}
+/* END of STATS Section */
+
+
+/* User Information Section */
+
+/* Form Layout */
+.user-info-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.column {
+    flex: 1;
+    min-width: 280px;
+    max-width: 33%; /* Each column takes up 1/3rd of the width */
+    padding: 20px;
+}
+
+/* Form Row (fields) */
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    font-size: 16px;
+    color: #34495e;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-row input, .form-row select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #dcdfe1;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form-row input:focus, .form-row select:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Button Styling */
+.save-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #3498db;
+}
+
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .user-info-form {
+        flex-direction: column;
+    }
+
+    .column {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+/* END of client-select-container */
+
+
+
+/* ************ START of Billing-container styling ************  */
+/* Billing Form Container */
+.billing-container {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Billing Header  added1212pm*/
+.billing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Optional: Adds space below the header */
+}
+
+/* Ensure Button and Header are aligned on the same line */
+.billing-header h2 {
+    margin: 0;
+    font-size: 32px;
+    color: #34495e;
+    font-weight: 700;
+}
+
+/* Billing Form Title */
+.billing-container h2 {
+    font-size: 32px;
+    margin: 0; /* Remove any margin to keep it aligned */
+    color: #34495e;
+    font-weight: 700;
+}
+
+/* Billing Form Layout */
+.billing-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+/* Form Group Styling */
+.billing-form-row .form-group {
+    flex: 1 1 48%; /* Each form group takes up 48% of the width */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Form Label Styling */
+.billing-form-row .form-group label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Form Input Styling */
+.billing-form-row .form-group input,
+.billing-form-row .form-group select {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #e0e5ec;
+    font-size: 16px;
+    color: #34495e;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Focus Effect on Inputs */
+.billing-form-row .form-group input:focus,
+.billing-form-row .form-group select:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Submit Button Styling */
+.save-btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover Effect on Submit Button */
+.save-btn:hover {
+    background-color: #3498db;
+}
+
+/* Responsive Design for Billing Container */
+@media (max-width: 768px) {
+    .billing-form-row {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .billing-form-row .form-group {
+        width: 100%; /* Ensure each form group takes full width on small screens */
+        margin-bottom: 20px;
+    }
+
+    .save-btn {
+        width: 100%; /* Ensure the button takes full width on smaller screens */
+    }
+}
+
+
+/* START of Styling for Search and Create Billing Toggles */
+/* Initially hidden sections */
+.toggle-container {
+    display: none;
+}
+
+/* Active class to show the content */
+.toggle-container.active {
+    display: block;
+}
+
+
+
+
+/* Button Styling */
+button {
+    padding: 10px 15px;
+    background-color: #3498db;;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.search-btn {
+    margin-top: 10px;
+    background-color: #2196F3;
+}
+
+/* Billing Button */
+.create-billing-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.create-billing-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Smooth transitions for expanding and collapsing */
+.toggle-container {
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* ************* Start of User Search Results & Table View Container ************* */
+/* Search Results Styling */
+.search-results {
+    margin-top: 10px;
+}
+
+
+#search-results-container.active {
+    display: block;
+}
+
+/* Updated for search results container */
+/* User Table Styling */
+.search-results-container {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto; /* Allow horizontal scroll if the content exceeds the container's width */
+    overflow-y: auto; /* Allow vertical scroll if the content exceeds the container's height */
+    box-sizing: border-box; /* Prevent layout issues */
+    max-height: 70vh; /* Limit the height to a portion of the viewport height */
+    display: block;
+    position: relative;
+    padding-top: 40px; /* Add some padding to ensure header space is there */
+}
+
+
+/* Header section for the search */
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Column for the search input */
+.search-column {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* ******** START of Table styling */
+/* Make sure the table always stays within the container and allows scrolling */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0; /* Remove any top margin */
+    table-layout: auto; /* Allow table to adjust width to content */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    background-color: #fff;
+    min-width: 1200px; /* Set a minimum width for the table */
+    margin-bottom: 20px; /* Add margin below the table */
+}
+
+/* Table Header Styling */
+.results-table th {
+    background: linear-gradient(135deg, #6c7ae0, #4e5cb6);
+    color: #fff;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid #4e5cb6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0; /* Fix the position at the top of the container */
+    z-index: 10; /* Ensure it's above the table body rows */
+    white-space: nowrap; /* Prevent the text from wrapping in header */
+    vertical-align: middle;
+}
+
+/* Table Data Cell Styling */
+.results-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f9f9f9;
+    word-wrap: break-word; /* Allow text to wrap and prevent overflow */
+    max-width: 200px; /* Limit max width of each column */
+    vertical-align: middle; /* Align vertically in the middle */
+}
+
+/* Row hover effect */
+.results-table tr:hover {
+    background-color: #e6efff; /* Light blue background on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Row styles for even rows */
+.results-table tr:nth-child(even) {
+    background-color: #fdfdff; /* Very subtle background color for even rows */
+}
+
+/* Action button styling */
+.action-btn {
+    padding: 8px 15px;
+    background-color: #4e5cb6;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Action button hover effect */
+.action-btn:hover {
+    background-color: #3a4b8f;
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Scrollbar behavior when table is wide */
+.search-results-container::-webkit-scrollbar {
+    height: 8px; /* Thin scrollbar */
+}
+
+.search-results-container::-webkit-scrollbar-thumb {
+    background-color: #007bff; /* Blue thumb for the scrollbar */
+    border-radius: 10px;
+}
+
+.search-results-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light background for the scrollbar track */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .results-table th, .results-table td {
+        font-size: 12px; /* Smaller font size on mobile */
+        padding: 8px 10px;
+    }
+
+    .results-table {
+        min-width: 100%; /* Ensure table adjusts to the width of the screen */
+    }
+
+    .search-column input {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* ***** End of User Search Results & Table View Container ***** */
+
+
+
+/* Ensure search input has the same styling */
+#search_ticket_id {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #e0e5ec;
+    font-size: 16px;
+    color: #34495e;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Focus Effect on Search Input */
+#search_ticket_id:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+
+
+/* ************ END of Billing-container styling ************  */
+
+
+
+/* START of History Notes Section Styling */
+/* History / Notes Section */
+.history-notes-container {
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1800px; /* Limiting width to maintain alignment */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.history-notes-container h2 {
+    font-size: 24px;
+    color: #34495e;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* 2-Column Layout */
+.history-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.column {
+    width: 30%; /* Each column takes up 48% of the width */
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.left-column .editable {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #dcdfe1;
+    font-size: 16px;
+    box-sizing: border-box;
+    min-height: 400px;  /* Height adjustment */
+    overflow-y: auto;
+    background-color: #fff;
+    resize: vertical;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.left-column button.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.left-column button.submit-btn:hover {
+    background-color: #3498db;
+}
+
+.left-column button.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Right Column - Displaying Notes (with Images) */
+.right-column {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.right-column h3 {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notes-container {
+    display: flex;
+    flex-direction: column-reverse; /* Ensure the latest notes appear at the top */
+    gap: 10px;
+}
+
+.note {
+    background-color: #ecf0f1;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #34495e;
+}
+
+.note strong {
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.note img {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .history-columns {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+
+    .left-column button.submit-btn {
+        padding: 12px;
+    }
+}
+
+
+/* END of History Notes Section Styling */
+
+
+/* Footer Section */
+
+
+footer {
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .footer-content p {
+    margin: 5px 0;
+}
+
+footer .footer-logo {
+    width: 100px;
+    margin-top: 10px;
+}
+
+/* Client Select and Create New User Section */
+.client-select-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for the entire container */
+}
+
+.client-select-container h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-align: center;
+    font-weight: bold;
+}
+
+.client-select-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the items */
+    gap: 30px;
+}
+
+/* Column Styles */
+.column {
+    flex: 1;
+    min-width: 280px;
+    width: 100%; /* Ensure both elements take up full width of their respective column */
+    max-width: 200px; /* Limit the max width to prevent them from becoming too wide */
+    padding: 15px;
+}
+
+/* Label Styling */
+.client-label {
+    font-size: 16px;
+    color: #34495e;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Input and Dropdown Fields */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #dcdfe1;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.input-field:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Style for the search container to hold input and icon */
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Style for the input field */
+.search-bar {
+    width: 100%;
+    padding: 12px 40px 12px 12px;  /* Add padding to the right for the icon */
+    border-radius: 5px;
+    border: 1px solid #dcdfe1;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Style for the search icon */
+.icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);  /* Vertically center the icon */
+    font-size: 20px;
+    color: #2980b9;  /* Blue color to match theme */
+    cursor: pointer;
+}
+
+/* Optional: Adding hover effect on the search icon */
+.icon:hover {
+    color: #3498db;
+}
+
+
+.search-bar:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Button Styling */
+.save-btn {
+    padding: 14px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #3498db;
+}
+
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .client-select-row {
+        flex-direction: column;
+    }
+
+    .column {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* Space between Client Select and Stats Section */
+.space-between-sections {
+    margin-top: 30px;  /* Create space between client select and stats sections */
+}
+/* END of Client Select and Create New User Section */
+
+
+
+/* ==================USERCREATION SPECIFIC STYLE========================== */
+
+
+/* Main Content Section */
+/*main {
+    margin-left: 260px;
+    padding: 20px;
+} */
+.createuser-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    width: 85%;  /* Adjust the width to reduce it (e.g., 90% of the parent container) */
+    margin-left: auto;  /* Aligns the container to the right */
+    margin-right: 20px; /* Adds padding space from the right side */
+}
+
+.createuser-container h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.column1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    gap: 20px; /* Adds space between columns */
+    margin-bottom: 20px;
+}
+
+.column1 .form-row1 {
+    display: flex; /* Flexbox for label and input alignment */
+    justify-content: space-between; /* Distribute space between label and input */
+    align-items: center; /* Vertically align label and input */
+}
+
+.column1 .form-row1 label {
+    font-weight: bold;
+    margin-bottom: 0; /* Remove margin-bottom from label */
+    margin-right: 15px; /* Add space between label and input */
+    width: 30%; /* Fixed width for the label */
+    text-align: right; /* Right-align the label */
+}
+
+.column1 .form-row1 input,
+.column1 .form-row1 select {
+    width: 65%; /* The input field will take up 65% of the space */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.column1 .form-row1 input:focus,
+.column1 .form-row1 select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.save-btn1 {
+    background-color: #2980b9;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.save-btn1:hover {
+    background-color: #3498db;
+}
+
+.form-row1 button[type="submit"] {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .column1 {
+        grid-template-columns: 1fr; /* Stack the columns vertically for smaller screens */
+    }
+
+    .column1 .form-row1 {
+        width: 100%;
+    }
+
+    .column1 .form-row1 label,
+    .column1 .form-row1 input,
+    .column1 .form-row1 select {
+        width: 30px; /* Make label and input take full width */
+        margin-right: 0; /* Remove margin between label and input */
+    }
+
+    .save-btn1 {
+        width: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .save-btn1 {
+        width: 100%;
+    }
+}
+
+
+/* ******** Start of "VIEW" Button under searchresults *** */
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly transparent black background */
+    overflow: auto; /* Enable scroll if needed */
+    transition: opacity 0.3s ease; /* Smooth transition when showing/hiding */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px; /* Rounded corners */
+    width: 50%; /* Default modal width */
+    max-width: 700px; /* Maximum width */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+    animation: modal-in 0.3s ease-in-out; /* Animation for modal appearance */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+/* Modal Content Animation */
+@keyframes modal-in {
+    0% {
+        transform: scale(0.8); /* Start smaller */
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1); /* End at normal size */
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.close-btn {
+    color: #555;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Close Button Hover */
+.close-btn:hover {
+    color: #f44336; /* Red color on hover */
+}
+
+/* Modal Header */
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* User Details Section */
+#user-details {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Individual User Detail Fields */
+#user-details p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+#user-details strong {
+    color: #007BFF; /* Highlight field labels */
+}
+
+/* Adding Smooth Fade Effect for Modal Open/Close */
+.modal.fade-in {
+    opacity: 1;
+}
+
+.modal.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Disable clicks when fading out */
+}
+
+/* Background overlay effect on hover */
+.modal:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Darken background on hover */
+}
+
+/* Animation for modal open */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Dark Theme for Modal Content (Optional) */
+.modal-content.dark-theme {
+    background-color: #2C3E50;
+    color: #ecf0f1;
+}
+
+.modal-content.dark-theme h3 {
+    color: #ecf0f1;
+}
+
+.modal-content.dark-theme p {
+    color: #bdc3c7;
+}
+/* ******** End of "VIEW" Button under searchresults *** */

@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 import csv
 from users.models import User  # Adjust this import based on your app structure
 from datetime import datetime
+from django.db import IntegrityError
 
 class Command(BaseCommand):
     help = "Import users from a CSV file."
@@ -31,33 +32,40 @@ class Command(BaseCommand):
                 for row in reader:
                     try:
                         user_creation_date = datetime.strptime(row['user_creation_date'], '%Y-%m-%d').date()
-                        User.objects.create(
+                        user, created = User.objects.get_or_create(
                             username=row['username'],
-                            company=row.get('company', ''),
-                            full_name=row.get('full_name', ''),
-                            phone_number=row.get('phone_number', ''),
-                            alternate_number=row.get('alternate_number', ''),
-                            email=row.get('email', ''),
-                            email_password=row.get('email_password', ''),
-                            service_type=row.get('service_type', ''),
-                            location=row.get('location', ''),
-                            branch_code=row.get('branch_code', ''),
-                            node=row.get('node', ''),
-                            port_number=row.get('port_number', ''),
-                            rdp_password=row.get('rdp_password', ''),
-                            internal_ip=row.get('internal_ip', ''),
-                            pb_id=row.get('pb_id', ''),
-                            pb_password=row.get('pb_password', ''),
-                            extension_number=row.get('extension_number', ''),
-                            notes=row.get('notes', ''),
-                            user_creation_date=user_creation_date,
-                            status=row['status']
+                            defaults={
+                                'company': row.get('company', ''),
+                                'full_name': row.get('full_name', ''),
+                                'phone_number': row.get('phone_number', ''),
+                                'alternate_number': row.get('alternate_number', ''),
+                                'email': row.get('email', ''),
+                                'email_password': row.get('email_password', ''),
+                                'service_type': row.get('service_type', ''),
+                                'location': row.get('location', ''),
+                                'branch_code': row.get('branch_code', ''),
+                                'node': row.get('node', ''),
+                                'port_number': row.get('port_number', ''),
+                                'rdp_password': row.get('rdp_password', ''),
+                                'internal_ip': row.get('internal_ip', ''),
+                                'pb_id': row.get('pb_id', ''),
+                                'pb_password': row.get('pb_password', ''),
+                                'extension_number': row.get('extension_number', ''),
+                                'notes': row.get('notes', ''),
+                                'user_creation_date': user_creation_date,
+                                'status': row['status']
+                            }
                         )
-                        self.stdout.write(f"Successfully imported user {row['username']}")
+                        if created:
+                            self.stdout.write(f"Successfully imported user {row['username']}")
+                        else:
+                            self.stdout.write(f"User {row['username']} already exists, skipping.")
                     except KeyError as e:
                         self.stderr.write(f"Missing column in CSV: {e}")
+                    except IntegrityError as e:
+                        self.stderr.write(f"Integrity error importing user {row['username']}: {e}")
                     except Exception as e:
-                        self.stderr.write(f"Error importing user: {e}")
+                        self.stderr.write(f"Error importing user {row['username']}: {e}")
 
         except FileNotFoundError:
             self.stderr.write(f"File not found: {file_path}")

@@ -16,14 +16,11 @@
                 <!-- Client Name Dropdown -->
                 <div class="input-group">
                     <select class="form-control shadow border-0" id="client-name">
-                        <option value="" selected disabled>Select Client Name</option>
+                        <option value="All Clients" selected>All Clients</option>
                         <option value="Diamond Insurance">Diamond Insurance</option>
                         <option value="gracious-hardwood">Gracious Hardwood</option>
                         <option value="haulage-na">Haulage NA</option>
-                        <option value="metrox">MetroX</option>
-                        <option value="a-spec">A-Spec</option>
-                        <option value="supreme-wire">Supreme Wire</option>
-                        <option value="ontario-transway">Ontario Transway</option>
+                        <option value="others-clients">Other Clients</option>
                     </select>
                     <span class="input-group-text bg-primary border-primary text-white">
                         <i class="ri-user-line fs-13"></i>
@@ -39,7 +36,7 @@
                 </div>
     
                 <!-- Refresh Button -->
-                <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                <a href="javascript: location.reload();" class="btn btn-primary ms-2">
                     <i class="ri-refresh-line"></i>
                 </a>
             </form>
@@ -47,15 +44,15 @@
     </div>
 
 
-
+<!-- Start of Dashboard Stats Section -->
 <div class="row row-cols-1 row-cols-xxl-6 row-cols-lg-3 row-cols-md-2">
         <div class="col">
-            <div class="card widget-icon-box">
+            <a href= "{% url 'users:components_table_datatable_with_slash' %}" class="card widget-icon-box text-decoration-none">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="flex-grow-1 overflow-hidden">
                             <h5 class="text-muted text-uppercase fs-13 mt-0" title="Active Users">Active Users</h5>
-                            <h3 class="my-3" id="active-users">0</h3> <!-- Placeholder for Active Users -->
+                            <h3 class="my-3" id="active-users">--</h3> <!-- Placeholder for Active Users -->
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title text-bg-success rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
@@ -64,16 +61,16 @@
                         </div>
                     </div>
                 </div> <!-- end card-body-->
-            </div> <!-- end card-->
+            </a> <!-- end link-->
         </div> <!-- end col-->
     
         <div class="col">
-            <div class="card widget-icon-box">
+            <a href="{% url 'users:components_table_datatable_with_slash' %}" class="card widget-icon-box text-decoration-none">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="flex-grow-1 overflow-hidden">
                             <h5 class="text-muted text-uppercase fs-13 mt-0" title="Active RDPs">Active RDPs</h5>
-                            <h3 class="my-3" id="active-rdp">0</h3> <!-- Placeholder for Active RDPs -->
+                            <h3 class="my-3" id="active-rdp">--</h3> <!-- Placeholder for Active RDPs -->
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title text-bg-info rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
@@ -82,16 +79,17 @@
                         </div>
                     </div>
                 </div> <!-- end card-body-->
-            </div> <!-- end card-->
+            </a> <!-- end link -->
         </div> <!-- end col-->
+        
     
         <div class="col">
-            <div class="card widget-icon-box">
+            <a href="{% url 'users:components_table_datatable_with_slash' %}" class="card widget-icon-box text-decoration-none">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="flex-grow-1 overflow-hidden">
                             <h5 class="text-muted text-uppercase fs-13 mt-0" title="Active Emails">Active Emails</h5>
-                            <h3 class="my-3" id="active-emails">0</h3> <!-- Placeholder for Active Emails -->
+                            <h3 class="my-3" id="active-emails">--</h3> <!-- Placeholder for Active Emails -->
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title text-bg-danger rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
@@ -100,16 +98,16 @@
                         </div>
                     </div>
                 </div> <!-- end card-body-->
-            </div> <!-- end card-->
+            </a> <!-- end link -->
         </div> <!-- end col-->
     
         <div class="col">
-            <div class="card widget-icon-box">
+            <a href="{% url 'users:components_table_datatable_with_slash' %}" class="card widget-icon-box text-decoration-none">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div class="flex-grow-1 overflow-hidden">
                             <h5 class="text-muted text-uppercase fs-13 mt-0" title="Active VoIP">Active VoIP</h5>
-                            <h3 class="my-3" id="active-voip">0</h3> <!-- Placeholder for Active VoIP -->
+                            <h3 class="my-3" id="active-voip">--</h3> <!-- Placeholder for Active VoIP -->
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title text-bg-primary rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
@@ -118,7 +116,25 @@
                         </div>
                     </div>
                 </div> <!-- end card-body-->
-            </div> <!-- end card-->
+            </a> <!-- end link-->
+        </div> <!-- end col-->
+
+        <div class="col">
+            <a href="{% url 'users:components_table_datatable_with_slash' %}" class="card widget-icon-box text-decoration-none">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="flex-grow-1 overflow-hidden">
+                            <h5 class="text-muted text-uppercase fs-13 mt-0" title="Service Type">Service Type</h5>
+                            <h3 class="my-3" id="service-type">--</h3> <!-- Placeholder for Service Type -->
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title text-bg-warning rounded rounded-3 fs-3 widget-icon-box-avatar">
+                                <i class="ri-pulse-line"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div> <!-- end card-body-->
+            </a> <!-- end link-->
         </div> <!-- end col-->
 
     <div class="col">
@@ -126,26 +142,8 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="flex-grow-1 overflow-hidden">
-                        <h5 class="text-muted text-uppercase fs-13 mt-0" title="Conversation Ration">Zoho Tickets Closed</h5>
-                        <h3 class="my-3"> 2236</h3>
-                    </div>
-                    <div class="avatar-sm flex-shrink-0">
-                        <span class="avatar-title text-bg-warning rounded rounded-3 fs-3 widget-icon-box-avatar">
-                            <i class="ri-pulse-line"></i>
-                        </span>
-                    </div>
-                </div>
-
-            </div> <!-- end card-body-->
-        </div> <!-- end card-->
-    </div> <!-- end col-->
-    <div class="col">
-        <div class="card widget-icon-box">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="flex-grow-1 overflow-hidden">
-                        <h5 class="text-muted text-uppercase fs-13 mt-0" title="Conversation Ration">Open Tickets</h5>
-                        <h3 class="my-3">12</h3>
+                        <h5 class="text-muted text-uppercase fs-13 mt-0" title="Conversation Ration">Others</h5>
+                        <h3 class="my-3">--</h3>
                     </div>
                     <div class="avatar-sm flex-shrink-0">
                         <span class="avatar-title text-bg-dark rounded rounded-3 fs-3 widget-icon-box-avatar">
@@ -158,13 +156,15 @@
         </div> <!-- end card-->
     </div> <!-- end col-->
 </div> <!-- end row -->
+<!-- End of Dashboard Stats Section -->
 
 
+<!-- Start of Client Progress Section Container -->
 <div class="row">
     <div class="col-xl-7">
         <div class="card">
             <div class="d-flex card-header justify-content-between align-items-center">
-                <h4 class="header-title">Clients By Locations</h4>
+                <h4 class="header-title">Client Progress</h4>
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -172,36 +172,91 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end">
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        <a href="javascript:void(0);" class="dropdown-item">Actions</a>
                     </div>
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div id="world-map-markers" class="mt-3 mb-3" style="height: 317px">
-                        </div>
-                    </div>
-                    <div class="col-lg-4" dir="ltr">
-                        <div id="country-chart" class="apex-charts" data-colors="#17a497"></div>
-                    </div>
-                </div>
-            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-sm table-centered table-hover table-borderless mb-0">
+                        <thead class="border-top border-bottom bg-light-subtle border-light">
+                            <tr>
+                                <th>Particulars</th>
+                                <th>Total</th>
+                                <th style="width: 40%;">Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Active Users -->
+                            <tr>
+                                <td>Active Users</td>
+                                <td id="active-users-details">0</td> <!-- Placeholder for Active Users -->
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 65%;"
+                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Active RDPs -->
+                            <tr>
+                                <td>Active RDPs</td>
+                                <td id="active-rdp-details">0</td> <!-- Placeholder for Active RDPs -->
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 64%;"
+                                            aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Active Emails -->
+                            <tr>
+                                <td>Active Emails</td>
+                                <td id="active-emails-details">0</td> <!-- Placeholder for Active Emails -->
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 64%;"
+                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Active VoIPs -->
+                            <tr>
+                                <td>Active VoIPs</td>
+                                <td id="active-voip-details">0</td> <!-- Placeholder for Active VoIPs -->
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 64%;"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Other -->
+                            <tr>
+                                <td>Other</td>
+                                <td>0</td>
+                                <td>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%;"
+                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!-- end table-responsive-->
+            </div> <!-- end card-body-->
         </div> <!-- end card-->
-    </div> <!-- end col -->
-    <div class="col-xl-5">
+    </div> <!-- end col-->
+<!-- END of Client Progress Section Container -->
+
+
+    <!-- START of Clients List Section Container -->
+    <div class="col-xl-5" id="clients-section">
         <div class="card">
             <div class="d-flex card-header justify-content-between align-items-center">
-                <h4 class="header-title">Clients</h4>
-                <!--a href="javascript:void(0);" class="btn btn-sm btn-info">Export <i
-                        class="ri-download-line ms-1"></i></a-->
+                <h4 class="header-title">Clients List</h4>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -215,312 +270,133 @@
                                 <th class="py-1">Active VoIPs</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Diamond Insurance</td>
-                                <td>127</td>
-                                <td>122</td>
-                                <td>135</td>
-                                <td>07</td>
-                            </tr>
-                            <tr>
-                                <td>Gracious Hardwood</td>
-                                <td>18</td>
-                                <td>03</td>
-                                <td>NA</td>
-                                <td>16</td>
-                            </tr>
-                            <tr>
-                                <td>Haulage NA</td>
-                                <td>17</td>
-                                <td>23</td>
-                                <td>44</td>
-                                <td>18</td>
-                            </tr>
-                            <tr>
-                                <td>MetroX</td>
-                                <td>19</td>
-                                <td>NA</td>
-                                <td>08</td>
-                                <td>08</td>
-                            </tr>
-                            <tr>
-                                <td>A Spec Precision</td>
-                                <td>06</td>
-                                <td>NA</td>
-                                <td>06</td>
-                                <td>NA</td>
-                            </tr>
-                            <tr>
-                                <td>Supreme Wire works</td>
-                                <td>08</td>
-                                <td>NA</td>
-                                <td>09</td>
-                                <td>NA</td>
-                            </tr>
-                            <tr>
-                                <td>Ontario Transway</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>11</td>
-                            </tr>
+                        <tbody id="clients-table-body">
+                            <!-- Dynamic content will be injected here -->
                         </tbody>
                     </table>
-                </div>
-                <div class="text-center">
-                    <a href="#!" class="text-primary text-decoration-underline fw-bold btn mb-2">View All</a>
                 </div>
             </div>
         </div>
-    </div> <!-- end col -->
-</div>
-<!-- end row -->
+    </div>    
+    <!-- START of Clients Section Container -->
+</div> <!-- end row -->
 
-<div class="row">
-    <div class="col-xl-4 col-lg-6">
-        <div class="card">
-            <div class="d-flex card-header justify-content-between align-items-center">
-                <h4 class="header-title">Channels</h4>
-                <!--a href="javascript:void(0);" class="btn btn-sm btn-success">Export <i
-                        class="ri-download-line ms-1"></i></a-->
-            </div>
 
-            <div class="card-body p-0">
-
-                <div class="table-responsive">
-                    <table class="table table-sm table-centered table-hover table-borderless mb-0">
-                        <thead class="border-top border-bottom bg-light-subtle border-light">
-                            <tr>
-                                <th>Channel</th>
-                                <th>Visits</th>
-                                <th style="width: 40%;">Progress</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Direct</td>
-                                <td>2,050</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 65%;"
-                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Organic Search</td>
-                                <td>1,405</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 45%;"
-                                            aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Refferal</td>
-                                <td>750</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 30%;"
-                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Social</td>
-                                <td>540</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%;"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Other</td>
-                                <td>8,965</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 30%"
-                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-            </div> <!-- end card-body-->
-        </div> <!-- end card-->
-    </div> <!-- end col-->
-
-    <div class="col-xl-4 col-lg-6">
-        <div class="card">
-            <div class="d-flex card-header justify-content-between align-items-center">
-                <h4 class="header-title">Services</h4>
-                <!--a href="javascript:void(0);" class="btn btn-sm btn-success">Export <i
-                        class="ri-download-line ms-1"></i></a-->
-            </div>
-
-            <div class="card-body p-0">
-
-                <div class="table-responsive">
-                    <table class="table table-sm table-centered table-hover table-borderless mb-0">
-                        <thead class="border-top border-bottom bg-light-subtle border-light">
-                            <tr>
-                                <th>Network</th>
-                                <th>Visits</th>
-                                <th style="width: 40%;">Progress</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>RDPs</td>
-                                <td>190</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 65%"
-                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Emails</td>
-                                <td>235</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 45%"
-                                            aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>VoIPs</td>
-                                <td>70</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 30%"
-                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Network Cabling</td>
-                                <td>35</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%"
-                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Other</td>
-                                <td>23</td>
-                                <td>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 52%"
-                                            aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-            </div> <!-- end card-body-->
-        </div> <!-- end card-->
-    </div> <!-- end col-->
-
-    <div class="col-xl-4 col-lg-12">
-        <div class="card">
-            <div class="d-flex card-header justify-content-between align-items-center">
-                <h4 class="header-title">Engagement Overview</h4>
-                <!--a href="javascript:void(0);" class="btn btn-sm btn-success">Export <i
-                        class="ri-download-line ms-1"></i></a-->
-            </div>
-
-            <div class="card-body p-0">
-
-                <div class="table-responsive">
-                    <table class="table table-sm table-centered table-hover table-borderless mb-0">
-                        <thead class="border-top border-bottom bg-light-subtle border-light">
-                            <tr>
-                                <th>Duration (Secs)</th>
-                                <th style="width: 30%;">Sessions</th>
-                                <th style="width: 30%;">Views</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>0-30</td>
-                                <td>2,250</td>
-                                <td>4,250</td>
-                            </tr>
-                            <tr>
-                                <td>31-60</td>
-                                <td>1,501</td>
-                                <td>2,050</td>
-                            </tr>
-                            <tr>
-                                <td>61-120</td>
-                                <td>750</td>
-                                <td>1,600</td>
-                            </tr>
-                            <tr>
-                                <td>121-240</td>
-                                <td>540</td>
-                                <td>1,040</td>
-                            </tr>
-                            <tr>
-                                <td>141-420</td>
-                                <td>56</td>
-                                <td>886</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> <!-- end table-responsive-->
-            </div> <!-- end card-body-->
-        </div> <!-- end card-->
-    </div> <!-- end col-->
-
-</div>
-<!-- end row -->
 
 {% endblock content %} 
 {% block extra_js %}
 
-<!-- JavaScript for AJAX request to fetch client stats -->
-<script>
-    document.getElementById('client-name').addEventListener('change', function() {
-        const clientName = this.value;
-        console.log("Selected Client Name:", clientName);
-    
-        if (clientName !== 'disabled') {
-            console.log("Selected Client Name 1:", clientName);
-            // Fetch the client stats from Django backend
-            //fetch(`/get_stats/?client_name=${clientName}`)
-            fetch(`/users/get_stats/?client_name=${encodeURIComponent(clientName)}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Response Data:", data);
-                    
-                    // Update stats dynamically
-                    document.getElementById('active-users').textContent = data.stats?.active_users || 0;
-                    document.getElementById('active-rdp').textContent = data.stats?.active_rdp || 0;
-                    document.getElementById('active-emails').textContent = data.stats?.active_emails || 0;
-                    document.getElementById('active-voip').textContent = data.stats?.active_voip || 0;
-                })
-                .catch(error => console.error('Error fetching client stats:', error));
-        } else {
-            // Reset or clear the stats if "disabled" is selected
-            document.getElementById('active-users').textContent = 0;
-            document.getElementById('active-rdp').textContent = 0;
-            document.getElementById('active-emails').textContent = 0;
-            document.getElementById('active-voip').textContent = 0;
-        }
+
+<script> // ********** For loading the table initially (on page load):
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fetch all clients stats on page load
+        fetch('/users/get_all_clients_stats/')
+            .then(response => response.json())
+            .then(data => {
+                const clientsTableBody = document.getElementById('clients-table-body');
+                const clients = data.clients;
+
+                // Clear existing table data
+                clientsTableBody.innerHTML = '';
+
+                // Loop through each client and insert the row into the table
+                clients.forEach(client => {
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-client-name', client.client_name);  // Add data attribute for the client name
+                    row.innerHTML = `
+                        <td>${client.client_name}</td>
+                        <td>${client.active_users}</td>
+                        <td>${client.active_rdp}</td>
+                        <td>${client.active_emails}</td>
+                        <td>${client.active_voip}</td>
+                    `;
+                    clientsTableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching client stats:', error));
     });
 </script>
+
+
+
+<script> 
+    document.addEventListener('DOMContentLoaded', function() {
+        const clientNameDropdown = document.getElementById('client-name');
+        
+        // Set default to "All Clients"
+        clientNameDropdown.value = 'All Clients'; 
+
+        // Function to fetch and display data for clients, either individual or aggregated
+        function fetchClientStats(clientName = 'All Clients') {
+            let url = clientName === 'All Clients' ? '/users/get_all_clients_stats/' : `/users/get_stats/?client_name=${encodeURIComponent(clientName)}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // If "All Clients" is selected, aggregate the data for Dashboard and Progress
+                    if (clientName === 'All Clients') {
+                        const totalStats = data.totalStats; // The key `totalStats` contains the totals
+
+                        document.getElementById('active-users').textContent = totalStats.active_users || 0;
+                        document.getElementById('active-rdp').textContent = totalStats.active_rdp || 0;
+                        document.getElementById('active-emails').textContent = totalStats.active_emails || 0;
+                        document.getElementById('active-voip').textContent = totalStats.active_voip || 0;
+                        document.getElementById('service-type').textContent = totalStats.service_type || 'NA';
+
+                        // Update the "Client Progress" section as well
+                        document.getElementById('active-users-details').textContent = totalStats.active_users || 0;
+                        document.getElementById('active-rdp-details').textContent = totalStats.active_rdp || 0;
+                        document.getElementById('active-emails-details').textContent = totalStats.active_emails || 0;
+                        document.getElementById('active-voip-details').textContent = totalStats.active_voip || 0;
+                    } else {
+                        // Update specific client stats (for individual client)
+                        const clientStats = data.stats;
+                        document.getElementById('active-users').textContent = clientStats?.active_users || 0;
+                        document.getElementById('active-rdp').textContent = clientStats?.active_rdp || 0;
+                        document.getElementById('active-emails').textContent = clientStats?.active_emails || 0;
+                        document.getElementById('active-voip').textContent = clientStats?.active_voip || 0;
+                        document.getElementById('service-type').textContent = data.service_type || 'NA';
+
+                        // Update the "Client Progress" section with specific client stats
+                        document.getElementById('active-users-details').textContent = clientStats?.active_users || 0;
+                        document.getElementById('active-rdp-details').textContent = clientStats?.active_rdp || 0;
+                        document.getElementById('active-emails-details').textContent = clientStats?.active_emails || 0;
+                        document.getElementById('active-voip-details').textContent = clientStats?.active_voip || 0;
+                    }
+
+                    // Update "Clients List Section" for "All Clients"
+                    if (clientName === 'All Clients') {
+                        const clientsTableBody = document.getElementById('clients-table-body');
+                        clientsTableBody.innerHTML = ''; // Clear existing rows
+                        data.clients.forEach(client => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${client.client_name}</td>
+                                <td>${client.active_users}</td>
+                                <td>${client.active_rdp}</td>
+                                <td>${client.active_emails}</td>
+                                <td>${client.active_voip}</td>
+                            `;
+                            clientsTableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching stats:', error));
+        }
+
+        // Fetch stats for "All Clients" on page load
+        fetchClientStats('All Clients');
+
+        // Set event listener for when dropdown value changes
+        clientNameDropdown.addEventListener('change', function() {
+            const clientName = this.value;
+            fetchClientStats(clientName);
+        });
+    });
+
+</script>
+
+
 
 
 <!-- Daterangepicker js -->
@@ -539,8 +415,5 @@
 
 <!-- App js -->
 <script src="{% static 'js/app.min.js' %}"></script>
-
-
-
 
 {% endblock extra_js %}

@@ -1,0 +1,171 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Inventory Entry Creation{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Forms" title="Inventory Entry Creation" %}
+{% endblock pagetitle %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <form id="inventory-form" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Manufacturer -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="manufacturer">Manufacturer</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Manufacturer" required>
+                                    <div class="invalid-feedback">Manufacturer is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="productItem">Product Item</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="productItem" name="product_item" placeholder="Product Item" required>
+                                    <div class="invalid-feedback">Product Item is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="description">Description</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Total Ins -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="totalIns">Total In Stock</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" id="totalIns" name="total_ins" placeholder="Total In Stock" required>
+                                    <div class="invalid-feedback">Total In Stock is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Total Outs -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="totalOuts">Total Out Stock</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" id="totalOuts" name="total_outs" placeholder="Total Out Stock" required>
+                                    <div class="invalid-feedback">Total Out Stock is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Stock In Hand -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="stockInHand">Stock In Hand</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" id="stockInHand" name="stock_inhand" placeholder="Stock In Hand" required>
+                                    <div class="invalid-feedback">Stock In Hand is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- Serial Number -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="srNo">Serial Number</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="srNo" name="sr_no" placeholder="Serial Number" required>
+                                    <div class="invalid-feedback">Serial Number is required.</div>
+                                </div>
+                            </div>
+
+                            <!-- MAC Product No -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="macProductNo">MAC Product No</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="macProductNo" name="mac_product_no" placeholder="MAC Product No">
+                                </div>
+                            </div>
+
+                            <!-- Ticket ID -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="ticketId">Ticket ID</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="ticketId" name="ticket_id" placeholder="Ticket ID">
+                                </div>
+                            </div>
+
+                            <!-- Inventory Comments -->
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label" for="inventoryComments">Inventory Comments</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="inventoryComments" name="inventory_comments" placeholder="Inventory Comments"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="row mb-3">
+                                <div class="col-md-9 offset-md-3">
+                                    <button class="btn btn-primary" type="submit">Submit Inventory</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get CSRF token from the document
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        // Add event listener to the form
+        const inventoryForm = document.querySelector('#inventory-form');
+        inventoryForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            const formData = new FormData(inventoryForm);
+
+            // Send the data via Fetch API
+            fetch("{% url 'users:create_inventory' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // Mark the request as an AJAX call
+                    'X-CSRFToken': csrftoken,             // Include CSRF token
+                },
+            })
+            .then(response => {
+                // Check if the response is OK
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle the server's response
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    alert('Inventory record created successfully!');
+                    // Optionally, reset the form
+                    inventoryForm.reset();
+                }
+            })
+            .catch(error => {
+                // Handle errors in the request
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form. Please try again.');
+            });
+        });
+    });
+</script>
+
+<!-- App js -->
+<script src="{% static 'js/app.min.js' %}"></script>
+{% endblock extra_js %}

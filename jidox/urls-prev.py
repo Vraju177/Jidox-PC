@@ -1,43 +1,33 @@
-"""
-URL configuration for attex project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 # jidox/urls.py
 
 from django.contrib import admin
 from django.urls import path, include
-from jidox.view import index_view
+from jidox.view import index_view  # Import the index view
+from users.views import user_table_view  # (Optional) Import only if explicitly required here
 
 urlpatterns = [
+    # Admin site
     path("admin/", admin.site.urls),
 
-    # Dashboard
+    # Dashboard (homepage)
     path("", view=index_view, name="index"),
 
-    # App
+    # Users app URLs (ensuring there is only one mapping)
+    path("users/", include("users.urls", namespace="users")),  
+    #path('users/', include('users.urls')),
+
+    # Apps URLs
     path("apps/", include("apps.urls")),
 
-    # Custom
+    # Custom URLs
     path("custom/", include("custom.urls")),
 
-    # Layouts
+    # Layouts URLs
     path("layouts/", include("layouts.urls")),
 
-    # Components
+    # Components URLs
     path("components/", include("components.urls")),
 
+    # Django Allauth (for authentication)
     path("accounts/", include("allauth.urls")),
-    path('users/', include('users.urls')),  # This already includes 'users.urls'
 ]

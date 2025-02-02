@@ -47,3 +47,41 @@ class UserForm(forms.ModelForm):
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError(_('This username is already taken.'))
         return username
+
+
+# For BillingModel
+from django import forms
+from .models import BillingModel
+from django.core.exceptions import ValidationError
+from datetime import datetime
+
+class BillingModelForm(forms.ModelForm):
+    class Meta:
+        model = BillingModel
+        fields = [
+            'client_name',
+            'client_address',
+            'billing_to',
+            'service_type',
+            'bill_description',
+            'ticket_id',
+            'emailed',
+            'comments',
+            'invoice_no',
+            'invoice_date',
+        ]
+
+    def clean_invoice_date(self):
+        invoice_date = self.cleaned_data.get('invoice_date')
+        if invoice_date and invoice_date > datetime.now().date():
+            raise ValidationError("Invoice date cannot be in the future.")
+        return invoice_date
+
+    def clean_ticket_id(self):
+        ticket_id = self.cleaned_data.get('ticket_id')
+        if ticket_id and ticket_id < 0:
+            raise ValidationError("Ticket ID must be a positive integer.")
+        return ticket_id
+
+
+

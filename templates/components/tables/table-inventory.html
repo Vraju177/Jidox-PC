@@ -1,0 +1,173 @@
+
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Stock Inventory{% endblock title %}
+
+{% block extra_css %} 
+
+        <!-- Datatables css -->
+        <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- Custom CSS for table alignment and pagination -->
+    <style>
+        /* Ensure DataTables pagination is aligned and styled correctly */
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Make sure the table is responsive */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        /* Style for pagination section */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-left: 5px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock extra_css %} 
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Tables" title="Stock Inventory" %}
+{% endblock pagetitle %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Inventory Records</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="inventoryTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order No</th>
+                                <th>Manufacturer</th>
+                                <th>Product Item</th>
+                                <th>Description</th>
+                                <th>Total In Stock</th>
+                                <th>Total Out Stock</th>
+                                <th>Stock In Hand</th>
+                                <th>Serial No</th>
+                                <th>MAC Product No</th>
+                                <th>Ticket ID</th>
+                                <th>Inventory Comments</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inventory in inventory_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ inventory.manufacturer }}</td>
+                                <td>{{ inventory.product_item }}</td>
+                                <td>{{ inventory.description|truncatewords:10 }}</td>
+                                <td>{{ inventory.total_ins }}</td>
+                                <td>{{ inventory.total_outs }}</td>
+                                <td>{{ inventory.stock_inhand }}</td>
+                                <td>{{ inventory.sr_no }}</td>
+                                <td>{{ inventory.mac_product_no }}</td>
+                                <td>{{ inventory.ticket_id }}</td>
+                                <td>{{ inventory.inventory_comments }}</td>
+                                <td>{{ inventory.created_date|date:"d M Y" }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="12" class="text-center">No records found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+</div> <!-- end row -->
+{% endblock content %}
+
+
+
+
+{% block extra_js %}
+
+    <!-- Datatables js -->
+    <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-select/js/dataTables.select.min.js' %}"></script>
+
+
+<!-- DataTables js -->
+<script src="{% static 'vendor/datatables.min.js' %}"></script>
+
+<!-- DataTables CSS -->
+<link href="{% static 'vendor/datatables.min.css' %}" rel="stylesheet">
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const inventoryTable = document.getElementById("inventoryTable");
+
+    if (inventoryTable) {
+        new DataTable(inventoryTable, {
+            paging: true,
+            searching: true,
+            ordering: true,
+            responsive: true,
+            lengthChange: true,
+            columns: [
+                { title: "#" },
+                { title: "Manufacturer", data: "manufacturer" },
+                { title: "Product Item", data: "product_item" },
+                { title: "Description", data: "description" },
+                { title: "Total In Stock", data: "total_ins" },
+                { title: "Total Out Stock", data: "total_outs" },
+                { title: "Stock In Hand", data: "stock_inhand" },
+                { title: "Serial No", data: "sr_no" },
+                { title: "MAC Product No", data: "mac_product_no" },
+                { title: "Ticket ID", data: "ticket_id" },
+                { title: "Inventory Comments", data: "inventory_comments" },
+                { title: "Created Date", data: "created_date" }
+            ]
+        });
+    }
+});
+</script>
+
+
+{% endblock extra_js %}

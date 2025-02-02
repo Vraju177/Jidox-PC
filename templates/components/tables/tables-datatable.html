@@ -1,20 +1,85 @@
-{% extends "partials/base.html" %}
-{% load static %}
+{% extends "partials/base.html" %} 
+{% load static %} 
 
-{% block title %}Datatables{% endblock title %}
+{% block title %}Datatables{% endblock title %} 
 
-{% block extra_css %}
-    <!-- Datatables css -->
-    <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-{% endblock extra_css %}
+{% block extra_css %} 
+
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <!-- Datatables css -->
+        <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- Custom CSS for table alignment and pagination -->
+    <style>
+        /* Ensure DataTables pagination is aligned and styled correctly */
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Make sure the table is responsive */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        /* Style for pagination section */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-left: 5px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* For Clipboard buttons */
+        .clipboard-container {
+            display: inline-flex;         /* Makes the container inline and a flex container */
+            justify-content: flex-end;    /* Aligns the button to the right */
+            align-items: center;          /* Centers the button vertically with the text */
+            margin-left: 10px;            /* Optional: adds a small gap between the text and the icon */
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .copy-btn img {
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+        }
+
+
+    </style>
+{% endblock extra_css %} 
+
 
 {% block pagetitle %}
-    {% include "partials/page-title.html" with pagetitle="Tables" title="Data Tables" %}
+{% include "partials/page-title.html" with pagetitle="Tables" title="Active Users" %}
 {% endblock pagetitle %}
 
 {% block content %}
@@ -22,14 +87,15 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Active Users</h4>
+                <!--h4 class="header-title">Active Users</h4-->
+                <p class="text-muted fs-14">
+                </p>
                 <table id="user-datatable" class="table table-striped w-100 nowrap">
                     <thead>
                         <tr>
                             <th>Username</th>
                             <th>Full Name</th>
                             <th>Company</th>
-                            <th>Service Type</th>
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Node</th>
@@ -44,7 +110,6 @@
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.full_name }}</td>
                                 <td>{{ user.company }}</td>
-                                <td>{{ user.service_type }}</td>
                                 <td>{{ user.phone_number }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.node }}</td>
@@ -62,18 +127,50 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="viewUserModalLabel{{ user.id }}">User Details</h5>
+                                            <h5 class="modal-title" id="viewUserModalLabel{{ user.id }}">User Information</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p><strong>Username:</strong> <span id="modalUsername{{ user.id }}"></span></p>
+                                            <p>
+                                                <strong>Username:</strong> 
+                                                <span id="modalUsername{{ user.id }}"></span>
+                                                <span class="clipboard-container">
+                                                    <button class="copy-btn" data-clipboard-target="#modalUsername{{ user.id }}" aria-label="Copy Username">
+                                                        <img src="{% static 'images/clipboard-icon.png' %}" alt="Copy Username" style="width: 24px; height: 24px;"/>
+                                                    </button>
+                                                </span>
+                                            </p>
                                             <p><strong>Full Name:</strong> <span id="modalFullName{{ user.id }}"></span></p>
-                                            <p><strong>Company:</strong> <span id="modalCompany{{ user.id }}"></span></p>
-                                            <p><strong>Service Type:</strong> <span id="modalServiceType{{ user.id }}"></span></p>
-                                            <p><strong>Phone Number:</strong> <span id="modalPhoneNumber{{ user.id }}"></span></p>
-                                            <p><strong>Email:</strong> <span id="modalEmail{{ user.id }}"></span></p>
+                                            <p><strong>Company:</strong> <span id="modalcompany{{ user.id }}"></span></p>
+                                            <p>
+                                                <strong>Phone Number:</strong> 
+                                                <span id="modalPhoneNumber{{ user.id }}"></span>
+                                                <span class="clipboard-container">
+                                                    <button class="copy-btn" data-clipboard-target="#modalPhoneNumber{{ user.id }}" aria-label="Copy Phone Number">
+                                                        <img src="{% static 'images/clipboard-icon.png' %}" alt="Copy Phone Number" style="width: 24px; height: 24px;"/>
+                                                    </button>
+                                                </span>
+                                            </p>
+                                            
+                                            <p><strong>Alt No:</strong> <span id="modalalternatenumber{{ user.id }}"></span></p>
+                                            <p><strong>Location:</strong> <span id="modallocation{{ user.id }}"></span></p>
+                                            <p><strong>Branch Code:</strong> <span id="modalbranchcode{{ user.id }}"></span></p>
+                                            <p>
+                                                <strong>Email:</strong> 
+                                                <span id="modalEmail{{ user.id }}"></span>
+                                                <span class="clipboard-container">
+                                                    <button class="copy-btn" data-clipboard-target="#modalEmail{{ user.id }}" aria-label="Copy Email">
+                                                        <img src="{% static 'images/clipboard-icon.png' %}" alt="Copy Email" style="width: 24px; height: 24px;"/>
+                                                    </button>
+                                                </span>
+                                            </p>                                            
+                                            <p><strong>Email Pass:</strong> <span id="modalemailpassword{{ user.id }}"></span></p>
                                             <p><strong>Node:</strong> <span id="modalNode{{ user.id }}"></span></p>
                                             <p><strong>Port Number:</strong> <span id="modalPortNumber{{ user.id }}"></span></p>
+                                            <p><strong>RDP Pass:</strong> <span id="modalrdppassword{{ user.id }}"></span></p>
+                                            <p><strong>Internal IP:</strong> <span id="modalinternalip{{ user.id }}"></span></p>
+                                            <p><strong>PB ID:</strong> <span id="modalpbid{{ user.id }}"></span></p>
+                                            <p><strong>PB Password:</strong> <span id="modalpbpassword{{ user.id }}"></span></p>
                                             <p><strong>Extension Number:</strong> <span id="modalExtensionNumber{{ user.id }}"></span></p>
                                             <p><strong>Status:</strong> <span id="modalStatus{{ user.id }}"></span></p>
                                             <p><strong>Notes:</strong> <span id="modalNotes{{ user.id }}"></span></p>
@@ -95,6 +192,8 @@
 {% endblock content %}
 
 {% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
     <!-- Datatables js -->
     <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
@@ -109,6 +208,12 @@
     <script src="{% static 'vendor/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
     <script src="{% static 'vendor/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
     <script src="{% static 'vendor/datatables.net-select/js/dataTables.select.min.js' %}"></script>
+
+    <!-- Datatable Demo Aapp js -->
+    <script src="{% static 'js/pages/demo.datatable-init.js' %}"></script>
+
+    <!-- App js -->
+    <script src="{% static 'js/app.min.js' %}"></script>
 
     <script>
         // Initialize DataTables
@@ -125,12 +230,19 @@
                     // Populate modal fields with the fetched data
                     $('#modalUsername' + userId).text(response.username);
                     $('#modalFullName' + userId).text(response.full_name);
-                    $('#modalCompany' + userId).text(response.company);
-                    $('#modalServiceType' + userId).text(response.service_type);
+                    $('#modalcompany' + userId).text(response.company);
                     $('#modalPhoneNumber' + userId).text(response.phone_number);
+                    $('#modalalternatenumber' + userId).text(response.alternate_number);
+                    $('#modallocation' + userId).text(response.location);
+                    $('#modalbranchcode' + userId).text(response.branch_code);
                     $('#modalEmail' + userId).text(response.email);
+                    $('#modalemailpassword' + userId).text(response.email_password);
                     $('#modalNode' + userId).text(response.node);
                     $('#modalPortNumber' + userId).text(response.port_number);
+                    $('#modalrdppassword' + userId).text(response.rdp_password);
+                    $('#modalinternalip' + userId).text(response.internal_ip);
+                    $('#modalpbid' + userId).text(response.pb_id);
+                    $('#modalpbpassword' + userId).text(response.pb_password);
                     $('#modalExtensionNumber' + userId).text(response.extension_number);
                     $('#modalStatus' + userId).text(response.status);
                     $('#modalNotes' + userId).text(response.notes);
@@ -148,4 +260,27 @@
             fetchUserDetails(userId);
         });
     </script>
+
+
+    <!-- Initialize Clipboard.js for copy buttons -->
+    <script>
+        // Initialize Clipboard.js for the copy buttons
+        var clipboard = new ClipboardJS('.copy-btn');
+
+        // Optional: Provide feedback for copying
+        clipboard.on('success', function(e) {
+            alert('Copied to clipboard: ' + e.text);
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function(e) {
+            alert('Failed to copy, please try manually.');
+        });
+
+        // Initialize DataTables (if not already done elsewhere)
+        $(document).ready(function() {
+            $('#user-datatable').DataTable();
+        });
+    </script>
+
 {% endblock extra_js %}

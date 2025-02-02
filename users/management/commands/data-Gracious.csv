@@ -1,0 +1,132 @@
+username,company,full_name,node,service_type,email,email_password,phone_number,alternate_number,location,extension_number,port_number,rdp_password,internal_ip,branch_code,pb_id,pb_password,notes,user_creation_date,status
+dig\SSIDHU,Diamond Insurance,Simar Sidhu,C1node1,AMC,ssidhu@dig.insure,l^g8^X`1?-68,4167685460,,Brampton,101,3392,Ss1dhu123$,172.16.14.3,,S6,S6121, ,12/31/2024,Active
+dig\ASIDHU,Diamond Insurance,Aman Sidhu,C1node2,AMC,asidhu@dig.insure,"1c.,#6S'28|X",6473824606,,Brampton,106,3393,A@idhu123$,172.16.14.4,,A3,A3490,One Drive - P*****@123 ,12/31/2024,Active
+dig\MSIDHU,Diamond Insurance,Mohinderpal Sidhu,C1node3,AMC,msidhu@dig.insure,,6474060285,,Brampton,108,3394,M@idhu133$,172.16.14.5,,M4,M4124, ,12/31/2024,Active
+dig\RGREWAL,Diamond Insurance, Ravi Grewal,C1node4,AMC,ravigrewal@dig.insure,"ZQ(b6z""iM77G",4168185386,,Brampton,103,3395,R@rewal113$,172.16.14.6,,RG,RG1443, ,12/31/2024,Active
+dig\AALAM,Diamond Insurance,Asif Alam,C1node5,AMC,aalam@dig.insure,"10Ua!68+Qrj,",6476695051,,Brampton,102,3396,A@lam123$,172.16.14.7,,A2,A2231,Asif needs access to most of the policies so the security has not been setup for his account in PB ,12/31/2024,Active
+dig\SVASISHTA  ,Diamond Insurance,Shruti Vasishta,C1node6,AMC,svasishta@dig.insure,,4165561717,,Brampton,107,3397,Sv@sishta123$,172.16.14.8,,S5,S53441, ,12/31/2024,Active
+dig\DBUTTAR,Diamond Insurance,Dupinderpal Buttar,C1node7,AMC,dbuttar@dig.insure,4K]28:lW5Y5s,9058678434,,Brampton,104,3398,Dbutt@r123$,172.16.14.9,,D2,D2894, ,12/31/2024,Active
+dig\GDHINDSA,Diamond Insurance,Gurkarmsher Dhindsa,C1node8,AMC,gdhindsa@dig.insure,yoMU<6!r620%,4168764605,,Brampton,105,3399,Gdhinds@133$,172.16.14.10,,G3,G3986, ,12/31/2024,Active
+dig\BGANDHI,Diamond Insurance,Bela Gandhi,C1node9,AMC,Bgandhi@dig.insure,7R(416T6R)sg,6478089219,,Brampton,,3400,Bg@ndhi123$,172.16.14.11,,B4,B0446, ,12/31/2024,Active
+dig\VGANDHI,Diamond Insurance,Viren Gandhi  ,C1node10,AMC,Vgandhi@dig.insure,;pHp@q5/r51f,6474079219,,Brampton,,3401,Vg@ndhi144$,172.16.14.12,,VG,VG2143, ,12/31/2024,Active
+dig\Sunnysidhu,Diamond Insurance,Sunny Sidhu,C1node13,AMC,sunnysidhu@dig.insure,,4167289394,,Brampton,,3406,S@nny12(($,172.16.14.17,,S1,SS3392,Cancled converted to Supreet Riar 15 ,12/31/2024,Active
+dig\Brian,Diamond Insurance,Brian Crasta,C1Node15,AMC,Brian@dig.insure ,[tEt;m93ma4;,6476384445,,Brampton,,3408,Bri@n((221,172.16.14.19,,BC,BC5562, ,12/31/2024,Active
+dig\anaeem,Diamond Insurance,Ayesha Naeem,C1Node16,AMC,anaeem@dig.insure,KmF_691j&6l;,6475390717,,Brampton,,3409,An@eem332,172.16.14.20,,AN,AN3365,New User Simran is now using these credentials with DUO push on 905 226 1998 ,12/31/2024,Active
+dig\anaeem,Diamond Insurance,Simran Simran,C1Node16,AMC,ssimran@dig.insure,fdLG8;A2]O9+,,,Brampton,,3409,An@eem332,172.16.14.20,,S7,SS1998,New User Simran is now using these credentials with DUO push on 905 226 1998 Using Anaeem Node16,12/31/2024,Active
+dig\Rrajput,Diamond Insurance,Ritika Rajput,C1node6,AMC,Rrajput@dig.insure,wQ7e3>*c4{cP,4168202624,,Brampton,,3397,Sv@sishta123$,172.16.14.8,,R1,R2261, Ritika using RDP of dig\SVASISHTA  ,12/31/2024,Active
+dig\Mkamboj,Diamond Insurance,Manjinder Kamboj,C1node17,AMC,mkamboj@dig.insure,,6478673926,,Brampton,,3410,M@kam0090$$,172.16.14.21,,MK,MK2241,non active due to termination requsted by Simer sidhu on 1st june ,12/31/2024,Active
+dig\rbuttar,Diamond Insurance,Rupinderpal Bhuttar,C1node19,AMC,rbuttar@dig.insure,"o92rMFS6f=6""",6472741502,,Brampton,,3412,Rb@tt$$1244,172.16.14.23,,R7,RB3445, ,12/31/2024,Active
+DIG\AGREWAL,Diamond Insurance,AMRITPAL SINGH GREWAL,C1node18,AMC,AGREWAL@DIG.INSURE,"10Ua!68+Qrj,",9059815025,,Brampton,,3411,Amrit@1#$,172.16.14.22,,AG,AG0912, ,12/31/2024,Active
+dig\smann,Diamond Insurance,Sandeep Kaur Mann,C1node20,AMC,Smann@dig.insure,",aPlOr)878l;",2269738770,,Brampton,,3413,dig123@,172.16.14.24,,SM,SM0254,Created on 1st of june ,12/31/2024,Active
+dig\dsingh,Diamond Insurance,DHARAMPAL SINGH,C1Node23,AMC,dsingh@dig.insure,TeU=64eQY2l9,4375229544,,Brampton,,3416,Dh@r3344,172.16.14.27,,DS,DS3344,Created on 6/sept/2022 ,12/31/2024,Active
+dig\rmalhi,Diamond Insurance,Ramanpreet Kaur Malhi,C1node24,AMC,rmalhi@dig.insure,{n%K3CW42z0=,6479642794,7809522794,Brampton,,3417,Rm@lh!321,172.16.14.28,,RM,RM2794,"User shifted to Alberta, Check Alberta Office below User shifted to Alberta List",12/31/2024,Active
+dig\mdhillon,Diamond Insurance,Mandeep Dhillon,C1node26,AMC,Mdhillon@dig.insure,P2jS3t6CS$o~,6472721618,,Brampton,,3418,Mdh!!L0n1618,172.16.14.29,,M2,M21618, ,12/31/2024,Active
+dig\RGREWAL1,Diamond Insurance,Raman Grewal,C1node30,AMC,rgrewal@dig.insure,"172%I""Axj""r_",6472898030,,Brampton,,3422,R@m@n!123,172.16.14.33,,R9,RG712, ,12/31/2024,Active
+dig\schahal,Diamond Insurance,Sukhdeep Chahal,C1node27,AMC,Schahal@dig.insure,Is{1bv164<Qn,6477083578,4167051155,Brampton,,3419,S@chah@!32,172.16.14.30,,SC,SC7821,Created on 6/feb/2023 Node reassigned to dig\manpreet,12/31/2024,Active
+dig\mahmad,Diamond Insurance,Moeen Ahmad,C1Node28,AMC,Mahmad@dig.insure,,6476201173,,Brampton,,3420,M@hm@d!73,172.16.14.31,,MA,MA1173,Requested to Rajkaran 10-feb-23 assigned to Ngrewal,12/31/2024,Active
+,Diamond Insurance,Jaydeepsinh Thakor,,AMC,,,,,Brampton,,,Jaydeepsinh123$,,,,, Only email a/c created,12/31/2024,Active
+dig\mkhroud,Diamond Insurance,Mandeep Khroud,C1node36,AMC,mkhroud@dig.insure,WD6=mQ8W41>j,6476203637,,Brampton,,3428,Mkhr@ud!23,172.16.14.39,,M7,MM3637,Requested by Raman Grewal - email dt: 1 June 23 DUO deleted - Only,12/31/2024,Active
+dig\account1,Diamond Insurance,Account1,C1node31,AMC,info@lekhi.ca,,4166691694,4374259318,Brampton,,3423,Acc0unt!$,172.16.14.34,,C1,CA2251, Node assigned to Rashmeen Kaur,12/31/2024,Active
+dig\account2,Diamond Insurance,Account2,C1node32,AMC,info@lekhi.ca,,6479872191,4166691694,Brampton,,3424,Acc0unt!&,172.16.14.35,,C2,CA2252, Node assigned to Jasmeet Singh ,12/31/2024,Active
+dig\lgrewal,Diamond Insurance,Lajwinder Grewal,C1node33,AMC,lgrewal@dig.insure,BaeZY6U;M0Q6,6476783753,,Brampton,,3425,L@jgw@@!,172.16.14.36,,LG,LG3333, ,12/31/2024,Active
+dig\averma,Diamond Insurance,Amita Verma,C1node34,AMC,averma@dig.insure,"0Sp/}""x4r8`{",6478674458,,Brampton,,3426,Averm@12#$,172.16.14.37,,AV,AV3434,Brovada password : Averm@12#$ ,12/31/2024,Active
+dig\hthind,Diamond Insurance,Harman Thind,C1node35,AMC,hthind@dig.insure,mSzX!771Ugjx,6478650397,,Brampton,,3427,H@tH!nd12,172.16.14.38,,HT,HT3535, ,12/31/2024,Active
+dig\Ngrewal,Diamond Insurance,Navneet Kaur Grewal,C1Node28,AMC,Navneet@dig.insure,"H7%#02t<Gc""g",2269713639,,Brampton,,3420,N@vnEEt@2341,172.16.14.31,,NV ,NV2341,She is using Mohmed RDP  Node assigned to Hamza,12/31/2024,Active
+dig\bmaan ,Diamond Insurance,Beant Kaur Maan,C1node17,AMC,Bmaan@dig.insure,5Fwh4xj>29)!,6473254942,,Brampton,,3410,Be@nt@121,172.16.14.21,,BM,BM4942,NEw aman requested on 30 May Using Mkamboj RDP,12/31/2024,Active
+dig\kthakkar,Diamond Insurance,Krishna Thakkar,C1node37,AMC,kthakkar@dig.insure,O&C3ZOV5.(b6,4377764647,,Brampton,,3429,Kth@kk@r123,172.16.14.40,,KT,KT1212, ,12/31/2024,Active
+dig\gbhullar,Diamond Insurance,Gagandeep Kaur Bhullar,C1node39,AMC,gbhullar@dig.insure,F5abo'Y`>D31,6477028900,,Brampton,,3431,Gbhull@r123,172.16.14.42,,G8,GB8900,"New RDP request by Aman, Existing Email. ",12/31/2024,Active
+,Diamond Insurance,Preeti Sidhu,,AMC,psidhu@dig.insure,u-J<}17-0Bm6,6473544483,,Brampton,,,,,,,, Only email a/c created,12/31/2024,Active
+,Diamond Insurance,Harsimran Deep Kaur,,AMC,harsimran@dig.insure,33vs_e-Ht#2^,6479362687,,Brampton,,,,,,,,Requested by Raman Grewal - email dt: 11 July 23 Only email a/c created,12/31/2024,Active
+dig\ahazra,Diamond Insurance,Amandeep Hazra,C1Node40,AMC,ahazra@dig.insure,3X(x61!#8dxL,6476756690,,Brampton,,3432,Ah@z@ra!,172.16.14.43,,AH,AH6690, New node C1node40-new,12/31/2024,Active
+dig\pgill,Diamond Insurance,Pawandeep Gill,C1NODE41,AMC,pgill@dig.insure,-p5BFs4*-(0k,6476086965,,Brampton,,3433,P@w@ndEEp!,172.16.14.44,,PG,PG6965, Faulty Node - Assigned Node52,12/31/2024,Active
+dig\ahazra,Diamond Insurance,Amandeep Hazra,C1node40-new,AMC,ahazra@dig.insure,3X(x61!#8dxL,6476756690,,Brampton,,34321,Ah@z@ra!,172.16.14.143_34321,,,, ,12/31/2024,Active
+dig\htoor,Diamond Insurance,Harsirat Toor,C1NODE42,AMC,htoor@dig.insure,a[1?Ks'k>S05,4377766994,,Brampton,,3434,H@rs!r@t123,172.16.14.45,,H4,HT6994,Brovada password : HT6994 ,12/31/2024,Active
+dig\msaini,Diamond Insurance,Manpreet Saini,C1NODE43,AMC,msaini@dig.insure,<>?ifkL5hB20,6472744643,,Brampton,,3435,M@nprEEt123$,172.16.14.46,,M9,MS4643,Email 13 Nov 2023 ,12/31/2024,Active
+dig\jasmeet,Diamond Insurance,Jasmeet Singh,C1Node32,AMC,jas@dig.insure,hr/s8nV60=*7,6479996040,,Brampton,,3424,J@smEet213%,172.16.14.35,,JJ,JJ6040,Email 22 Jan 2024 ,12/31/2024,Active
+dig\hmahmood,Diamond Insurance,Hamza Mahmood,C1Node28,AMC,hmahmood@dig.insure,9pAqLB7@70{?,6472931989,,Brampton,,3420,HM@hm00d89%,172.16.14.31,,HM,HM1989,#13592 Zoho Node Deletion/Closure,12/31/2024,Active
+dig\ksharma,Diamond Insurance,Khushi Sharma,C1NODE44,AMC,ksharma@dig.insure,(9Q:h0xW}66:,6474088736,,Brampton,,3436,KSh@rm@8736,172.16.14.47,,KS,KS8736, ,12/31/2024,Active
+dig\kdhawan,Diamond Insurance,Karan Dhawan,C1Node45,AMC,kdhawan@dig.insure,_b8FC{<1*2/4,2896597561,,Brampton,,3437,KDh@w@n7561,172.16.14.48,,KD,KD7561, ,12/31/2024,Active
+dig\harsimrat,Diamond Insurance,Harsimrat Singh,C1Node47,AMC,harsimrat@dig.insure,&GW9xI8p00$),4372453262,,Brampton,,3439,H@rs!mr@t123!,172.16.14.50,,HS,HS3262, ,12/31/2024,Active
+dig\Arshdeep,Diamond Insurance,Arshdeep Kaur,C1Node48,AMC,arshdeep@dig.insure,Hx47y*N4jrZc,4377754788,,Brampton,,3440,@rshDeEp!234,172.16.14.51,,AR,AR4788, ,12/31/2024,Active
+dig\lovepreet,Diamond Insurance,Lovepreet Kaur,C1Node49,AMC,lovepreet@dig.insure,$osfX11!P65@,6476848880,,Brampton,,3441,L0vprEeT@880,172.16.14.52,,LO,LO8880,Only Applied #17726,12/31/2024,Active
+dig\jasmeen,Diamond Insurance,Jasmeen Kaur,C1Node50,AMC,jasmeen@dig.insure,Ga$3C{4on/3/,6477610279,,Brampton,,3442,J@smEEn!123,172.16.14.53,,J2,J20279, #17726,12/31/2024,Active
+dig\simran,Diamond Insurance,Simran Kaur,C1Node51,AMC,simran@dig.insure,",aPlOr)878l;",4378810488,,Brampton,,3443,S!mR@n0488,172.16.14.54,,S8,SS0488,AnyDesk 304406462 New Node = C1Node51-New,12/31/2024,Active
+dig\pgill,Diamond Insurance,Pawandeep Gill,C1Node52,AMC,pgill@dig.insure,-p5BFs4*-(0k,6476086965,,Brampton,,3444,P@w@ndEEp!,172.16.14.55,,PG,PG6965, ,12/31/2024,Active
+dig\harmanjeet,Diamond Insurance,Harmanjeet Kaur,C1Node53,AMC,harmanjeet@dig.insure,i?E65>O0An|I,8556025347,,India,,3445,H@rm@n5347!,172.16.14.56,,H1,H12345, ,12/31/2024,Active
+dig\gurmeet,Diamond Insurance,Gurmeet Nirwan,C1Node54,AMC,gurmeet@dig.insure,",762VJJIx45w",4167357546,,Brampton,,3446,Gurm@@t!!7546,172.16.14.57,,GN,GN7546, ,12/31/2024,Active
+dig\muqadas,Diamond Insurance,Muqadas Shams,C1Node55,AMC,muqadas@dig.insure,[d3)m4Vs122m,4372564789,,Brampton,,3447,Muq@d@s!4789,172.16.14.58,,MQ,MQ4789, ,12/31/2024,Active
+dig\lovedeep,Diamond Insurance,Lovedeep Kaur,C1Node56,AMC,Lovedeep@dig.insure,K=g;JJ5=02wb,6478626562,,Brampton,,3448,L0vd@p@123,172.16.14.59,,LK,LK6562, ,12/31/2024,Active
+dig\saurav,Diamond Insurance,Saurav Jha,C1Node58,AMC,saurav@dig.insure,4vd-!<Y0&o0+,9821170669,,India,,3450,S@ur@vJh@123,172.16.14.61,,SJ,SJ0669, ,12/31/2024,Active
+dig\shruti,Diamond Insurance,Shruti Rawat,C1Node59,AMC,SHHRUUTIRAWAT@DIG.INSURE,#05(VPp:8w_2,6479279019,,Brampton,,3451,S@ruti@123,172.16.14.62,,S2,S21234, ,12/31/2024,Active
+dig\kuljit,Diamond Insurance,Kuljit Kaur,C1Node60,AMC,kuljit@dig.insure,HsP#!3}Pd82(,4372624491,6475341565,Brampton,,3452,K@ul@jit555,172.16.14.63,,KK,KK4491,Anydesk - 1948993461 ,12/31/2024,Active
+dig\kuldeep,Diamond Insurance,Kuldeep Kaur Bhullar,C1Node61,AMC,kuldeep.kb@dig.insure,jBp8Z2O7),3653417693,,Brampton,,3453,Kul@@deep001,172.16.14.64,,KB,KB7693, ,12/31/2024,Active
+dig\urvashi,Diamond Insurance,Urvashi,C1Node62,AMC,urvashi@dig.insure,5Z9?T0Fgcx*+,4372641200,,Brampton,,3454,U@rv@ashi885,172.16.14.65,,UR,UR1200, ,12/31/2024,Active
+dig\geetika,Diamond Insurance,GEETIKA GARG,C1Node64,AMC,geetika@dig.insure,.iH78K5:G|,4372421296,,Brampton,,3456,G@@tika1296,172.16.14.67,,GG,GG1296, ,12/31/2024,Active
+dig\karman,Diamond Insurance,Karmanjot Singh Grewal,C1Node65,AMC,karman@dig.insure,e0R7AE;aRH7/,4373884684,,Brampton,,3457,K@r@mAnj0T,172.16.14.68,,KG,KG4684, ,12/31/2024,Active
+dig\damanjeet,Diamond Insurance,Damanjeet Chharrhan,C1Node66,AMC,damanjeet@dig.insure,&9$5!Law9AhX,6478985463,,Brampton,,3458,D@m@nJ!!T,172.16.14.69,,DC,DC5463, ,12/31/2024,Active
+dig\asim,Diamond Insurance,Asim Malik,C1Node67,AMC,asim@dig.insure,7&z74_@0En4j,4164746262,,Brampton,,3459,As!mM@l!k123,172.16.14.70,,AM,AM6262, ,12/31/2024,Active
+dig\ritika,Diamond Insurance,Ritika Garg,C1Node68,AMC,ritikagarg@dig.insure,3s-1Z)uHNq36,4168390092,,Brampton,,3460,R!t!k@G@rg123,172.16.14.71,,RC,RC0092, ,12/31/2024,Active
+dig\simran,Diamond Insurance,Simran Kaur,C1Node51-New,AMC,simran@dig.insure,",aPlOr)878l;",4378810488,,Brampton,,3461,S!mR@n0488,172.16.14.72,,S8,SS0488, ,12/31/2024,Active
+dig\jaspreet,Diamond Insurance,Jaspreet Ghatoura,C1Node69,AMC,jaspreet@dig.insure,7?S:7Ex@ALx0,6477825424,,Brampton,,3462,J@sprEET@123,172.16.14.73,,J1,J15242, ,12/31/2024,Active
+dig\navneet,Diamond Insurance,Navneet Kaur Saran,C1Node70,AMC,navneet.saran@dig.insure,&sEC$B39;0],6479678013,,Brampton,,3463,N@vnEEt@123,172.16.14.74,,NK,NK8013, ,12/31/2024,Active
+dig\rupinder1,Diamond Insurance,Rupinder Singh,C1Node71,AMC,rupinder.singh@dig.insure,777}+[8QSlRr,6479220415,,Brampton,,3464,Rup!ndEr@321,172.16.14.75,,RS,RS0415, ,12/31/2024,Active
+dig\gautam,Diamond Insurance,Gautam Jain,C1Node72,AMC,gautam.jain@dig.insure,7v!rV{8kh2=L,4163153679,,Brampton,,3465,G@Ut@M@3679,172.16.14.76,,GJ,GJ3679, ,12/31/2024,Active
+dig\priya,Diamond Insurance,Priya Priya,C1Node74,AMC,Priya@dig.insure,iYk7=43]h5R7,4377992453,,Brampton,,3467,P@r@iy@A74,172.16.14.78,,PP,PP2453, ,12/31/2024,Active
+dig\ankit,Diamond Insurance,Ankit Ankit,C1Node75,AMC,ankit@dig.insure,"8b]8E)Cx5,78",6474021121,,Brampton,,3468,Ank!T@12345,172.16.14.79,,AT,AT1121, ,12/31/2024,Active
+dig\angad,Diamond Insurance,Angadpratap Singh Boparai,C1Node76,AMC,angad@dig.insure,]9>79F209tZ5,6726735000,,Brampton,,3469,Ang@d@123,172.16.14.80,,AB,AB5000, ,12/31/2024,Active
+dig\navdeep,Diamond Insurance,Navdeep kaur Didwal,C1Node77,AMC,navdeep@dig.insure,vPd#wZG858u},3654401651,,Brampton,,3470,N@vDeEp@123,172.16.14.81,,ND,ND1655, ,12/31/2024,Active
+dig\amanpreet,Diamond Insurance,Amanpreet Kaur Dhaliwal,C1Node78,AMC,amanpreet@dig.insure,Am@nprEet@123,4166068484,,Brampton,,3471,Am@nprEet@123,172.16.14.82,,AP,AP8484, ,12/31/2024,Active
+dig\shilpa,Diamond Insurance,Shilpa Bajaj,C1Node79,AMC,shilpa@dig.insure,U0QAY2?y8>,9041160669,,India,,3472,Sh!Lp@123,172.16.14.83,,SB,SB0669, ,12/31/2024,Active
+dig\vijeta,Diamond Insurance,Vijeta Gaba,C1Node80,AMC,vijeta@dig.insure,V!jEt@1234,4372346125,,Brampton,,3473,V!jEt@1234,172.16.14.84,,VV,VV6125, ,12/31/2024,Active
+dig\gurpreet,Diamond Insurance,Gurpreet Kaur,C1Node81,AMC,gurpreet@dig.insure,>F!$VD271RbJ,6478343862,,Brampton,,3474,G()rpREET@123$,172.16.14.85,,G9,G93862, ,12/31/2024,Active
+dig\sahil,Diamond Insurance,Sahil Jindal,C1Node82,AMC,sahil.jindal@dig.insure,5a6]9TaRnw[w,6475622453,,Brampton,,3475,S@H!!L@1234$,172.16.14.86,,S0,S01234, ,12/31/2024,Active
+dig\ayush,Diamond Insurance,Ayush Bhardwaj,C1Node83,AMC,Ayush.Bhardwaj@dig.insure,&2w7Ug23ZMQ\,9992148055,,India,,3476,A@y@ush$24,172.16.14.87,,AY,AB8055, ,12/31/2024,Active
+dig\shahroz,Diamond Insurance,SHAHROZ ATHER AWAN ,C1Node85,AMC,shahroz.awan@dig.insure,mA3Euf(Q2I(2,6472228477,,Brampton,,3478,Sh@ah@@roz$1,172.16.14.89,,OZ,OZ8477, ,12/31/2024,Active
+dig\harkaran,Diamond Insurance,HARKARAN SINGH,C1Node86,AMC,harkaran.singh@dig.insure,"a1nU8n,LM2sg",4372202474,,Brampton,,3479,H@ar@karan11$,172.16.14.90,,GH,GH2474, ,12/31/2024,Active
+dig\gurjinder,Diamond Insurance,Gurjinder kaur,C1Node87,AMC,Gurjinder.k@dig.insure,?F\.bC:/0337,6476691066,,Brampton,,3480,Gu@rj@in!$1,172.16.14.91,,GK,GK1066, ,12/31/2024,Active
+dig\Davinder,Diamond Insurance,Davinder Singh,C1Node88,AMC,Davinder.Singh@dig.insure,9U+1nMR6y*W+,9780077020,,India,,3481,Da@vin@der$s1,172.16.14.93,,DA,DA7020, ,12/31/2024,Active
+dig\Vardeep,Diamond Insurance,Vardeep Singh,C1Node89,AMC,vardeep.singh@dig.insure,7g]8m7oADc!h,9814816691,,India,,3482,Var@@deep#21,172.16.14.94,,VA,VA6691, ,12/31/2024,Active
+dig\neha,Diamond Insurance,Neha Sharma,C1Node90,AMC,neha.sharma@dig.insure,"9S,i7n/-SZ5>",6473086603,,Brampton,,3483,N@eha2Sh@rm@2,172.16.14.95,,NE,NE6603, ,12/31/2024,Active
+dig\Komalpreet,Diamond Insurance,Komalpreet Kaur,C1Node91,AMC,komalpreet@dig.insure,3G*a455Tpfp-,5145607539,,Brampton,,3484,K@m@l@K@ur@!!,172.16.14.96,,Z2,Z27539, ,12/31/2024,Active
+dig\ravinder,Diamond Insurance,Ravinder Singh Brar,C1Node93,AMC,ravinder.brar@dig.insure,Hh?tT97&pY9N,4372495775,,Brampton,,3486,R@avinder1!@$,172.16.14.98,,Z4,Z45775, ,12/31/2024,Active
+dig\naveed,Diamond Insurance,Naveed Shahzad,C1Node94,AMC,naveed.shahzad@dig.insure,hI!o^9w7!1Z<,4168446848,,Brampton,,3487,Sh@HZ@d!23,172.16.14.99,,Z5,Z56666, ,12/31/2024,Active
+dig\manpreet1,Diamond Insurance,Manpreet Dhindsa,C1Node96,AMC,mdhindsa@dig.insure,8W51%:mASryn,4165001818,,Brampton,,3489,Mdhinds@133$,172.16.14.101,,Z6,Z61818, ,12/31/2024,Active
+dig\Mohammad1,Diamond Insurance,Mohammad Saud Usmani,C1Node98,AMC,Susmani@dig.insure,!9#3&)3PB3gA,6472027452,,Brampton,,3491,M0h@MM@d@123,172.16.14.103,,Z8,Z87452, ,12/31/2024,Active
+dig\sahil1,Diamond Insurance,Sahil Sharma,C1Node99,AMC,sahil.sharma@dig.insure,gY$7.53o4E6K,4372671413,,Brampton,,3492,Ssh@rM@!@123,172.16.14.104,,Z9,Z91413, ,12/31/2024,Active
+dig\amitesh,Diamond Insurance,Amitesh Singh,C1Node100,AMC,amitesh@dig.insure,70yolD5?o2Tf,3657779950,,Brampton,,3493,Am!tEsh@123,172.16.14.105,,Z0,Z09950, ,12/31/2024,Active
+dig\gurmeet1,Diamond Insurance,Gurmeet Singh,C1Node101,AMC,gurmeet.singh@dig.insure,).28Att]=W1i,4379976241,,Brampton,,3494,GUrm@@t@123!!,172.16.14.106,,Y1,Y16241, ,12/31/2024,Active
+dig\sirat,Diamond Insurance,Sirat Kaur Dhillon,C1Node102,AMC,sirat.dhillon@dig.insure,>U1O?0Y>0~jt,6479697614,,Brampton,,3495,S!!R@t@@!!23,172.16.14.107,,Y2,Y27614, ,12/31/2024,Active
+dig\manisha,Diamond Insurance,Manisha,C1Node103,AMC,manisha@dig.insure,"sD2e]!7b?e7,",6478776959,,Brampton,,3496,M@n!SH@!!23,172.16.14.108,,Y3,Y36959, ,12/31/2024,Active
+dig\mamoon,Diamond Insurance,Mamoon Zaman,C1Node104,AMC,mamoon.zaman@dig.insure,5l7'91C&m}2],4169969137,,Brampton,,3497,M@m00n@123!,172.16.14.109,,Y4,Y49137, ,12/31/2024,Active
+dig\kulvir,Diamond Insurance,KULVIR KAUR PANDHER,C1Node105,AMC,kulvir@dig.insure,8B7A9+xRD_bw,6475019995,,Brampton,,3498,KP@ndhER@123$,172.16.14.110,,Y5,Y59995, ,12/31/2024,Active
+dig\irvinder,Diamond Insurance,Irvinder Kaur,C1Node106,AMC,irvinder@dig.insure,33vYj8koX7^9,2268997709,,Brampton,,3499,IrV!ndEr@123$,172.16.14.111,,Y6,Y67709, ,12/31/2024,Active
+dig\aditya,Diamond Insurance,Aditya Goria,C1Node107,AMC,aditya.goria@dig.insure,2=r0.9uUO7aC,4379740102,,Brampton,,4500,ad!TY@@321$,172.16.14.112,,Y7,Y70102, ,12/31/2024,Active
+dig\karandeep,Diamond Insurance,Karandeep Singh,C1Node108,AMC,karandeep@dig.insure,"&k,nS275XM$T",2899685254,,Brampton,,4501,k@R@ndEep!23,172.16.14.113,,Y8,Y85254, ,12/31/2024,Active
+dig\jsingh,Diamond Insurance,Jagdev Singh Tatlay,C1node21,AMC,jsingh@dig.insure,2)1l]DMN9aQ0,7806002929,,Alberta,,3414,JSin@4421,172.16.14.25,5,JS,JS4421, ,12/31/2024,Active
+dig\jassingh,Diamond Insurance,Jaspreet Singh,C1node29,AMC,jaspreetsingh@dig.insure,oc[BJ74ba6oU,7807828335,,Alberta,,3421,J@sspr$$t!,172.16.14.32,5,JAS,JS3421,Requested to Rajkaran 22-Feb-23 ,12/31/2024,Active
+dig\hrai,Diamond Insurance,Harpreet Rai,C1node22,AMC,hrai@dig.insure,64T1}!62r}7i,7808630165,,Alberta,,3415,H@rp3392,172.16.14.26,5,HR,HR3392, ,12/31/2024,Active
+dig\rmalhi,Diamond Insurance,Ramanpreet Kaur Malhi,C1node24,AMC,rmalhi@dig.insure,{n%K3CW42z0=,6479642794,7809522794,Alberta,,3417,Rm@lh!321,172.16.14.28,5,RM,RM2794, User moved from Brampton,12/31/2024,Active
+dig\awas,Diamond Insurance,Awas Omar Dhiblawe,C1Node38,AMC,awas@dig.insure,,7808624985,,Alberta,,3430,Aw@s@012,172.16.14.41,5,AO,AO4985,"Aman called for disabling this account, 28/9/23 Node re-assigned to Sukriti Sharma",12/31/2024,Active
+dig\ssharma,Diamond Insurance,Sukriti Sharma,C1Node38,AMC,ssharma@dig.insure,8/C1~4FF96lZ,7807075087,,Alberta,,3430,Ssh@rm@123,172.16.14.41,5,SH,SH5087, Node Deletion/Closure,12/31/2024,Active
+dig\rkaur,Diamond Insurance,Rashmeen Kaur,C1NODE31,AMC,rkaur@dig.insure,7i31vhi54Pg{,8258892868,,Alberta,,3423,R@shmEEn123$,172.16.14.34,5,R2,RR2868, Using node of dig\account1,12/31/2024,Active
+dig\manpreet,Diamond Insurance,Manpreet kaur Sidhu ,C1NODE27,AMC,manpreet.sidhu@dig.insure,6pVg838=Duk=,7805209000,,Alberta,,3419,M@npr!!t@123,172.16.14.30,5,M5,MM0900, Using node of dig\schahal,12/31/2024,Active
+dig\bsidhu,Diamond Insurance,Brahamjot Kaur Sidhu,C1Node46,AMC,bsidhu@dig.insure,8K:?65$1xEdu,7802365684,,Alberta,,3438,B@S!dhu5684$,172.16.14.49,5,BS,BS5684, ,12/31/2024,Active
+dig\sanjeev,Diamond Insurance,Sanjeev Joshi,C1Node63,AMC,Sanjeev@dig.insure,Gt:Q22Kp9rS5,7809656744,,Alberta,,3455,S@an@jeev559,172.16.14.66,5,SA,SA6744, ,12/31/2024,Active
+dig\simarjeet,Diamond Insurance,Simarjeet Kaur,C1Node73,AMC,Simarjeet.K@dig.insure,a4qh9AvNQ97*,7806557892,,Alberta,,3466,Sim@rjEEt!@#,172.16.14.77,5,SK,SK7892, ,12/31/2024,Active
+dig\shubrai,Diamond Insurance,Shubkaran Rai,C1node84,AMC,shubkaran@dig.insure,ShUbk@r@n@321,7809941800,,Alberta,,3477,Sh@ub@karan$22,172.16.14.88,5,AI,AI1800, ,12/31/2024,Active
+dig\sandeep,Diamond Insurance,Sandeep Kaur Boparai,C1Node95,AMC,sandeep.boparai@dig.insure,f532qc0A~ZOp,4038138338,4034302929,Alberta,,3488,B0p@r@1!23,172.16.14.100,5,Z1,Z11800, ,12/31/2024,Active
+dig\khushwinder,Diamond Insurance,Khushwinder Singh,C1Node97,AMC,khushwinder@dig.insure,"78,pXB)C#X3Z",5875660103,,Alberta,,3490,KHUSHw!nder@123,172.16.14.102,5,Z7,Z70103, ,12/31/2024,Active
+dig\rosy,Diamond Insurance,ROSY SOHAL,C1Node109,AMC,rosy.sohal@dig.insure,6&C])xZV43Nh,7809950672,,Alberta,,4502,R0sYS0h@l@123,172.16.14.114,5,Y9,Y90762, ,12/31/2024,Active
+dig\gbasraon,Diamond Insurance,Gurpreet Singh Basraon,C1Node110,AMC,gurpreet.basraon@dig.insure,516eXI1iR!+*,7808071249,,Alberta,,4503,B@Sr@0n@123,172.16.14.115,5,YA,YA1249, ,12/31/2024,Active
+dig\GBASI ,Diamond Insurance,Gurvinder Basi,C1node25,AMC,gbasi@dig.insure,<nrU4v$3t394,6137934156,,Ottawa,,3404,Gb@si144$,172.16.14.15,3,G2,G2329,gbasi Old Node C1Node11,12/31/2024,Active
+dig\Hkim,Diamond Insurance,Hyunggwon Kim,C1node12,AMC,hkim@dig.insure,0]`z0C6tsVcV,6138642089,,Ottawa,,3405,H@k1m332$,172.16.14.16,3,HK,HK1331,hkim ,12/31/2024,Active
+dig\Eanbara,Diamond Insurance,Elie Anbara,C1node14,AMC,eanbara@dig.insure,"sW1Y`@,3Cy31",8199234100,,Ottawa,,3407,en12345EN,172.16.14.18,3,EA,EA5542,hkim On Hold as GBasi,12/31/2024,Active
+dig\Rbasi,Diamond Insurance,Ravinder Basi,C1node18,AMC,rbasi@dig.insure,,6132189556,,Ottawa,,3411,R@Ba$i12#,172.16.14.22,3,RB,RB3325,Converted to Agrewal ,12/31/2024,Active
+dig\SRiar,Diamond Insurance,Supreet Riar,C1node13,AMC,sriar@dig.insure,gPweF0d5}Bv2,6132557000,6137951040,Ottawa,,3406,Supr@@t144,172.16.14.17,3,SR,SR0144, ,12/31/2024,Active
+dig\ditiya,Diamond Insurance,Ditiya Verma,C1Node57,AMC,ditiya@dig.insure,f}5L$2?1Z'gq,8199300505,,Ottawa,,3449,D!t!y@0505,172.16.14.60,3,DI,DI0505, ,12/31/2024,Active
+dig\Amandeep,Diamond Insurance,Amandeep Singh,C1Node92,AMC,Amandeep@dig.insure,"cyU7,6F1(IQ7",3439982420,,Ottawa,,3485,Aman@dEep!23,172.16.14.97,3,Z3,Z32420, Approved by GBasi,12/31/2024,Active
+,Diamond Insurance,,,AMC,accounting@dig.insure,~{Ri:Y3|c89F,,,,,,,,,,,,12/31/2024,Active
+,Diamond Insurance,,,AMC,endorsement@dig.insure,SHARED,,,,,,,,,,,,12/31/2024,Active
+,Diamond Insurance,,,AMC,info@dig.insure,Shared,,,,,,,,,,,,12/31/2024,Active
+,Diamond Insurance,,,AMC,policyinquiries@dig.insure,Shared,,,,,,,,,,,,12/31/2024,Active
+,Diamond Insurance,,,AMC,Upload@dig.insure,SHARED,,,,,,,,,,,,12/31/2024,Active
