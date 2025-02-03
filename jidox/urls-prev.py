@@ -13,8 +13,8 @@ urlpatterns = [
     path("", view=index_view, name="index"),
 
     # Users app URLs (ensuring there is only one mapping)
-    path("users/", include("users.urls", namespace="users")),  
-    #path('users/', include('users.urls')),
+    #path("users/", include("users.urls", namespace="users")),  
+    path('users/', include('users.urls')),
 
     # Apps URLs
     path("apps/", include("apps.urls")),

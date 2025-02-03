@@ -11,8 +11,19 @@ drop database [db.mssql-jidox];
 SELECT name AS TableName FROM sys.tables;
 
 
+select * from users_user;
 select * from users_billingmodel;
 select * from users_inventorymodel;
+
+DELETE FROM users_user;
+DELETE from users_billingmodel;
+delete from users_inventorymodel
+
+
+-- To Verify the Schema of a Table
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'users_inventory';
+
 
 SELECT 
     *

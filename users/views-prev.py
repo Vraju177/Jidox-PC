@@ -274,7 +274,7 @@ def create_billing(request):
                 # Parse JSON data
                 data = json.loads(request.body)
             else:
-                # Use `request.POST` for form-encoded data
+                # Use request.POST for form-encoded data
                 data = request.POST
 
             # Extract billing data
@@ -289,7 +289,7 @@ def create_billing(request):
             invoice_no = data.get('invoice_no')
             invoice_date = data.get('invoice_date')
 
-             # Handle the `emailed` checkbox
+             # Handle the emailed checkbox
             emailed = data.get('emailed', '0')  # Default to 'off' if not provided
             emailed = '1' if emailed == 'on' else '2'  # Convert 'on' to 1 , otherwise 2
 
@@ -301,7 +301,7 @@ def create_billing(request):
 
             # Convert invoice_date to a datetime object, if provided
             if invoice_date:
-                invoice_date = datetime.strptime(invoice_date, '%Y-%m-%d')
+                invoice_date = datetime.strptime(invoice_date, '%Y-%m-%d').date()
 
             # Simulate saving the data to the database (replace with actual DB operations)
             billing_record_data = {
@@ -314,8 +314,9 @@ def create_billing(request):
                 'emailed': emailed,
                 'comments': comments,
                 'invoice_no': invoice_no,
-              #  'invoice_date': invoice_date.strftime('%Y-%m-%d') if invoice_date else None,
-              "invoice_date": str(invoice_date) if invoice_date else None,
+               #'invoice_date': invoice_date.strftime('%Y-%m-%d') if invoice_date else None,
+               #"invoice_date": str(invoice_date) if invoice_date else None,
+               'invoice_date': invoice_date,
             }
              
             billing_record = BillingModel(**billing_record_data)
@@ -362,13 +363,14 @@ def billing_table_view(request):
             'ticket_id': billing.ticket_id,
             'comments': billing.comments,
             'emailed': billing.emailed,
-            'created_date': billing.created_date,
             'invoice_no': billing.invoice_no,
+            'billing_date': billing.billing_date,
             'invoice_date': billing.invoice_date,
         }
         for billing in billings
     ]
     return render(request, "components/tables/tables-billing.html", {"billing_data": billing_data})
+
 
 
 # =========================================================================

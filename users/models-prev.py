@@ -61,9 +61,11 @@ class BillingModel(models.Model):
     ticket_id = models.CharField(_("Ticket ID"), max_length=50, blank=True, null=True)
     emailed = models.BooleanField(_("Emailed"), default=False)
     comments = models.TextField(_("Comments"), blank=True, null=True)
-    billing_date = models.DateField(_("Billing Date"), auto_now_add=True)
+    billing_date = models.DateField(_("Created Date"), auto_now_add=True)
     invoice_no = models.CharField(_("Invoice Number"), max_length=250)
-    invoice_date = models.CharField(_("Invoice Date"), max_length=50, blank=True, null=True)
+    #invoice_date = models.CharField(_("Invoice Date"), max_length=50, blank=True, null=True)
+    invoice_date = models.DateField(null=True, blank=True)
+
 
     class Meta:
         verbose_name = _("Billing Model")
@@ -85,7 +87,7 @@ class InventoryModel(models.Model):
     total_outs = models.PositiveIntegerField(_("Total Out Stock"), default=0)
     date_out = models.DateField(_("Date Out"), blank=True, null=True)
     stock_inhand = models.PositiveIntegerField(_("Stock In Hand"), default=0)
-    sr_no = models.CharField(_("Serial Number"), max_length=100, unique=True)
+    sr_no = models.CharField(_("Serial Number"), max_length=255)
     mac_product_no = models.CharField(_("MAC Product No"), max_length=100, blank=True, null=True)
     to_user = models.CharField(_("To User"), max_length=255, blank=True, null=True)
     to_client = models.CharField(_("To Client"), max_length=255, blank=True, null=True)

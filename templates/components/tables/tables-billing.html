@@ -1,57 +1,49 @@
-{% extends "partials/base.html" %}
-{% load static %}
+{% extends "partials/base.html" %} 
+{% load static %} 
 
-{% block title %}Billing Details{% endblock title %}
+{% block title %}Billing Datatables{% endblock title %} 
 
 {% block extra_css %} 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Datatables css -->
+    <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
 
-        <!-- Datatables css -->
-        <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css'%}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
-
-        <!-- Custom CSS for table alignment and pagination -->
     <style>
-        /* Ensure DataTables pagination is aligned and styled correctly */
-        .dataTables_wrapper .dataTables_paginate {
+        .dataTables_wrapper .dataTables_paginate, .dataTables_wrapper .dataTables_info {
             text-align: center;
             margin-top: 10px;
         }
-
-        .dataTables_wrapper .dataTables_info {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        /* Make sure the table is responsive */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             margin-bottom: 1rem;
         }
-
-        /* Style for pagination section */
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            margin-left: 5px;
+        .dataTables_length, .dataTables_filter {
+            margin-bottom: 15px;
         }
-
-        .dataTables_wrapper .dataTables_paginate {
+        /* Ensure column headers are aligned properly */
+        thead th {
+            white-space: nowrap;
             text-align: center;
-            margin-top: 15px;
+            vertical-align: middle;
         }
-
-        .dataTables_wrapper .dataTables_info {
-            text-align: center;
-            margin-top: 15px;
+        /* Alternating row colors for better visualization */
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
         }
     </style>
 {% endblock extra_css %} 
 
 {% block pagetitle %}
-{% include "partials/page-title.html" with pagetitle="Tables" title="Stock Inventory" %}
+{% include "partials/page-title.html" with pagetitle="Tables" title="Billing" %}
 {% endblock pagetitle %}
 
 {% block content %}
@@ -76,6 +68,7 @@
                                 <th>Emailed</th>
                                 <th>Invoice No</th>
                                 <th>Invoice Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,10 +92,16 @@
                                 </td>
                                 <td>{{ billing.invoice_no }}</td>
                                 <td>{{ billing.invoice_date|date:"d M Y" }}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal" 
+                                        data-client="{{ billing.client_name }}" data-details="{{ billing.bill_description }}">
+                                        View
+                                    </button>
+                                </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="11" class="text-center">No records found.</td>
+                                <td colspan="13" class="text-center">No records found.</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -112,65 +111,44 @@
         </div>
     </div>
 </div>
+
+<!-- View Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel">Billing Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Client Name:</strong> <span id="modalClientName"></span></p>
+                <p><strong>Details:</strong> <span id="modalDetails"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
-
 {% block extra_js %}
-
-    <!-- Datatables js -->
     <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-select/js/dataTables.select.min.js' %}"></script>
-
-
-<!-- DataTables js -->
-<script src="{% static 'vendor/datatables.min.js' %}"></script>
-
-<!-- DataTables CSS -->
-<link href="{% static 'vendor/datatables.min.css' %}" rel="stylesheet">
-
-
-<!-- DataTables Initialization -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const billingTable = document.getElementById("billingTable");
-
-    if (billingTable) {
-        new DataTable(billingTable, {
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $("#billingTable").DataTable({
             paging: true,
             searching: true,
             ordering: true,
             responsive: true,
-            lengthChange: true,
-
-            columns: [
-                { title: "#" },
-                { title: "Client Name", data: "client_name" },
-                { title: "Client Address", data: "client_address" },
-                { title: "Billing To", data: "billing_to" },
-                { title: "Service Type", data: "service_type" },
-                { title: "Bill Description", data: "bill_description" },
-                { title: "Ticket ID", data: "ticket_id" },
-                { title: "Comments", data: "comments" },
-                { title: "Billing Date", data: "billing_date" }
-                { title: "Emailed", data: "emailed" },
-                { title: "Invoice No", data: "invoice_no" },
-                { title: "Invoice Date", data: "invoice_date" }
-            ]
+            lengthChange: true
         });
-    }
-});
-</script>
 
+        // View button functionality
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                document.getElementById('modalClientName').innerText = this.dataset.client;
+                document.getElementById('modalDetails').innerText = this.dataset.details;
+            });
+        });
+    });
+    </script>
 {% endblock extra_js %}
-
