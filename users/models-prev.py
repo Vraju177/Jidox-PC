@@ -62,7 +62,7 @@ class BillingModel(models.Model):
     emailed = models.BooleanField(_("Emailed"), default=False)
     comments = models.TextField(_("Comments"), blank=True, null=True)
     billing_date = models.DateField(_("Created Date"), auto_now_add=True)
-    invoice_no = models.CharField(_("Invoice Number"), max_length=250)
+    invoice_no = models.CharField(_("Invoice Number"), max_length=250, blank=True, null=True)
     #invoice_date = models.CharField(_("Invoice Date"), max_length=50, blank=True, null=True)
     invoice_date = models.DateField(null=True, blank=True)
 
@@ -102,3 +102,106 @@ class InventoryModel(models.Model):
         verbose_name = _("Inventory Model")
         verbose_name_plural = _("Inventory Models")
         ordering = ["-created_date"]
+
+
+#=================== NEW Stock Inventory Pages Model -----------------------------------
+from django.db import models
+from django.core.exceptions import ValidationError
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+
+
+class StockInModel(models.Model):
+    product_item = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255)
+    total_stock_received = models.PositiveIntegerField()
+    serial_no = models.CharField(max_length=255, unique=True)
+    mac_product_no = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    received_from = models.CharField(max_length=255)
+    stock_in_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.product_item} - {self.serial_no}"
+
+
+class StockOutModel(models.Model):
+    stock_in_date = models.DateField()  # Extracted from StockInModel
+    stock_out_date = models.DateField(auto_now_add=True)  # Current Date
+    product_item = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255)
+    total_stock_sent = models.PositiveIntegerField()
+    serial_no = models.CharField(max_length=100, unique=True)
+    mac_product_no = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    delivered_to = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.product_item} - {self.serial_no}"
+
+    def clean(self):
+        # Validate stock availability before saving StockOutModel
+        stock = StockInHand.objects.filter(
+            product_item=self.product_item,
+            manufacturer=self.manufacturer
+        ).first()
+
+        if not stock or self.total_stock_sent > stock.stock_in_hand:
+            raise ValidationError("Not enough stock available.")
+
+
+from django.db import models
+
+class StockInHand(models.Model):
+    product_item = models.CharField(max_length=255, unique=True)
+    manufacturer = models.CharField(max_length=255)
+    total_stock_received = models.PositiveIntegerField(default=0)
+    serial_no = models.CharField(max_length=255, blank=True, null=True)
+    mac_product_no = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    received_from = models.CharField(max_length=255, blank=True, null=True)
+    stock_in_date = models.DateField(auto_now_add=True)  # Auto-filled when stock is first received
+    stock_in_hand = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product_item} - Stock: {self.stock_in_hand}"
+
+
+
+# Signal to update StockInHand when new stock is received
+@receiver(post_save, sender=StockInModel)
+def update_stock_in_hand_on_stock_in(sender, instance, created, **kwargs):
+    if created:
+        stock, created = StockInHand.objects.get_or_create(
+            product_item=instance.product_item,
+            manufacturer=instance.manufacturer
+        )
+        stock.stock_in_hand += instance.total_stock_received
+        stock.save()
+
+
+# Signal to update StockInHand when stock is sent out
+@receiver(post_save, sender=StockOutModel)
+def update_stock_in_hand_on_stock_out(sender, instance, created, **kwargs):
+    if created:
+        stock = StockInHand.objects.filter(
+            product_item=instance.product_item,
+            manufacturer=instance.manufacturer
+        ).first()
+        
+        if stock:
+            stock.stock_in_hand -= instance.total_stock_sent
+            stock.save()
+
+
+# Signal to rollback stock when a StockOutModel record is deleted
+@receiver(post_delete, sender=StockOutModel)
+def rollback_stock_on_stock_out_delete(sender, instance, **kwargs):
+    stock = StockInHand.objects.filter(
+        product_item=instance.product_item,
+        manufacturer=instance.manufacturer
+    ).first()
+
+    if stock:
+        stock.stock_in_hand += instance.total_stock_sent
+        stock.save()

@@ -62,7 +62,7 @@ class BillingModel(models.Model):
     emailed = models.BooleanField(_("Emailed"), default=False)
     comments = models.TextField(_("Comments"), blank=True, null=True)
     billing_date = models.DateField(_("Created Date"), auto_now_add=True)
-    invoice_no = models.CharField(_("Invoice Number"), max_length=250)
+    invoice_no = models.CharField(_("Invoice Number"), max_length=250, blank=True, null=True)
     #invoice_date = models.CharField(_("Invoice Date"), max_length=50, blank=True, null=True)
     invoice_date = models.DateField(null=True, blank=True)
 
@@ -102,3 +102,83 @@ class InventoryModel(models.Model):
         verbose_name = _("Inventory Model")
         verbose_name_plural = _("Inventory Models")
         ordering = ["-created_date"]
+
+
+#=================== NEW Stock Inventory Pages Model with SIGNALS-----------------------------------
+from django.db import models
+
+# StockInModel: Recording Incoming Stock
+class StockInModel(models.Model):
+    manufacturer = models.CharField(max_length=255)
+    product_item = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    total_stock_received = models.PositiveIntegerField(default=0)
+    serial_no = models.CharField(max_length=255, blank=True, null=True)
+    mac_product_no = models.CharField(max_length=255, blank=True, null=True)
+    comments = models.TextField(blank=True, null=True)
+    stock_in_date = models.DateField(auto_now_add=True)  # Auto-filled with the current date
+
+    def __str__(self):
+        return f"{self.product_item} - Received: {self.total_stock_received}"
+
+# StockOutModel: Recording Outgoing Stock
+class StockOutModel(models.Model):
+    manufacturer = models.CharField(max_length=255)
+    product_item = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    total_stock_sent = models.PositiveIntegerField()
+    stock_out_date = models.DateField(auto_now_add=True)  # Auto-filled with the current date
+    serial_no = models.CharField(max_length=255, blank=True, null=True)
+    mac_product_no = models.CharField(max_length=255, blank=True, null=True)
+    to_user = models.CharField(max_length=255, blank=True, null=True)
+    to_client = models.CharField(max_length=255, blank=True, null=True)
+    ticket_id = models.CharField(max_length=255, blank=True, null=True)
+    comments = models.TextField(blank=True, null=True)
+    stock_in_date = models.DateField()  # Extracted from StockInModel
+
+    def __str__(self):
+        return f"{self.product_item} - Sent: {self.total_stock_sent}"
+
+
+# StockInHand: Tracks Available Stock
+class StockInHand(models.Model):
+    product_item = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255)
+    total_stock_received = models.PositiveIntegerField(default=0)
+    serial_no = models.CharField(max_length=255, blank=True, null=True)
+    mac_product_no = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    received_from = models.CharField(max_length=255, blank=True, null=True)
+    stock_in_date = models.DateField()
+    stock_in_hand = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product_item} - Stock: {self.stock_in_hand}"
+
+    def update_stock(self, quantity):
+        """Method to update the stock level in hand."""
+        self.stock_in_hand += quantity
+        self.save()
+
+
+class InventoryHistory(models.Model):
+    TRANSACTION_CHOICES = [
+        ('Stock In', 'Stock In'),
+        ('Stock Out', 'Stock Out'),
+    ]
+    
+    product_item = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255)
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_CHOICES)
+    quantity = models.IntegerField()
+    serial_no = models.CharField(max_length=255, null=True, blank=True)  # New field for serial number
+    mac_product_no = models.CharField(max_length=255, null=True, blank=True)
+    received_from = models.CharField(max_length=255, null=True, blank=True)  # e.g., supplier, warehouse
+    delivered_to = models.CharField(max_length=255, null=True, blank=True)  # e.g., client, department
+    transaction_date = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(null=True, blank=True)
+    ticket_id = models.CharField(max_length=255, null=True, blank=True)
+    comments = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.product_item} - {self.transaction_type} ({self.transaction_date})"

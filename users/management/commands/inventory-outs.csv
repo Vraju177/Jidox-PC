@@ -1,0 +1,204 @@
+id,manufacturer,product_item,description,total_stock_sent,stock_out_date,serial_no,mac_product_no,to_user,to_client,ticket_id,comments,stock_in_date
+3,,Yealink Cordless,,1,,,,Ontario Transway,,#3206,,3/3/2023
+4,,Yealink T54W,,1,,,,Ameya,Ameya,#3329,,3/8/2023
+5,,Yealink T54W,,1,,,,Rajkaran,Rajkaran,,,3/17/2023
+6,,Yealink T54W,,1,,,,Simar Uppal,Freight Hub Logistic,#4027,,4/20/2023
+7,,Yealink T54W,,1,,,,Varinder Rana,Gracious,#4362,,4/29/2023
+8,,Desktop,,1,,,,Harman Thind,Diamond,#4521,,5/3/2023
+10,,Desktop,,1,,,,,Galaxy,#4621,,5/3/2023
+11,,LCD,,1,,,,,Galaxy,#4621,,5/3/2023
+13,,Desktop,,1,,,,Dhvani ,Gracious,#5170,,5/26/2023
+14,,Desktop,,1,,,,MandeepKhroud,Diamond,#5286,,6/5/2023
+15,,LCD,,1,,,,MandeepKhroud,Diamond,#5286,,6/5/2023
+17,,Desktop,,1,,,,Ravi Grewal,Diamond,#5375,,6/5/2023
+18,,Desktop,,1,,,,Simar,Diamond,#5373,,6/5/2023
+19,,Desktop,,1,,,,Gary,CIC,#5417,,6/7/2023
+20,,Desktop,,1,,,,Ruby - Personal,CIC,#5422,,6/7/2023
+28,HP,Desktop HP EliteDesk,,1,,,,Amita Verma,Diamond Insurance,#5862,,6/28/2023
+32,Yealink,Yealink T54W,,1,,,,Jag,Arthur Transport,#6838,,7/24/2023
+34,Yealink,Spiral Cord - T53,,1,,,,Wise - Sapna,,,,7/24/2023
+36,HP,Desktops - HP,#9172,1,,,,Galaxay Flooring,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",,,11/20/2023
+37,Dell,"LCD - Dell 22""",#9172,1,,,,Galaxay Flooring,,,,11/20/2023
+38,Yealink,Yealink T54W,,1,,201081F051209236,,,#9493,Gracious,,12/4/2023
+39,Yealink,Yealink T54W,,1,,201081F051207094,,,#9749,Haulage,,12/4/2023
+40,Yealink,Yealink T54W,,1,,201081F051208219,,,#9749,Haulage,,12/4/2023
+41,Yealink,Yealink T54W,,1,,201081F051208917,,,#9749,Haulage,,12/4/2023
+42,Yealink,Yealink W56H,,1,,8.30152E+15,,,#9493,Gracious,,12/4/2023
+44,Yealink,Power Adapter,,1,,,,#9493,Gracious,,,12/4/2023
+45,Yealink,Yealink W56H,,1,4/22/2024,8.30152E+15,,,Gracious,#13229,,12/4/2023
+46,Yealink,Yealink T54W,,1,4/30/2024,201081F051206650,,,Haulage,#13185,,12/4/2023
+47,Yealink,Yealink T54W,,1,6/5/2024,201081F051207090,249AD8800E3B,,Ontario Transway,#14101,,12/4/2023
+48,Yealink,Yealink T54W,,1,4/22/2024,201081F051208036,,,Gracious,#13381,,12/4/2023
+49,Yealink,Yealink T54W,,1,6/5/2024,201081F051208231,249AD88026A9,,Ontario Transway,#14101,,12/4/2023
+50,Yealink,Yealink T54W,,1,4/22/2024,201081F051208772,,,Gracious,#13381,,12/4/2023
+51,Yealink,Yealink T54W,,1,,201081F051206263,,,#9918,Gracious - Oakville,,12/7/2023
+52,Laptop,Dell Precision T1700,,1,,,,#9730,Diamond,,,12/20/2023
+53,,Wireless Router,,1,,,,Haulage For Rogers Fiber,,#10138,,12/29/2023
+57,Yealink,Yealink T53,,1,,,,Gracious Oakville,,#2452,,1/20/2024
+59,,NvMe Drive,,1,,,,Installed in PC under the desk,,,,1/30/2024
+60,,Desktops - HP,#11838,1,,,,MSS Machining,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",,,2/21/2024
+62,,Cisco Switch,,1,,,,Haulage North America,,#11956,,2/28/2024
+64,,Desktops - HP,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",1,,,,Haulage,,#13048,,4/10/2024
+66,,Microtik Router,,1,,,,Gracious,,#13224,,4/14/2024
+69,Yealink,Spiral Cord - T53,,1,,,,Ontario Transway,,#13451,,4/25/2024
+70,Yealink,Yealink T53,,1,,Haulage,,301086E011004217,MAC# 805E0C7AEB80,#13185,,4/30/2024
+71,,Yealink W56H,,1,,,,Gracious,,#13229,,5/3/2024
+75,,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,6/25/2024,22GYGH2,,,Diamond,#13922,,5/21/2024
+76,,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,6/25/2024,BR5XPQ2,,,Diamond,#14911,,5/21/2024
+77,,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,6/25/2024,3MTRHM2,,,Diamond,#14970,,5/21/2024
+78,,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,6/25/2024,CD1CHR2,,,Diamond,#14883,,5/21/2024
+79,,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,6/27/2024,CYLKHR2,,,Diamond,#15038,,5/21/2024
+82,Yealink,Yealink T53,,1,6/18/2024,2.01087E+15,249AD8985847,,Roadies,#14786,,6/5/2024
+83,Yealink,Yealink T53,,1,6/18/2024,201086F121004247,249AD898583D,,Roadies,#14787,,6/5/2024
+84,Yealink,Yealink T54W,,1,6/5/2024,301081G011202884,249AD8A524C8,,Ontario Transway,#14101,,6/5/2024
+85,Yealink,Yealink T54W,,1,12/23/2025,301081G011205899,249AD8A54168,,A Class Collission,#22245,,6/5/2024
+86,Yealink,Yealink T53,,1,9/12/2024,201086F121004154,249AD8985C44,,Haulage,#19076,,6/5/2024
+87,Yealink,Yealink T53,,1,6/5/2024,201086F121002329,249AD8985841,,Haulage,#14294,,6/5/2024
+88,,Desktops - HP,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",1,6/5/2024,MXL746213P,,,Haulage,#14294,,6/5/2024
+89,,Desktops - HP,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",1,6/5/2024,2UA7391WB4,,,Haulage,#14294,,6/5/2024
+90,Yealink,Business Phone - SIP - T54W,,1,1/31/2025,301081G011200999,249AD8A541D8,,Diamond,#22891,,6/5/2024
+91,Dell,Workstations - Dell,,1,6/19/2024,7TW9FB2,,,Metrox,#14822,,6/19/2024
+92,Dell,Workstations - Dell,,1,6/19/2024,98K9RD2,,,Metrox,#14822,,6/19/2024
+93,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,,702HZV2,,Gary Virk,CIC,#20214,,6/20/2024
+94,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,6/26/2024,CMV9ZV2,,Parminder Singh,Metrox,#14992,,6/20/2024
+95,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,8/29/2024,4T2WDW2,,,AUGMENTED NETWORKS,#18383,,6/20/2024
+96,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,6/26/2024,4T4VDW2,,Manpreet Kaur,Metrox,#14992,,6/20/2024
+98,Yealink,Yealink W56H,,1,6/25/2024,8.30152E+15,,,Gracious,#14866,,6/21/2024
+99,Yealink,Yealink W56H,,1,6/25/2024,8.30152E+15,,,Gracious,#14866,,6/21/2024
+101,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,,CMZFZV2,,,Sandeep Mann - Personal,#14873,,6/24/2024
+102,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,6/26/2024,BC93JV2,,Abhisheik,Metrox,#14992,,6/24/2024
+103,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +1 TB HDD Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,9/13/2024,702DZV2,,Harpreet PC,Haulage NA,,,6/24/2024
+104,Dell CPU,Dell OptiPlex,"16 GB RAM , 1TB SSD +500 GBIntel(R) Core(TM) i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",1,9/13/2024,4T2YDW2,,Dispatch Department,Haulage NA,,,6/24/2024
+106,,VGA to Display,,1,,,,,,,,6/24/2024
+108,Dell CPU,Dell OptiPlex,,1,1/24/2025,CMZ9ZV2,"16 GB RAM , 1TB SSD +500 GB,i7-8700 CPU @ 3.20GHz, 3192 Mhz, 6 Core(s), 12 Logical Processor(s)",,Haulage,#23406,,6/24/2024
+109,Dell - Laptop,Dell Latitude 7480,Faulty Keyboard,1,,296H3M2,,Return from Diamond,Returned to Vendor,#13922,,6/27/2024
+110,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/9/2024,3RJSNN2,,,Diamond,#17901,,6/27/2024
+111,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/5/2024,8T8NFH2,,,Diamond,#15702,,6/27/2024
+112,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/30/2024,ServiceTag S/N:H6MNMQ2,Bios S/N: 412CHR2,,Diamond,#17615,,6/27/2024
+113,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,,B1FRNN2,,HDD issue,Returned to Vendor,,,6/27/2024
+114,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/27/2024,B98P0N2,,,Diamond,#17389,,6/27/2024
+115,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/30/2024,J7K4QQ2,,,Diamond,#17615,,6/27/2024
+116,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/30/2024,G3LMHR2,,,diamond,#17615,,6/27/2024
+117,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/15/2024,3MWS7S2,,,Diamond,#16831,,6/27/2024
+118,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,7/15/2024,9CPCST2,,,Diamond,#16831,,6/27/2024
+119,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/9/2024,JTH7RN2,,,Diamond,#17852,,6/27/2024
+120,Yealink - Base DECT IP Phone Base W70B,Yealink - DECT IP Phone W76P(Combo Splitted for Base),,1,7/11/2024,802017F072500695,,,Gracious,#14866,,7/11/2024
+121,Yealink - Phone DECT IP Phone W56H,Yealink - DECT IP Phone W76P(Combo Splitted for Phone),,1,7/11/2024,8.30152E+15,,,Gracious,#14866,,7/11/2024
+122,,Dell Monitor- P2419H,,1,7/24/2024,CN-0GMGXF,,,Sandeep mann,#14873,,7/24/2024
+123,,Dell Monitor- P2419H,,1,7/24/2024,CN-0G8TVH,,,Sandeep mann,#14873,,7/24/2024
+124,Synology,Synology - Disk Station DS923+    4-BAY,,1,9/18/2024,2440TQR9V3YX6,,,Gracious,#18220,,7/25/2024
+126,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/15/2024,CDSSPQ2,#20131,Return from Diamond twice defective keyboard + usb damage,Diamond,#18044,,8/12/2024
+127,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/15/2024,1VMNFH2,,Amanpreet Kaur Dhaliwal,Diamond,#17920,,8/12/2024
+128,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/21/2024,B1FTNN2,,Gurpreet Kaur,Diamond,#18185,,8/21/2024
+129,Dell - Laptop,Dell Latitude 7480,System Model        Latitude 7480  - i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,8/27/2024,296H3M2,,Angadpratap Singh,Diamond,,,8/21/2024
+131,Dell - Laptop,Dell Latitude 7480,"On Oct 2, 2024 Laptop given to Ravinder Singh as replacement #19853",1,,JTH7RN2,,Angadpratap Singh (Returned),Diamond,#18362,,8/27/2024
+132,HP - Laptop,HP WAS11UC#ABA,System Model HP WAS11UC#ABA,1,8/28/2024,5CG8060SLG,,Returned to Rohit(Vendor),Diamond,#18362,,8/27/2024
+133,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,2N338S2 (2018),,Replacement to Diamond,,#20131,,8/28/2024
+134,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,G2HBYY2 ,,Harkaran Singh,Diamond,#19880,,8/28/2024
+135,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,837DYY2,,Aman Sidhu / Harkaran ,Diamond,#19875,,8/28/2024
+136,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,DD3CYY2,,Jasmeet Singh,Diamond,#20297,,8/28/2024
+137,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,HBVYPQ2 (2018),,dig\shahroz,Diamond,#18435,,8/28/2024
+138,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,6JVCRV2,,Ravi Grewal,Diamond,#20615,,8/28/2024
+140,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,9/25/2024,5B6M1N2,Battery Issue - returned by Diamond - Returning,,Diamond,#19651,,8/28/2024
+141,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,9/23/2024,FR3VNH2,,dig\komalpreet,Diamond,#19531,,8/28/2024
+142,Dell - Laptop,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,,8P338S2 (2018),,dig\harkaran,Diamond,#18435,,8/28/2024
+143,,CHARGER - Dell Latitude 7480,Interac to Rajkaran 25$,1,,,,Ankit,Diamond,,,9/11/2024
+144,VGA Cable,1 VGA Cable,,1,,,,Prabjot,Haulage,#19166,,9/12/2024
+145,1 VGA to display converter cable,1 VGA to display converter cable,,1,,,,harpreet,Haulage,#19190,,9/12/2024
+146,Yealink,Yealink T53,,1,9/12/2024,201086D051012425,805E0C2F4D01,Dispatch Team,Haulage,#19076,,9/12/2024
+147,LCD Monitor,HP Compaq LA2306x Monitor,,1,9/12/2024,3CQ3092RS0,Product No. XN 375A,Dispatch Team,Haulage,#19075,,9/12/2024
+148,LCD Monitor,HP Compaq LA2306x Monitor,,1,9/12/2024,3CQ2480XT6,Product No. XN375A,Dispatch Team,Haulage,#19075,,9/12/2024
+149,HP - CPU,HP Compaq 82100 Elite,,1,9/19/2024,2UA2032151,,Hi End,Hi End,#19547,,9/19/2024
+150,Yealink,Business Phone - SIP - T53,,1,,301086G041006453,44DBD22CD107,,Haulage,#19682,,9/24/2024
+151,Yealink,Business Phone - SIP - T53,,1,,301086G041006441,44DBD22CD315,,Haulage,#19682,,9/24/2024
+152,Yealink,Business Phone - SIP - T53,,1,,301086G041009418,44DBD22CCD89,,Haulage,#19682,,9/24/2024
+153,Yealink,Business Phone - SIP - T53,,1,,301086G041009439,44DBD22CCC12,,Haulage,#19682,,9/24/2024
+154,Yealink,Business Phone - SIP - T53,,1,1/27/2025,301086G041009441,44DBD22CD8DD,,Haulage,#22609,,9/24/2024
+155,Dell,LCD S2725H,,1,10/30/2024,CN-0V8C56-WSL00-42S-327B,29THK04,,Diamond,#20553,,9/25/2024
+156,Dell,LCD S2725H,,1,10/30/2024,CN-0V8C56-WSL00-42S-324B,H8THK04,,Diamond,#20553,,9/25/2024
+157,Dell,LCD S2725H,,1,10/30/2024,CN-0V8C56-WSL00-42S-308B,H7THK04,,Diamond,#20553,,9/25/2024
+158,Dell,LCD S2725H,,1,1/24/2025,CN-0V8C56-WSL00-42S-313B,Service Tag# 48THK04,249,Haulage,#23406,,9/25/2024
+160,CISCO,Cisco Switches,,1,11/5/2024,FOC1902Z1QT,,,Gracious,#20781,,9/30/2024
+161,CISCO,Cisco Switches,Serial Number was not confirmed,1,10/25/2024,FOC1704Z28T,Serial Number was not confirmed,,Diamond,#20553,,9/30/2024
+167,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,10/30/2024,HV1QZV2,,,Diamond,#20553,,10/28/2024
+169,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,10/30/2024,89KPCP2,,,Diamond,#20553,,10/28/2024
+170,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,10/30/2024,HV1RZV2,,,Diamond,#20553,,10/28/2024
+171,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,10/30/2024,HV0NZV2,,,Diamond,#20553,,10/28/2024
+172,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,10/30/2024,HV1NZV2,,,Diamond,#20553,,10/28/2024
+173,Dell,Dell Latitude 7480, i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,11/4/2024,3QR4QQ2,,,Diamond,#20646,,10/31/2024
+174,Dell,Dell Latitude 7470, i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,11/4/2024,4XB80G2,,,Diamond,#20646,,10/31/2024
+175,Dell,Dell Latitude 7480, i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,11/15/2024,GFKGPQ2,,,Diamond,#21011,,10/31/2024
+176,Dell,Dell Latitude 7480,System Model Latitude 7480 - i5-6300U CPU @ 2.40GHz - HDD 256GB - (RAM) 16.0 GB,1,11/11/2024,5B6M1N2,dig\Mamoon,Battery replaced by Vendor,Diamond,#20771,,10/31/2024
+177,Dell,Dell Opti Plex,i5 6th Gen 16 GB RAM 512 GB SSD,1,12/5/2025,HTZHZV2,Edward Hajjar,,Icon Logistics,#21571,,10/31/2024
+178,Dell,Dell Latitude 5480, i5-6300U CPU @ 2.40GHz - HDD 256GB SSD - (RAM) 16.0 GB,1,11/20/2025,3KT0X2,dig\kulvir,,Diamond,#21155,,11/19/2024
+179,Lenovo,Lenovo ThinkPad T480s,"i7-8650U CPU @ 1.90GHz, 2112 Mhz, 4 Core(s)  RAM 16.0 GB HDD 512 GB NVMe",1,11/21/2025,PC15541J, A0-51-0B-0C-FA-FD,Manjit,A Spec Precision,#20818,,11/19/2024
+180,Lenovo,Lenovo ThinkPad T480s,"i7-8650U CPU @ 1.70GHz, 1896 Mhz, 4 Core(s)  RAM 16.0 GB HDD 250 GB NVMe",1,11/25/2024,PC19DLEY,,Aditya  (Asif),Diamond,#21265,,11/19/2024
+181,Yealink,Business Phone - SIP - T54W,6/30/2024,1,1/31/2025,201081E101200415,249AD826BD82,,Diamond,#22891,,12/11/2024
+182,Yealink,Business Phone - SIP - T54W,6/30/2024,1,1/31/2025,301081E081243935,249AD810B7D7,,Diamond,#22891,,12/11/2024
+183,Dell,Dell Latitude E7470,"Intel(R) Core(TM) i7-6650U CPU @ 2.20GHz, 2201 Mhz, 2 Core(s), 4 Logical Processor(s), (RAM)16.0 GB,HDD 256GB NVMe
+",1,12/17/2024,7HC0PC2,dig\sukhveer,,Diamond,#22000,,12/17/2024
+197,,Converter - HDMI to Display,,1,1/3/2025,Stock re-checked,Store Top Drawer,,Gracious,#22631,,12/19/2024
+198,,Converter - HDMI to Display,,1,1/22/2025,Stock re-checked,Store Top Drawer,,Haulage,#23345,,12/19/2024
+199,,Converter - HDMI to Display,,1,1/22/2025,Stock re-checked,Store Top Drawer,,Haulage,#23345,,12/19/2024
+200,,Converter - HDMI to Display,,1,1/27/2025,Stock re-checked,Store Top Drawer,,Haulage,,,12/19/2024
+210,,Phone Spiral Cords,,1,1/3/2025,Stock re-checked,Reception Desk Lower Drawer,,Gracious - Dhvani,#22633,,12/19/2024
+232,GCI Transformer - Output 12VDC 800mA,Power Adapters,,1,12/31/2024,Stock re-checked,Store Room Shelf,,Gracious,,,12/19/2024
+269,Dell Laptop,Latitude 7400,,1,12/20/2024,JXXV0Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+270,Dell Laptop,Latitude 7400,,1,12/20/2024,FVB72Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+271,Dell Laptop,Latitude 7400,,1,12/20/2024,8GZ62Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+272,Dell Laptop,Latitude 7400,,1,12/20/2024,DWKP533,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+273,Dell Laptop,Latitude 7400,,1,12/20/2024,HYM2L13,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+274,Dell Laptop,Latitude 7400,,1,12/20/2024,HGPB3X2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+275,Dell Laptop,Latitude 7400,,1,12/20/2024,3VLX0Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+276,Dell Laptop,Latitude 7400,,1,12/20/2024,8WTN2Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+277,Dell Laptop,Latitude 7400,,1,12/20/2024,3FC3L13,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+278,Dell Laptop,Latitude 7400,,1,12/20/2024,3V3H533,i5 8th Gen - 8 GB RAM - 256 NVMe,NOT Turning ON,Vendor,,,12/20/2024
+279,Dell Laptop,Latitude 7400,,1,12/20/2024,BK03L13,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+280,Dell Laptop,Latitude 7400,,1,,HCNX0Z2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+281,Dell Laptop,Latitude 7400,,1,,819MN13,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+282,Dell Laptop,Latitude 7400,,1,,9GXG633,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+283,Dell Laptop,Latitude 7400,,1,,D9CG633,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+284,Dell Laptop,Latitude 7400,,1,,GFHH533,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+285,Dell Laptop,Latitude 7400,,1,,GH9X2X2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+286,Dell Laptop,Latitude 7400,,1,,849X2X2,i5 8th Gen - 8 GB RAM - 256 NVMe,,Vendor,,,12/20/2024
+287,TP Link - 16-Port  Gigabit Desktop Switch (12V x 1A),TP-Link TL-sg116,,1,12/31/2024,2.22627E+12,,,Gracious,#22559,,12/24/2024
+289,Dell,LCD S2725H,,1,1/24/2025,C0W4H34,,,Haulage,#23406,,12/30/2024
+290,Dell,LCD S2725H,,1,1/22/2025,DZT4H34,,,Haulage,#23345,,12/30/2024
+291,Dell,LCD S2725H,,1,1/22/2025,HJT4H34,,,Haulage,#23345,,12/30/2024
+292,Dell,LCD S2725H,,1,1/3/2025,GMV4H34,,,Gracious,#22632,,12/30/2024
+293,Dell Laptop,Dell Latitude 7480,,1,1/10/2025,FXSF3H2,"i5-7300U 16 GB, 256 GB NVMe",,Diamond,#22766,,1/8/2025
+294,Dell Laptop,Dell Latitude 7490,,1,1/10/2025,7Y6HTQ2,"i5-7300U 16 GB, 256 GB NVMe",,Diamond,#22766,,1/8/2025
+295,Dell Laptop,Dell Latitude 7490,,1,1/10/2025,H7DHTQ2,"i5-7300U 16 GB, 256 GB NVMe",,Diamond,#22766,,1/8/2025
+296,Dell Laptop,Dell Latitude 7480,,1,1/9/2025,62VP3H2,"i5-7300U 16 GB, 256 GB NVMe",,Diamond,#22474,,1/8/2025
+297,Dell Laptop,Dell Latitude 7490,,1,1/31/2025,8S6HTQ2,"i5-7300U 16 GB, 256 GB NVMe",,Store Room Shelf,#23558,,1/8/2025
+303,HP CPU,HP EliteDesk 800 G5 SFF,,1,1/24/2025,MXL9515F3Z,,,Haulage,#23406,,1/23/2025
+304,HP Monitor,HP E22 G4 Monitor,,1,1/24/2025,CNK1391269,,,Haulage,#23406,,1/23/2025
+305,HP Monitor,HP E22 G4 Monitor,,1,1/24/2025,6CM20819W3,,,Haulage,#23406,,1/23/2025
+306,Laptop,Lenovo ThinkPad T480s,,1,1/27/2025,PC0W91JA,"16.0 GB, i7-8550U, 1 TB NVMe",,MetroX,#23089,,1/24/2025
+317,Yealink,Business Phone - SIP - T54W,,1,1/31/2025,801081G070062537,44DBD2622FOE,,Diamond,#22891,,1/30/2025
+318,Yealink,Business Phone - SIP - T54W,,1,1/31/2025,801081G070062754,44DBD262276E,,Diamond,#22891,,1/30/2025
+9,,LCD,,2,,,,Harman Thind,Diamond,#4521,,5/3/2023
+16,,LCD,,2,,,,Ravi Grewal,Diamond,#5375,,6/5/2023
+24,Yealink,Power Adapter,,2,10/9/2024,,,,Diamond,#20132,,6/12/2023
+29,Yealink,Yealink T54W,,2,,,,Jag,Arthur Transport,#5913,,6/30/2023
+30,Yealink,Power Adapter,In my Desk Drawers,2,,,,Jag,Arthur Transport,#5913,,6/30/2023
+35,Dell,Dell Precision T1700,,2,,,,1 Faulty Display,1 - #9827,Gracious Warehouse,,8/4/2023
+56,,Phone Adapters,,2,,,,Arthur Transport - New site,,#11031,,1/17/2024
+58,Dell,Laptop Latitude 7480,,2,,,,"Diamond - Hamza Mahmood, Jasmeet Singh",,#11253,,1/30/2024
+61,Rajkaran Home,"Dell 27"" LCD",,2,,,,MSS Machining,,#11838,,2/21/2024
+63,,"Dell 23""LCD",,2,,10-Apr-24,,Haulage,,#13048,,4/9/2024
+65,,Cisco Switch,,2,,,,Gracious,,#13223,,4/13/2024
+68,,Desktops - HP,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",2,,,,Gracious,,#13386,,4/22/2024
+72,,Dell Latitude 7480,Ticket to be closed,2,,,,Diamond,,#13021,,5/3/2024
+1,,Yealink T54W,,3,,,,Metrox,,"#2494
+#2495
+#2496",,1/25/2023
+43,Yealink,Power Adapter,,3,,,,#9749,Haulage,,,12/4/2023
+67,Dell,Laptop Latitude 7480,,4,,,,Diamond,,#13021,,4/15/2024
+27,,Bluetooth HeadSet,,5,,,,Jag,Arthur Transport,,,6/13/2023
+54,Yealink,Yealink T53,,5,,,,Haulage North America,,#10591,,1/16/2024
+55,,Phone Adapters,,5,,,,Haulage North America,,#10591,,1/17/2024
+74,,Dell Latitude 7480,,5,,,,Diamond,,#13738,,5/16/2024
+2,,Yealink T54W,,7,,,,Ontario Transway,,#3206,,3/3/2023
+21,,Desktops - HP,"i7-6th gen, 256 NVme + 500 GB + 16 GB RAM",8,,,,"7 - Haulage North America, 1 - Gracious(AnjaliRana #8843)",,,,6/9/2023
+26,Yealink,Yealink T54W,,8,,,,Jag,Arthur Transport,,,6/13/2023

@@ -161,6 +161,8 @@ C:\Users\Public\Jidox>
     │      │      ├───maps
     │      │      ├───tables
     │      │      │      ├───tables-basic.html
+    │      │      │      ├───inventory.html
+    │      │      │      ├───table-inventory.html
     │      │      │      ├───tables-billing.html
     │      │      │      └───tables-datatable.html
     │      │      └───widgets/
@@ -183,6 +185,7 @@ C:\Users\Public\Jidox>
     │      ├───apps.py
     │      ├───forms.py
     │      ├───models.py
+    │      ├───signals.py
     │      ├───tests.py
     │      ├───urls.py
     │      └───views.py
@@ -198,4 +201,87 @@ C:\Users\Public\Jidox>
     │ 
     ├───package.json
     │
+    └───requirements.txt
+
+
+
+    FOR SHORT Directory:
+
+
+    C:\Users\Public\Jidox>  
+    │     
+    ├───apps/
+    │
+    ├───components/
+    │
+    ├───custom/
+    │
+    ├───jidox/
+    │      ├───__pychache__/
+    │      ├───__init__.py
+    │      ├───asgi.py
+    │      ├───settings.py
+    │      ├───urls.py
+    │      ├───view.py
+    │      └───wsgi.py
+    │
+    ├───layouts/
+    ├───node_modules/
+    │
+    ├───static/
+    │      ├───css/
+    │      ├───data/
+    │      ├───fonts/
+    │      ├───images/
+    │      ├───js/
+    │      └───vendor/
+    ├───templates/
+    │      ├───account/
+    │      ├───apps/
+    │      ├───components/
+    │      │      ├───base-us/
+    │      │      ├───charts/
+    │      │      ├───extended-ui/
+    │      │      ├───forms/
+    │      │      │      ├───form-elements.html
+    │      │      │      ├───form-fileuploads.html
+    │      │      │      ├───form-editors.html
+    │      │      │      ├───form-billing.html
+    │      │      │      └───form-validation.html
+    │      │      ├───tables
+    │      │      │      ├───tables-basic.html
+    │      │      │      ├───inventory.html
+    │      │      │      ├───table-inventory.html
+    │      │      │      ├───tables-billing.html
+    │      │      │      └───tables-datatable.html
+    │      │      └───widgets/
+    │      │ 
+    │      ├───custom/
+    │      ├───partials/
+    │      └───index.html
+    ├───users/
+    │      ├───__pychache__/
+    │      ├───management/
+    │      │       └───commands/
+    │      │              ├───billing.csv
+    │      │              ├───data.csv
+    │      │              ├───upload.billing.py
+    │      │              └───import_csv.py
+    │      ├───migrations/
+    │      ├───__init__.py
+    │      ├───adapters.py
+    │      ├───admin.py
+    │      ├───apps.py
+    │      ├───forms.py
+    │      ├───models.py
+    │      ├───signals.py
+    │      ├───tests.py
+    │      ├───urls.py
+    │      └───views.py
+    │
+    ├───venv/
+    ├───gulpfile.js
+    ├───manage.py
+    ├───package-lock.json
+    ├───package.json
     └───requirements.txt

@@ -4,56 +4,19 @@
 {% block title %}Stock Inventory{% endblock title %}
 
 {% block extra_css %} 
-    <!-- Datatables css -->
     <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" />
     <link href="{% static 'vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' %}" rel="stylesheet" />
-    
-    <!-- Custom CSS for table alignment, pagination, and alternating row colors -->
     <style>
         .dataTables_wrapper .dataTables_paginate, .dataTables_wrapper .dataTables_info {
             text-align: center;
             margin-top: 10px;
         }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-        }
-
-        /* Alternating row colors */
-        .table-striped tbody tr.odd {
-            background-color: #f2f2f2; /* Light grey for odd rows */
-        }
-
-        .table-striped tbody tr.even {
-            background-color: #ffffff; /* White for even rows */
-        }
-
-        /* Column titles style */
-        th {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-            white-space: nowrap; /* Prevent text wrapping in column titles */
-            text-align: center; /* Ensure text is centered */
-        }
-
-        /* Ensure the table header stays in one line */
-        .table thead th {
-            padding: 10px;
-        }
-
-        /* Adjust table layout for better space distribution */
-        .table {
-            table-layout: fixed; /* Forces a consistent column width */
-        }
-
-        /* Optional: Ensure the table is responsive */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-        }
+        .table-responsive { width: 100%; overflow-x: auto; margin-bottom: 1rem; }
+        .table-striped tbody tr.odd { background-color: #f2f2f2; }
+        .table-striped tbody tr.even { background-color: #ffffff; }
+        th { background-color: #007bff; color: white; font-weight: bold; white-space: nowrap; text-align: center; }
+        .table thead th { padding: 10px; }
+        .table { table-layout: fixed; }
     </style>
 {% endblock extra_css %} 
 
@@ -102,8 +65,19 @@
                                 <td>{{ inventory.inventory_comments }}</td>
                                 <td>{{ inventory.created_date|date:"d M Y" }}</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal" 
-                                        data-manufacturer="{{ inventory.manufacturer }}" data-product="{{ inventory.product_item }}" data-description="{{ inventory.description }}">
+                                    <!-- Updated View Button -->
+                                    <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal"
+                                        data-manufacturer="{{ inventory.manufacturer }}"
+                                        data-product="{{ inventory.product_item }}"
+                                        data-description="{{ inventory.description }}"
+                                        data-totalins="{{ inventory.total_ins }}"
+                                        data-totalouts="{{ inventory.total_outs }}"
+                                        data-stockinhand="{{ inventory.stock_inhand }}"
+                                        data-srno="{{ inventory.sr_no }}"
+                                        data-macproductno="{{ inventory.mac_product_no }}"
+                                        data-ticketid="{{ inventory.ticket_id }}"
+                                        data-comments="{{ inventory.inventory_comments }}"
+                                        data-createddate="{{ inventory.created_date|date:'d M Y' }}">
                                         View
                                     </button>
                                 </td>
@@ -116,14 +90,14 @@
                         </tbody>
                     </table>
                 </div>
-            </div> <!-- end card-body -->
-        </div> <!-- end card -->
-    </div> <!-- end col -->
-</div> <!-- end row -->
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewModalLabel">Inventory Details</h5>
@@ -133,40 +107,84 @@
                 <p><strong>Manufacturer:</strong> <span id="modalManufacturer"></span></p>
                 <p><strong>Product Item:</strong> <span id="modalProductItem"></span></p>
                 <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Total In Stock:</strong> <span id="modalTotalIns"></span></p>
+                <p><strong>Total Out Stock:</strong> <span id="modalTotalOuts"></span></p>
+                <p><strong>Stock In Hand:</strong> <span id="modalStockInHand"></span></p>
+                <p><strong>Serial No:</strong> <span id="modalSrNo"></span></p>
+                <p><strong>MAC Product No:</strong> <span id="modalMacProductNo"></span></p>
+                <p><strong>Ticket ID:</strong> <span id="modalTicketId"></span></p>
+                <p><strong>Inventory Comments:</strong> <span id="modalComments"></span></p>
+                <p><strong>Created Date:</strong> <span id="modalCreatedDate"></span></p>
             </div>
         </div>
     </div>
 </div>
 
+
 {% endblock content %}
 
 {% block extra_js %}
-    <!-- Datatables js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js' %}"></script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const inventoryTable = new DataTable("#inventoryTable", {
-            paging: true,
-            searching: true,
-            ordering: true,
-            responsive: true,
-            lengthChange: true
-        });
+<script>
+// document.addEventListener("DOMContentLoaded", function () {
+//     new DataTable("#inventoryTable", {
+//         paging: true,
+//         searching: true,
+//         ordering: true,
+//         responsive: true,
+//         lengthChange: true
+//     });
 
-        // View button functionality
-        document.querySelectorAll('.view-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                // Get the data from the clicked button and set it in the modal
-                document.getElementById('modalManufacturer').innerText = this.dataset.manufacturer;
-                document.getElementById('modalProductItem').innerText = this.dataset.product;
-                document.getElementById('modalDescription').innerText = this.dataset.description;
-            });
+//     document.querySelectorAll('.view-btn').forEach(button => {
+//         button.addEventListener('click', function () {
+//             document.getElementById('modalManufacturer').innerText = this.dataset.manufacturer;
+//             document.getElementById('modalProductItem').innerText = this.dataset.product;
+//             document.getElementById('modalDescription').innerText = this.dataset.description;
+//             document.getElementById('modalTotalIns').innerText = this.dataset.totalins;
+//             document.getElementById('modalTotalOuts').innerText = this.dataset.totalouts;
+//             document.getElementById('modalStockInHand').innerText = this.dataset.stockinhand;
+//             document.getElementById('modalSrNo').innerText = this.dataset.srno;
+//             document.getElementById('modalMacProductNo').innerText = this.dataset.macproductno;
+//             document.getElementById('modalTicketId').innerText = this.dataset.ticketid;
+//             document.getElementById('modalComments').innerText = this.dataset.comments;
+//             document.getElementById('modalCreatedDate').innerText = this.dataset.createddate;
+//         });
+//     });
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const viewButtons = document.querySelectorAll('.view-btn');
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Populate the modal fields
+            document.getElementById('modalManufacturer').innerText = this.dataset.manufacturer || 'N/A';
+            document.getElementById('modalProductItem').innerText = this.dataset.product || 'N/A';
+            document.getElementById('modalDescription').innerText = this.dataset.description || 'N/A';
+            document.getElementById('modalTotalIns').innerText = this.dataset.totalins || '0';
+            document.getElementById('modalTotalOuts').innerText = this.dataset.totalouts || '0';
+            document.getElementById('modalStockInHand').innerText = this.dataset.stockinhand || '0';
+            document.getElementById('modalSrNo').innerText = this.dataset.srno || 'N/A';
+            document.getElementById('modalMacProductNo').innerText = this.dataset.macproductno || 'N/A';
+            document.getElementById('modalTicketId').innerText = this.dataset.ticketid || 'N/A';
+            document.getElementById('modalComments').innerText = this.dataset.comments || 'N/A';
+            document.getElementById('modalCreatedDate').innerText = this.dataset.createddate || 'N/A';
         });
     });
-    </script>
+
+    // Initialize DataTable for the inventory table
+    new DataTable("#inventoryTable", {
+        paging: true,
+        searching: true,
+        ordering: true,
+        responsive: true,
+        lengthChange: true
+    });
+});
+
+</script>
 {% endblock extra_js %}

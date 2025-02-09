@@ -96,7 +96,7 @@ WSGI_APPLICATION = "jidox.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'mssql', # Installed MSSQL Engine
-        'NAME': 'db.mssql-jidox', # MSSQL Database Name
+        'NAME': 'db.mssql-jidox1', # MSSQL Database Name
         'USER': '',  # Windows authentication leaves this blank
         'PASSWORD': '',  # Windows authentication leaves this blank
         'HOST': 'localhost',

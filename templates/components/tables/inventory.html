@@ -1,0 +1,216 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Inventory Management{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Inventory" title="Inventory Management" %}
+{% endblock pagetitle %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        .table-responsive { width: 100%; overflow-x: auto; margin-bottom: 1rem; }
+        thead th { white-space: nowrap; text-align: center; vertical-align: middle; }
+        tbody tr:nth-child(even) { background-color: #f2f2f2; }
+        tbody tr:nth-child(odd) { background-color: #ffffff; }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="mb-4">Inventory Management</h2>
+
+    <!-- Stock In Form -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stock In</h5>
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label" for="product_item">Product Item</label>
+                            <input type="text" name="product_item" id="product_item" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="manufacturer">Manufacturer</label>
+                            <input type="text" name="manufacturer" id="manufacturer" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="total_stock_received">Total Stock Received</label>
+                            <input type="number" name="total_stock_received" id="total_stock_received" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="serial_no">Serial Number</label>
+                            <input type="text" name="serial_no" id="serial_no" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="mac_product_no">MAC Product Number</label>
+                            <input type="text" name="mac_product_no" id="mac_product_no" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea name="description" id="description" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="ticket_id">Ticket ID</label>
+                            <input type="text" name="ticket_id" id="ticket_id" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit Stock In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock In Hand Table -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stock In Hand Table View</h5>
+                    <table id="stockInHandTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product Item</th>
+                                <th>Manufacturer</th>
+                                <th>Total Stock Received</th>
+                                <th>Stock In Hand</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in stock_in_hand_data %}
+                            <tr>
+                                <td>{{ record.product_item }}</td>
+                                <td>{{ record.manufacturer }}</td>
+                                <td>{{ record.total_stock_received }}</td>
+                                <td>{{ record.stock_in_hand }}</td>
+                                <td>
+                                    <button class="btn btn-danger stock-out-btn" data-product="{{ record.product_item }}" data-manufacturer="{{ record.manufacturer }}" data-stock="{{ record.stock_in_hand }}">
+                                        Stock Out
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Records -->
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Inventory Records</h5>
+                    <table id="inventoryHistoryTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product Item</th>
+                                <th>Manufacturer</th>
+                                <th>Transaction Type</th>
+                                <th>Quantity</th>
+                                <th>Serial No.</th>
+                                <th>MAC Product No.</th>
+                                <th>Received From</th>
+                                <th>Delivered To</th>
+                                <th>Transaction Date</th>
+                                <th>Description</th>
+                                <th>Ticket ID</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in inventoryhistory_data %}
+                            <tr>
+                                <td>{{ record.product_item }}</td>
+                                <td>{{ record.manufacturer }}</td>
+                                <td>{{ record.transaction_type }}</td>
+                                <td>{{ record.quantity }}</td>
+                                <td>{{ record.serial_no }}</td>
+                                <td>{{ record.mac_product_no }}</td>
+                                <td>{{ record.received_from }}</td>
+                                <td>{{ record.delivered_to }}</td>
+                                <td>{{ record.transaction_date }}</td>
+                                <td>{{ record.description }}</td>
+                                <td>{{ record.ticket_id }}</td>
+                                <td>{{ record.comments }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialize DataTables for both tables
+        $("#inventoryTable, #stockInHandTable").DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            responsive: true,
+            lengthChange: true
+        });
+
+        // Handle Stock Out action
+        document.querySelectorAll('.stock-out-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productItem = this.dataset.product;
+                const manufacturer = this.dataset.manufacturer;
+                const stock = parseInt(this.dataset.stock);
+
+                let stockOutQty = prompt(`Enter quantity to stock out for ${productItem} (${manufacturer}):`);
+                if (stockOutQty && !isNaN(stockOutQty)) {
+                    stockOutQty = parseInt(stockOutQty);
+                    if (stockOutQty <= stock) {
+                        fetch("{% url 'users:stock_out_view' %}", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
+                            },
+                            body: JSON.stringify({
+                                product_item: productItem,
+                                total_stock_sent: stockOutQty
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(`Stock Out successful! New stock in hand: ${data.new_stock}`);
+                            location.reload();
+                        });
+                    } else {
+                        alert("Insufficient stock.");
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock extra_js %}

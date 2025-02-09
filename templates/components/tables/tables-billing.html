@@ -57,14 +57,12 @@
                         <thead class="table-light">
                             <tr>
                                 <th>Order No</th>
+                                <th>Billing Date</th>
                                 <th>Client Name</th>
                                 <th>Client Address</th>
-                                <th>Billing To</th>
-                                <th>Service Type</th>
                                 <th>Bill Description</th>
                                 <th>Ticket ID</th>
                                 <th>Comments</th>
-                                <th>Billing Date</th>
                                 <th>Emailed</th>
                                 <th>Invoice No</th>
                                 <th>Invoice Date</th>
@@ -75,14 +73,13 @@
                             {% for billing in billing_data %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
+                                <td>{{ billing.billing_date|date:"d M Y" }}</td>
                                 <td>{{ billing.client_name }}</td>
                                 <td>{{ billing.client_address }}</td>
-                                <td>{{ billing.billing_to }}</td>
-                                <td>{{ billing.service_type }}</td>
                                 <td>{{ billing.bill_description|truncatewords:10 }}</td>
                                 <td>{{ billing.ticket_id }}</td>
                                 <td>{{ billing.comments }}</td>
-                                <td>{{ billing.billing_date|date:"d M Y" }}</td>
+
                                 <td>
                                     {% if billing.emailed %}
                                     <span class="badge bg-success">Yes</span>
@@ -93,8 +90,18 @@
                                 <td>{{ billing.invoice_no }}</td>
                                 <td>{{ billing.invoice_date|date:"d M Y" }}</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal" 
-                                        data-client="{{ billing.client_name }}" data-details="{{ billing.bill_description }}">
+                                    <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal"
+                                        data-billingdate="{{ billing.billing_date|date:'d M Y' }}"
+                                        data-client="{{ billing.client_name }}"
+                                        data-address="{{ billing.client_address }}"
+                                        data-billingto="{{ billing.billing_to }}"
+                                        data-service="{{ billing.service_type }}"
+                                        data-description="{{ billing.bill_description }}"
+                                        data-ticket="{{ billing.ticket_id }}"
+                                        data-comments="{{ billing.comments }}"
+                                        data-emailed="{% if billing.emailed %}Yes{% else %}No{% endif %}"
+                                        data-invoiceno="{{ billing.invoice_no }}"
+                                        data-invoicedate="{{ billing.invoice_date|date:'d M Y' }}">
                                         View
                                     </button>
                                 </td>
@@ -112,6 +119,7 @@
     </div>
 </div>
 
+
 <!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,18 +130,31 @@
             </div>
             <div class="modal-body">
                 <p><strong>Client Name:</strong> <span id="modalClientName"></span></p>
-                <p><strong>Details:</strong> <span id="modalDetails"></span></p>
+                <p><strong>Client Address:</strong> <span id="modalClientAddress"></span></p>
+                <p><strong>Billing To:</strong> <span id="modalBillingTo"></span></p>
+                <p><strong>Service Type:</strong> <span id="modalServiceType"></span></p>
+                <p><strong>Bill Description:</strong> <span id="modalBillDescription"></span></p>
+                <p><strong>Ticket ID:</strong> <span id="modalTicketID"></span></p>
+                <p><strong>Comments:</strong> <span id="modalComments"></span></p>
+                <p><strong>Billing Date:</strong> <span id="modalBillingDate"></span></p>
+                <p><strong>Emailed:</strong> <span id="modalEmailed"></span></p>
+                <p><strong>Invoice No:</strong> <span id="modalInvoiceNo"></span></p>
+                <p><strong>Invoice Date:</strong> <span id="modalInvoiceDate"></span></p>
             </div>
         </div>
     </div>
 </div>
+
+
+
 {% endblock content %}
 
 {% block extra_js %}
     <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
         $("#billingTable").DataTable({
             paging: true,
             searching: true,
@@ -146,9 +167,19 @@
         document.querySelectorAll('.view-btn').forEach(button => {
             button.addEventListener('click', function () {
                 document.getElementById('modalClientName').innerText = this.dataset.client;
-                document.getElementById('modalDetails').innerText = this.dataset.details;
+                document.getElementById('modalClientAddress').innerText = this.dataset.address;
+                document.getElementById('modalBillingTo').innerText = this.dataset.billingto;
+                document.getElementById('modalServiceType').innerText = this.dataset.service;
+                document.getElementById('modalBillDescription').innerText = this.dataset.description;
+                document.getElementById('modalTicketID').innerText = this.dataset.ticket;
+                document.getElementById('modalComments').innerText = this.dataset.comments;
+                document.getElementById('modalBillingDate').innerText = this.dataset.billingdate;
+                document.getElementById('modalEmailed').innerText = this.dataset.emailed;
+                document.getElementById('modalInvoiceNo').innerText = this.dataset.invoiceno;
+                document.getElementById('modalInvoiceDate').innerText = this.dataset.invoicedate;
             });
         });
     });
+
     </script>
 {% endblock extra_js %}

@@ -1,0 +1,239 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}Inventory Management{% endblock title %}
+
+{% block pagetitle %}
+{% include "partials/page-title.html" with pagetitle="Inventory" title="Inventory Management" %}
+{% endblock pagetitle %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Datatables CSS -->
+    <link href="{% static 'vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        thead th {
+            white-space: nowrap;
+            text-align: center;
+            vertical-align: middle;
+        }
+        tbody tr:nth-child(even) { background-color: #f2f2f2; }
+        tbody tr:nth-child(odd) { background-color: #ffffff; }
+    </style>
+{% endblock extra_css %}
+
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Stock In Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stock In</h5>
+                    <form id="stock-in-form" method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Stock In Date (Read-Only Display) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Stock In Date</label>
+                                    <input type="text" class="form-control" id="stock-in-date" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Product Item</label>
+                                    {{ stock_in_form.product_item }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Manufacturer</label>
+                                    {{ stock_in_form.manufacturer }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Total Stock Received</label>
+                                    {{ stock_in_form.total_stock_received }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Serial No</label>
+                                    {{ stock_in_form.serial_no }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">MAC Product No</label>
+                                    {{ stock_in_form.mac_product_no }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    {{ stock_in_form.description }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Received From</label>
+                                    {{ stock_in_form.received_from }}
+                                </div>
+                                <div class="text-end">
+                                    <button class="btn btn-primary" type="submit" name="stock_in_submit">Submit Stock In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stock Out Form -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stock Out</h5>
+                    <form id="stock-out-form" method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Stock Out Date (Read-Only Display) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Stock Out Date</label>
+                                    <input type="text" class="form-control" id="stock-out-date" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Product Item</label>
+                                    {{ stock_out_form.product_item }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Manufacturer</label>
+                                    {{ stock_out_form.manufacturer }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Total Stock Sent</label>
+                                    {{ stock_out_form.total_stock_sent }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Serial No</label>
+                                    {{ stock_out_form.serial_no }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">MAC Product No</label>
+                                    {{ stock_out_form.mac_product_no }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    {{ stock_out_form.description }}
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Delivered To</label>
+                                    {{ stock_out_form.delivered_to }}
+                                </div>
+                                <div class="text-end">
+                                    <button class="btn btn-primary" type="submit" name="stock_out_submit">Submit Stock Out</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock In Hand Summary -->
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">Stock In Hand Summary</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="inventoryTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product Item</th>
+                            <th>Manufacturer</th>
+                            <th>Stock In Hand</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for stock in stock_in_hand_data %}
+                        <tr>
+                            <td>{{ stock.product_item }}</td>
+                            <td>{{ stock.manufacturer }}</td>
+                            <td>{{ stock.stock_in_hand }}</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm view-btn" data-bs-toggle="modal" data-bs-target="#viewModal"
+                                    data-product="{{ stock.product_item }}"
+                                    data-manufacturer="{{ stock.manufacturer }}"
+                                    data-stock="{{ stock.stock_in_hand }}">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No stock data available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel">Stock Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Product Item:</strong> <span id="modalProduct"></span></p>
+                <p><strong>Manufacturer:</strong> <span id="modalManufacturer"></span></p>
+                <p><strong>Stock In Hand:</strong> <span id="modalStock"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize DataTable
+            $("#inventoryTable").DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                responsive: true,
+                lengthChange: true
+            });
+
+            // Auto-fill Stock In Date & Stock Out Date fields with the current date
+            let today = new Date().toISOString().slice(0, 10);  // Get current date in YYYY-MM-DD format
+            let stockInDateField = document.getElementById("stock-in-date");
+            let stockOutDateField = document.getElementById("stock-out-date");
+
+            if (stockInDateField) {
+                stockInDateField.value = today;
+            }
+            if (stockOutDateField) {
+                stockOutDateField.value = today;
+            }
+
+            // Modal View Button Click Event
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.getElementById('modalProduct').innerText = this.dataset.product;
+                    document.getElementById('modalManufacturer').innerText = this.dataset.manufacturer;
+                    document.getElementById('modalStock').innerText = this.dataset.stock;
+                });
+            });
+        });
+    </script>
+
+{% endblock extra_js %}
+

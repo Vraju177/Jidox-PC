@@ -16,7 +16,7 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-12">
-                            <!-- Client Name -->
+                            <!-- Client Name (Mandatory) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="clientName">Client Name</label>
                                 <div class="col-md-9">
@@ -25,23 +25,25 @@
                                 </div>
                             </div>
 
-                            <!-- Client Address -->
+                            <!-- Client Address (Mandatory) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="clientAddress">Client Address</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="clientAddress" name="client_address" placeholder="Client Address">
+                                    <input type="text" class="form-control" id="clientAddress" name="client_address" placeholder="Client Address" required>
+                                    <div class="invalid-feedback">Client Address is required.</div>
                                 </div>
                             </div>
 
-                            <!-- Billing To -->
+                            <!-- Billing To (Mandatory) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="billingTo">Billing To</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="billingTo" name="billing_to" placeholder="Billing To">
+                                    <input type="text" class="form-control" id="billingTo" name="billing_to" placeholder="Billing To" required>
+                                    <div class="invalid-feedback">Billing To is required.</div>
                                 </div>
                             </div>
 
-                            <!-- Service Type -->
+                            <!-- Service Type (Optional) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="serviceType">Service Type</label>
                                 <div class="col-md-9">
@@ -49,42 +51,42 @@
                                 </div>
                             </div>
 
-                            <!-- Bill Description -->
+                            <!-- Bill Description (Mandatory) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="billDescription">Bill Description</label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" id="billDescription" name="bill_description" placeholder="Bill Description"></textarea>
+                                    <textarea class="form-control" id="billDescription" name="bill_description" placeholder="Bill Description" required></textarea>
+                                    <div class="invalid-feedback">Bill Description is required.</div>
                                 </div>
                             </div>
 
-                            <!-- Ticket ID -->
+                            <!-- Ticket ID (Mandatory) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="ticketId">Ticket ID</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="ticketId" name="ticket_id" placeholder="Ticket ID">
+                                    <input type="text" class="form-control" id="ticketId" name="ticket_id" placeholder="Ticket ID" required>
+                                    <div class="invalid-feedback">Ticket ID is required.</div>
                                 </div>
                             </div>
 
-                            <!-- Emailed -->
+                            <!-- Emailed (Optional) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="emailed">Emailed</label>
                                 <div class="col-md-9">
                                     <input type="checkbox" class="form-check-input" id="emailed" name="emailed">
-                                    <label class="form-check-label" for="emailed">Mark as emailed</label>
+                                    <label class="form-check-label" for="emailed">Mark as Emailed</label>
                                 </div>
                             </div>
 
-                            <!-- Invoice Number -->
+                            <!-- Invoice Number (Optional) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="invoiceNo">Invoice Number</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="invoiceNo" name="invoice_no" placeholder="Invoice Number" required>
-                                    <div class="invalid-feedback">Invoice Number is required.</div>
+                                    <input type="text" class="form-control" id="invoiceNo" name="invoice_no" placeholder="Invoice Number">
                                 </div>
                             </div>
 
-
-                            <!-- Comments -->
+                            <!-- Comments (Optional) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="comments">Comments</label>
                                 <div class="col-md-9">
@@ -92,12 +94,11 @@
                                 </div>
                             </div>
 
-                            <!-- Invoice Date -->
+                            <!-- Invoice Date (Optional) -->
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label" for="invoiceDate">Invoice Date</label>
                                 <div class="col-md-9">
-                                    <input type="date" class="form-control" id="invoiceDate" name="invoice_date" required>
-                                    <div class="invalid-feedback">Invoice Date is required.</div>
+                                    <input type="date" class="form-control" id="invoiceDate" name="invoice_date">
                                 </div>
                             </div>
 
@@ -107,6 +108,7 @@
                                     <button class="btn btn-primary" type="submit">Submit Billing</button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </form>

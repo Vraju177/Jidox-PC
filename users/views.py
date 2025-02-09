@@ -247,106 +247,79 @@ def get_all_clients_stats(request):
 
 
 #================================================================================
+# views.py
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render
-from .models import BillingModel
 from django.forms.models import model_to_dict
+from .models import BillingModel
 
 @require_http_methods(["GET", "POST"])
-@csrf_exempt  # Use only if CSRF issues arise during testing (not recommended for production)
+@csrf_exempt
 def create_billing(request):
-    """
-    Handle GET and POST requests for creating a billing record.
-    """
     if request.method == 'GET':
-        # Render the billing form (HTML page)
         return render(request, 'components/forms/form-billing.html')
 
     if request.method == 'POST':
         try:
             # Handle both JSON and form data submissions
             if request.content_type == 'application/json':
-                # Parse JSON data
                 data = json.loads(request.body)
             else:
-                # Use request.POST for form-encoded data
                 data = request.POST
 
             # Extract billing data
             client_name = data.get('client_name')
             client_address = data.get('client_address')
             billing_to = data.get('billing_to')
-            service_type = data.get('service_type')
+            service_type = data.get('service_type') or ''  # Optional
             bill_description = data.get('bill_description')
             ticket_id = data.get('ticket_id')
-            emailed = data.get('emailed')
-            comments = data.get('comments')
-            invoice_no = data.get('invoice_no')
-            invoice_date = data.get('invoice_date')
+            emailed = data.get('emailed', '0')  # Default if not provided
+            comments = data.get('comments') or ''  # Optional
+            invoice_no = data.get('invoice_no') or ''  # Optional
+            invoice_date = data.get('invoice_date') or None  # Optional
 
-             # Handle the emailed checkbox
-            emailed = data.get('emailed', '0')  # Default to 'off' if not provided
-            emailed = '1' if emailed == 'on' else '2'  # Convert 'on' to 1 , otherwise 2
+            # Handle the emailed checkbox
+            emailed = '1' if emailed == 'on' else '2'
 
-            comments = 'Comments'
-
-            # Validate the required fields
-            if not client_name or not client_address or not billing_to or not service_type or not bill_description or not ticket_id or not invoice_no:
+            # ✅ Validate only the mandatory fields
+            if not client_name or not client_address or not billing_to or not bill_description or not ticket_id:
                 return JsonResponse({'error': 'Missing required fields.'}, status=400)
 
             # Convert invoice_date to a datetime object, if provided
             if invoice_date:
                 invoice_date = datetime.strptime(invoice_date, '%Y-%m-%d').date()
 
-            # Simulate saving the data to the database (replace with actual DB operations)
-            billing_record_data = {
-                'client_name': client_name,
-                'client_address': client_address,
-                'billing_to': billing_to,
-                'service_type': service_type,
-                'bill_description': bill_description,
-                'ticket_id': ticket_id,
-                'emailed': emailed,
-                'comments': comments,
-                'invoice_no': invoice_no,
-               #'invoice_date': invoice_date.strftime('%Y-%m-%d') if invoice_date else None,
-               #"invoice_date": str(invoice_date) if invoice_date else None,
-               'invoice_date': invoice_date,
-            }
-             
-            billing_record = BillingModel(**billing_record_data)
+            # Save the billing record
+            billing_record = BillingModel(
+                client_name=client_name,
+                client_address=client_address,
+                billing_to=billing_to,
+                service_type=service_type,
+                bill_description=bill_description,
+                ticket_id=ticket_id,
+                emailed=emailed,
+                comments=comments,
+                invoice_no=invoice_no,
+                invoice_date=invoice_date
+            )
 
-            # Debug message for development
-            print(f"Billing record created: {billing_record}")
-         
-            # billing_record.save()
+            billing_record.save()
+            print(f"Billing record saved: {billing_record}")
 
-            try:
-             billing_record.save()
-             print(f"Billing record saved: {billing_record}")
-            except Exception as e:
-             import traceback
-             print(f"Error saving billing record: {e}")
-             traceback.print_exc()  # Prints full error stack trace
-            
-            # Return success response
             return JsonResponse({
-           'message': 'Billing record created successfully!',
-           'data': model_to_dict(billing_record)
+                'message': 'Billing record created successfully!',
+                'data': model_to_dict(billing_record)
             }, status=200)
 
         except Exception as e:
-            # Handle errors gracefully
             return JsonResponse({'error': f'Error processing request: {str(e)}'}, status=400)
 
-    # Return 405 if the method is not allowed (optional, as require_http_methods ensures this)
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
-
 
 
 
@@ -460,8 +433,12 @@ def create_inventory(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
+
+from django.shortcuts import render
+from .models import InventoryModel
+
 def inventory_table_view(request):
-    inventories = InventoryModel.objects.all()  # Get all inventory records
+    inventory_list = InventoryModel.objects.all()  # Get all inventory records
     inventory_list = [
         {
             'manufacturer': inventory.manufacturer,
@@ -476,6 +453,193 @@ def inventory_table_view(request):
             'inventory_comments': inventory.inventory_comments,
             'created_date': inventory.created_date,
         }
-        for inventory in inventories
+        for inventory in inventory_list
     ]
     return render(request, "components/tables/table-inventory.html", {"inventory_list": inventory_list})
+
+
+
+# ------------------- NEW Stock inventory Pages-------------------
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.http import JsonResponse
+from .models import StockInModel, StockOutModel, StockInHand, InventoryHistory
+from .forms import StockInForm, StockOutForm
+import json
+
+# View to handle Stock In
+def stock_in_view(request):
+    if request.method == 'POST':
+        # Get data from the form
+        product_item = request.POST.get('product_item')
+        manufacturer = request.POST.get('manufacturer')
+        total_stock_received = int(request.POST.get('total_stock_received'))
+        serial_no = request.POST.get('serial_no')  # New field
+        mac_product_no = request.POST.get('mac_product_no')
+        description = request.POST.get('description', '')
+        ticket_id = request.POST.get('ticket_id', '')
+        
+        # Save StockIn data (assuming StockInModel exists)
+        stock_in = StockInModel.objects.create(
+            product_item=product_item,
+            manufacturer=manufacturer,
+            total_stock_received=total_stock_received,
+            serial_no=serial_no,  # Store serial number
+            mac_product_no=mac_product_no,
+            description=description,
+        )
+
+        # Create InventoryHistory record for Stock In
+        InventoryHistory.objects.create(
+            product_item=product_item,
+            manufacturer=manufacturer,
+            transaction_type='Stock In',
+            quantity=total_stock_received,
+            serial_no=serial_no,  # Store serial number in InventoryHistory
+            mac_product_no=mac_product_no,
+            received_from='Supplier',  # You can change this as per the use case
+            delivered_to='Warehouse',  # You can change this as per the use case
+            description=description,
+            ticket_id=ticket_id
+        )
+
+        return redirect('inventory_page')  # Redirect to the inventory page or wherever needed
+
+    return render(request, 'inventory.html')
+
+
+@csrf_exempt
+def stock_out_view(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            product_item = data.get('product_item')
+            total_stock_sent = int(data.get('total_stock_sent', 0))  # Ensure it's an integer
+            serial_no = data.get('serial_no', "")
+            mac_product_no = data.get('mac_product_no', "")
+            description = data.get('description', "")
+            to_user = data.get('to_user', "")
+            to_client = data.get('to_client', "")
+            ticket_id = data.get('ticket_id', "")
+            comments = data.get('comments', "")
+
+            if total_stock_sent <= 0:
+                return JsonResponse({'message': 'Stock quantity must be greater than zero.'}, status=400)
+
+            # Check if the stock is available
+            stock_in_hand = StockInHand.objects.filter(
+                product_item=product_item,
+                serial_no=serial_no,
+                mac_product_no=mac_product_no
+            ).first()
+
+            if not stock_in_hand:
+                return JsonResponse({'message': 'Product does not exist in stock!'}, status=404)
+
+            if stock_in_hand.stock_in_hand < total_stock_sent:
+                return JsonResponse({'message': 'Insufficient stock available.'}, status=400)
+
+            # Create StockOutModel entry
+            stock_out = StockOutModel.objects.create(
+                product_item=product_item,
+                manufacturer=stock_in_hand.manufacturer,
+                total_stock_sent=total_stock_sent,
+                serial_no=serial_no,
+                mac_product_no=mac_product_no,
+                description=description,
+                to_user=to_user,
+                to_client=to_client,
+                ticket_id=ticket_id,
+                comments=comments,
+                stock_in_date=stock_in_hand.stock_in_date
+            )
+
+            # Create InventoryHistory record for Stock Out
+            InventoryHistory.objects.create(
+                product_item=product_item,
+                manufacturer=stock_in_hand.manufacturer,
+                transaction_type='Stock Out',
+                quantity=total_stock_sent,
+                serial_no=serial_no,
+                mac_product_no=mac_product_no,
+                received_from='Warehouse',  # Change if necessary
+                delivered_to=to_client,    # Change if necessary
+                description=description,
+                ticket_id=ticket_id,
+                comments=comments
+            )
+
+            # Update StockInHand stock levels
+            stock_in_hand.update_stock(-total_stock_sent)
+
+            return JsonResponse({'message': 'Stock Out successful!', 'new_stock': stock_in_hand.stock_in_hand}, status=200)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'Invalid JSON data.'}, status=400)
+        except Exception as e:
+            return JsonResponse({'message': f'Error: {str(e)}'}, status=500)
+
+    return JsonResponse({'message': 'Invalid request method.'}, status=405)
+
+
+# View to display inventory dashboard
+def inventory_dashboard(request):
+    stock_in_form = StockInForm(request.POST or None)
+    stock_out_form = StockOutForm(request.POST or None)
+    stock_in_hand_data = StockInHand.objects.all()
+    stockinmodel_data = StockInModel.objects.all()
+
+    if request.method == 'POST':
+        # Handle Stock In submission
+        if 'stock_in_submit' in request.POST:
+            if stock_in_form.is_valid():
+                stock_in = stock_in_form.save()  # Save incoming stock data
+
+                # Check if stock exists in StockInHand and update it
+                stock_in_hand, created = StockInHand.objects.get_or_create(
+                    product_item=stock_in.product_item,
+                    manufacturer=stock_in.manufacturer,
+                    serial_no=stock_in.serial_no,
+                    mac_product_no=stock_in.mac_product_no,
+                    defaults={'stock_in_date': stock_in.stock_in_date}
+                )
+
+                # Update StockInHand quantity
+                stock_in_hand.update_stock(stock_in.total_stock_received)
+                messages.success(request, "Stock In recorded successfully!")
+                return redirect('inventory_dashboard')
+            else:
+                messages.error(request, "Error processing Stock In form.")
+
+        # Handle Stock Out submission
+        if 'stock_out_submit' in request.POST:
+            if stock_out_form.is_valid():
+                stock_out = stock_out_form.save(commit=False)
+
+                try:
+                    stock_in_hand = StockInHand.objects.get(
+                        product_item=stock_out.product_item,
+                        serial_no=stock_out.serial_no,
+                        mac_product_no=stock_out.mac_product_no
+                    )
+
+                    if stock_out.total_stock_sent <= 0:
+                        messages.error(request, "Stock quantity must be greater than zero.")
+                    elif stock_in_hand.stock_in_hand >= stock_out.total_stock_sent:
+                        stock_out.save()
+                        stock_in_hand.update_stock(-stock_out.total_stock_sent)
+                        messages.success(request, "Stock Out recorded successfully!")
+                        return redirect('inventory_dashboard')
+                    else:
+                        messages.error(request, "Insufficient stock available.")
+                except StockInHand.DoesNotExist:
+                    messages.error(request, "Product does not exist in stock!")
+
+    context = {
+        'stock_in_form': stock_in_form,
+        'stock_out_form': stock_out_form,
+        'stock_in_hand_data': stock_in_hand_data,
+        'stockinmodel_data': stockinmodel_data,
+    }
+
+    return render(request, 'components/tables/inventory.html', context)
