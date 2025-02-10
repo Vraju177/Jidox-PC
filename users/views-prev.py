@@ -461,32 +461,64 @@ def inventory_table_view(request):
 
 # ------------------- NEW Stock inventory Pages-------------------
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib import messages
-from .models import StockInModel, StockOutModel, StockInHand
 from .forms import StockInForm, StockOutForm
+from .models import StockInModel, StockOutModel, StockInHand, InventoryHistory
+from django.db import transaction
 
 # View to handle Stock In
 def stock_in_view(request):
     if request.method == 'POST':
         form = StockInForm(request.POST)
         if form.is_valid():
-            stock_in = form.save()
+            product_item = form.cleaned_data['product_item']
+            manufacturer = form.cleaned_data['manufacturer']
+            total_stock_received = form.cleaned_data['total_stock_received']
+            serial_no = form.cleaned_data.get('serial_no')
+            mac_product_no = form.cleaned_data.get('mac_product_no')
+            description = form.cleaned_data.get('description')
+            comments = form.cleaned_data.get('comments')
 
-            # Update StockInHand
-            stock_in_hand, created = StockInHand.objects.get_or_create(
-                product_item=stock_in.product_item,
-                manufacturer=stock_in.manufacturer,
-                defaults={'stock_in_hand': 0}
-            )
-            stock_in_hand.stock_in_hand += stock_in.total_stock_received
-            stock_in_hand.save()
+            # Use atomic transaction to ensure both models are updated
+            with transaction.atomic():
+                # Save to StockInModel
+                stock_in = form.save()
 
-            messages.success(request, "Stock In recorded successfully!")
-            return redirect('stock_in_view')
+                # Update or create entry in StockInHand
+                stock_in_hand, created = StockInHand.objects.get_or_create(
+                    product_item=product_item,
+                    manufacturer=manufacturer,
+                    stock_in_date=stock_in.stock_in_date
+                )
+                stock_in_hand.total_stock_received += total_stock_received
+                stock_in_hand.stock_in_hand += total_stock_received
+                stock_in_hand.save()
+
+                # Record the transaction in InventoryHistory
+                InventoryHistory.objects.create(
+                    product_item=product_item,
+                    manufacturer=manufacturer,
+                    transaction_type='Stock In',
+                    quantity=total_stock_received,
+                    serial_no=serial_no,
+                    mac_product_no=mac_product_no,
+                    received_from='Supplier',  # You can modify this based on your requirements
+                    transaction_date=stock_in.stock_in_date,
+                    description=description,
+                    ticket_id=None,  # You can add this logic based on your requirements
+                    comments=comments
+                )
+
+            messages.success(request, 'Stock In successful!')
+            return JsonResponse({'success': True})
+        else:
+            messages.error(request, 'Error with the form data.')
+            return JsonResponse({'success': False})
+
     else:
         form = StockInForm()
-
-    return render(request, 'inventory/stock_in.html', {'form': form})
+    return render(request, 'components/tables/inventory.html', {'form': form})
 
 
 # View to handle Stock Out
@@ -494,68 +526,56 @@ def stock_out_view(request):
     if request.method == 'POST':
         form = StockOutForm(request.POST)
         if form.is_valid():
-            stock_out = form.save(commit=False)
+            product_item = form.cleaned_data['product_item']
+            manufacturer = form.cleaned_data['manufacturer']
+            total_stock_sent = form.cleaned_data['total_stock_sent']
+            serial_no = form.cleaned_data.get('serial_no')
+            mac_product_no = form.cleaned_data.get('mac_product_no')
+            to_user = form.cleaned_data.get('to_user')
+            to_client = form.cleaned_data.get('to_client')
+            ticket_id = form.cleaned_data.get('ticket_id')
+            comments = form.cleaned_data.get('comments')
 
-            # Check if stock is available
-            try:
-                stock_in_hand = StockInHand.objects.get(product_item=stock_out.product_item)
-                if stock_in_hand.stock_in_hand < stock_out.total_stock_sent:
-                    messages.error(request, "Insufficient stock available!")
-                    return redirect('stock_out_view')
+            # Use atomic transaction to ensure both models are updated
+            with transaction.atomic():
+                # Save to StockOutModel
+                stock_out = form.save()
 
-                # Save the stock-out record
-                stock_out.save()
-
-                # Deduct from StockInHand
-                stock_in_hand.stock_in_hand -= stock_out.total_stock_sent
+                # Update StockInHand table (reduce stock)
+                stock_in_hand = StockInHand.objects.get(product_item=product_item, manufacturer=manufacturer)
+                stock_in_hand.stock_in_hand -= total_stock_sent
                 stock_in_hand.save()
 
-                messages.success(request, "Stock Out recorded successfully!")
-                return redirect('stock_out_view')
+                # Record the transaction in InventoryHistory
+                InventoryHistory.objects.create(
+                    product_item=product_item,
+                    manufacturer=manufacturer,
+                    transaction_type='Stock Out',
+                    quantity=total_stock_sent,
+                    serial_no=serial_no,
+                    mac_product_no=mac_product_no,
+                    delivered_to=to_user or to_client,  # You can modify this based on your requirements
+                    transaction_date=stock_out.stock_out_date,
+                    description=None,  # You can modify this based on your requirements
+                    ticket_id=ticket_id,
+                    comments=comments
+                )
 
-            except StockInHand.DoesNotExist:
-                messages.error(request, "Product does not exist in stock!")
-                return redirect('stock_out_view')
+            messages.success(request, 'Stock Out successful!')
+            return JsonResponse({'success': True})
+        else:
+            messages.error(request, 'Error with the form data.')
+            return JsonResponse({'success': False})
+
     else:
         form = StockOutForm()
-
-    return render(request, 'inventory/stock_out.html', {'form': form})
-
-
-# View to display current stock in hand
-def stock_in_hand_view(request):
-    stock_in_hand_data = StockInHand.objects.all()
-    return render(request, 'inventory/stock_in_hand.html', {'stock_in_hand_data': stock_in_hand_data})
+    return render(request, 'components/tables/inventory.html', {'form': form})
 
 
 def inventory_view(request):
-    stock_in_form = StockInForm(request.POST or None)
-    stock_out_form = StockOutForm(request.POST or None)
     stock_in_hand_data = StockInHand.objects.all()
-
-    if request.method == 'POST':
-        if 'stock_in_submit' in request.POST and stock_in_form.is_valid():
-            stock_in = stock_in_form.save()
-            stock_in_hand, created = StockInHand.objects.get_or_create(
-                product_item=stock_in.product_item,
-                manufacturer=stock_in.manufacturer,
-                defaults={'stock_in_hand': 0}
-            )
-            stock_in_hand.stock_in_hand += stock_in.total_stock_received
-            stock_in_hand.save()
-
-        if 'stock_out_submit' in request.POST and stock_out_form.is_valid():
-            stock_out = stock_out_form.save(commit=False)
-            stock_in_hand = StockInHand.objects.get(product_item=stock_out.product_item)
-            if stock_in_hand.stock_in_hand >= stock_out.total_stock_sent:
-                stock_out.save()
-                stock_in_hand.stock_in_hand -= stock_out.total_stock_sent
-                stock_in_hand.save()
-
-    context = {
-        'stock_in_form': stock_in_form,
-        'stock_out_form': stock_out_form,
+    inventoryhistory_data = InventoryHistory.objects.all().order_by('-transaction_date')
+    return render(request, 'components/tables/inventory.html', {
         'stock_in_hand_data': stock_in_hand_data,
-    }
-    return render(request, 'components/tables/inventory.html', context)
-
+        'inventoryhistory_data': inventoryhistory_data,
+    })

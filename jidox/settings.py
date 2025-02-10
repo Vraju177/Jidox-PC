@@ -100,7 +100,7 @@ DATABASES = {
         'USER': '',  # Windows authentication leaves this blank
         'PASSWORD': '',  # Windows authentication leaves this blank
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',  # Ensure this matches your installed driver
             'trusted_connection': 'yes',  # Enables Windows Authentication
@@ -151,7 +151,9 @@ AUTH_USER_MODEL = "users.User"
 
 # django-allauth settings
 ACCOUNT_ALLOW_REGISTRATION = True
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+#ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_ADAPTER = "users.adapters.AccountAdapter"
@@ -161,3 +163,6 @@ SITE_ID = 1
 
 # Social account provider settings (if you plan to use social login)
 SOCIALACCOUNT_PROVIDERS = {}
+
+import warnings
+warnings.filterwarnings('ignore', category=DeprecationWarning)

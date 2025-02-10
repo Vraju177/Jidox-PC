@@ -10,8 +10,7 @@ urlpatterns = [
 
     path('inventory/stock-in/', views.stock_in_view, name='stock_in_view'),
     path('inventory/stock-out/', views.stock_out_view, name='stock_out_view'),
-    #path('inventory/', views.inventory_view, name='inventory'),
-    path('inventory/', views.inventory_dashboard, name='inventory_dashboard'),  # Inventory Dashboard view with both Stock In and Stock Out forms
+    path('inventory/', views.inventory_view, name='inventory'),
 
      # New URL for form-billing.html
     path('forms/billing/create/', views.create_billing, name='create_billing'),

@@ -1,3 +1,5 @@
+python manage.py createsuperuser --username admin 
+
 
 My form-validation.html  Path - users/forms/form-validation.html
 http://127.0.0.1:8000/users/form/

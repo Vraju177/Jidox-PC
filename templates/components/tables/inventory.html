@@ -4,7 +4,7 @@
 {% block title %}Inventory Management{% endblock title %}
 
 {% block pagetitle %}
-{% include "partials/page-title.html" with pagetitle="Inventory" title="Inventory Management" %}
+{% include "partials/page-title.html" with pagetitle="Inventory" title="" %}
 {% endblock pagetitle %}
 
 {% block extra_css %}
@@ -23,49 +23,41 @@
     <h2 class="mb-4">Inventory Management</h2>
 
     <!-- Stock In Form -->
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Stock In</h5>
-                    <form method="POST">
+                    <form method="POST" id="stockInForm">
                         {% csrf_token %}
-                        
                         <div class="mb-3">
                             <label class="form-label" for="product_item">Product Item</label>
                             <input type="text" name="product_item" id="product_item" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label" for="manufacturer">Manufacturer</label>
                             <input type="text" name="manufacturer" id="manufacturer" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label" for="total_stock_received">Total Stock Received</label>
                             <input type="number" name="total_stock_received" id="total_stock_received" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label" for="serial_no">Serial Number</label>
                             <input type="text" name="serial_no" id="serial_no" class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label" for="mac_product_no">MAC Product Number</label>
                             <input type="text" name="mac_product_no" id="mac_product_no" class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label" for="description">Description</label>
                             <textarea name="description" id="description" class="form-control"></textarea>
                         </div>
-
                         <div class="mb-3">
-                            <label class="form-label" for="ticket_id">Ticket ID</label>
-                            <input type="text" name="ticket_id" id="ticket_id" class="form-control">
+                            <label class="form-label" for="comments">Comments</label>
+                            <textarea name="comments" id="comments" class="form-control"></textarea>
                         </div>
-
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Submit Stock In</button>
                         </div>
@@ -74,11 +66,64 @@
             </div>
         </div>
 
-        <!-- Stock In Hand Table -->
+        <!-- Stock Out Form -->
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Stock In Hand Table View</h5>
+                    <h5 class="card-title">Stock Out</h5>
+                    <form method="POST" id="stockOutForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label" for="product_item_out">Product Item</label>
+                            <input type="text" name="product_item" id="product_item_out" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="manufacturer_out">Manufacturer</label>
+                            <input type="text" name="manufacturer" id="manufacturer_out" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="total_stock_sent">Total Stock Sent</label>
+                            <input type="number" name="total_stock_sent" id="total_stock_sent" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="serial_no_out">Serial Number</label>
+                            <input type="text" name="serial_no" id="serial_no_out" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="mac_product_no_out">MAC Product Number</label>
+                            <input type="text" name="mac_product_no" id="mac_product_no_out" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="to_user">To User</label>
+                            <input type="text" name="to_user" id="to_user" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="to_client">To Client</label>
+                            <input type="text" name="to_client" id="to_client" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="ticket_id">Ticket ID</label>
+                            <input type="text" name="ticket_id" id="ticket_id" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="comments_out">Comments</label>
+                            <textarea name="comments" id="comments_out" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-danger">Submit Stock Out</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock In Hand Table -->
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stock In Hand Table</h5>
                     <table id="stockInHandTable" class="table table-striped">
                         <thead>
                             <tr>
@@ -86,7 +131,6 @@
                                 <th>Manufacturer</th>
                                 <th>Total Stock Received</th>
                                 <th>Stock In Hand</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,11 +140,6 @@
                                 <td>{{ record.manufacturer }}</td>
                                 <td>{{ record.total_stock_received }}</td>
                                 <td>{{ record.stock_in_hand }}</td>
-                                <td>
-                                    <button class="btn btn-danger stock-out-btn" data-product="{{ record.product_item }}" data-manufacturer="{{ record.manufacturer }}" data-stock="{{ record.stock_in_hand }}">
-                                        Stock Out
-                                    </button>
-                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -110,12 +149,12 @@
         </div>
     </div>
 
-    <!-- Inventory Records -->
+    <!-- Inventory Transaction Records -->
     <div class="row mt-4">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Inventory Records</h5>
+                    <h5 class="card-title">Inventory Transaction Records</h5>
                     <table id="inventoryHistoryTable" class="table table-striped">
                         <thead>
                             <tr>
@@ -131,6 +170,7 @@
                                 <th>Description</th>
                                 <th>Ticket ID</th>
                                 <th>Comments</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -148,6 +188,18 @@
                                 <td>{{ record.description }}</td>
                                 <td>{{ record.ticket_id }}</td>
                                 <td>{{ record.comments }}</td>
+                                <td>
+                                    {% if record.transaction_type == 'Stock In' %}
+                                    <button class="btn btn-danger stock-out-btn" 
+                                            data-product="{{ record.product_item }}" 
+                                            data-manufacturer="{{ record.manufacturer }}" 
+                                            data-stock="{{ record.quantity }}" 
+                                            data-serial="{{ record.serial_no }}" 
+                                            data-mac="{{ record.mac_product_no }}">
+                                        Stock Out
+                                    </button>
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -156,21 +208,18 @@
             </div>
         </div>
     </div>
+
 </div>
 {% endblock content %}
 
-
 {% block extra_js %}
-
 <script src="{% static 'vendor/datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js' %}"></script>
 
-
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Initialize DataTables for both tables
-        $("#inventoryTable, #stockInHandTable").DataTable({
+        // Initialize DataTables
+        $("#stockInHandTable, #inventoryHistoryTable").DataTable({
             paging: true,
             searching: true,
             ordering: true,
@@ -178,37 +227,50 @@
             lengthChange: true
         });
 
-        // Handle Stock Out action
-        document.querySelectorAll('.stock-out-btn').forEach(button => {
+        // Handle Stock Out button click
+        const stockOutButtons = document.querySelectorAll('.stock-out-btn');
+        stockOutButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const productItem = this.dataset.product;
-                const manufacturer = this.dataset.manufacturer;
-                const stock = parseInt(this.dataset.stock);
+                const product = button.dataset.product;
+                const manufacturer = button.dataset.manufacturer;
+                const stock = button.dataset.stock;
+                const serialNo = button.dataset.serial;
+                const macProductNo = button.dataset.mac;
+                
+                // Populate the stock out form with the product details
+                document.getElementById('product_item_out').value = product;
+                document.getElementById('manufacturer_out').value = manufacturer;
+                document.getElementById('total_stock_sent').value = stock;
+                document.getElementById('serial_no_out').value = serialNo;
+                document.getElementById('mac_product_no_out').value = macProductNo;
+            });
+        });
 
-                let stockOutQty = prompt(`Enter quantity to stock out for ${productItem} (${manufacturer}):`);
-                if (stockOutQty && !isNaN(stockOutQty)) {
-                    stockOutQty = parseInt(stockOutQty);
-                    if (stockOutQty <= stock) {
-                        fetch("{% url 'users:stock_out_view' %}", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
-                            },
-                            body: JSON.stringify({
-                                product_item: productItem,
-                                total_stock_sent: stockOutQty
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            alert(`Stock Out successful! New stock in hand: ${data.new_stock}`);
-                            location.reload();
-                        });
-                    } else {
-                        alert("Insufficient stock.");
-                    }
-                }
+        // Handle Stock In form submission
+        document.getElementById('stockInForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch("{% url 'users:stock_in_view' %}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.success ? 'Stock In successful!' : 'Error with the form data.');
+            });
+        });
+
+        // Handle Stock Out form submission
+        document.getElementById('stockOutForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch("{% url 'users:stock_out_view' %}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.success ? 'Stock Out successful!' : 'Error with the form data.');
             });
         });
     });

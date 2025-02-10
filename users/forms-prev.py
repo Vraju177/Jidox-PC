@@ -79,9 +79,31 @@ class BillingModelForm(forms.ModelForm):
 
     def clean_ticket_id(self):
         ticket_id = self.cleaned_data.get('ticket_id')
-        if ticket_id and ticket_id < 0:
-            raise ValidationError("Ticket ID must be a positive integer.")
+        if ticket_id:
+            try:
+                ticket_id_int = int(ticket_id)
+                if ticket_id_int < 0:
+                    raise ValidationError("Ticket ID must be a positive integer.")
+            except ValueError:
+                raise ValidationError("Ticket ID must be a valid number.")
         return ticket_id
 
 
 
+#------------------ For NEW Stock Inventory Pages--------------------
+from django import forms
+from .models import StockInModel, StockOutModel, InventoryHistory
+
+class StockInForm(forms.ModelForm):
+    class Meta:
+        model = StockInModel
+        fields = ['product_item', 'manufacturer', 'total_stock_received', 'serial_no', 'mac_product_no', 'description', 'comments']
+
+    total_stock_received = forms.IntegerField(min_value=1)
+
+class StockOutForm(forms.ModelForm):
+    class Meta:
+        model = StockOutModel
+        fields = ['product_item', 'manufacturer', 'total_stock_sent', 'serial_no', 'mac_product_no', 'to_user', 'to_client', 'ticket_id', 'comments']
+
+    total_stock_sent = forms.IntegerField(min_value=1)

@@ -92,76 +92,18 @@ class BillingModelForm(forms.ModelForm):
 
 #------------------ For NEW Stock Inventory Pages--------------------
 from django import forms
-from .models import StockInModel, StockOutModel
+from .models import StockInModel, StockOutModel, InventoryHistory
 
-PRODUCT_CHOICES = [
-    ("Laptop - Non-touch", "Laptop - Non-touch"),
-    ("Laptop - Touch", "Laptop - Touch"),
-    ("Laptop - Adaptors", "Laptop - Adaptors"),
-    ("LCD Monitor", "LCD Monitor"),
-    ("CPU", "CPU"),
-    ("Switches", "Switches"),
-    ("Keyboard", "Keyboard"),
-    ("Mouse", "Mouse"),
-    ("Voip Phone", "Voip Phone"),
-    ("Voip - Adaptors", "Voip - Adaptors"),
-    ("Others", "Others"),
-]
-
-# Form for Stock In
 class StockInForm(forms.ModelForm):
-    product_item = forms.ChoiceField(choices=PRODUCT_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
-    manufacturer = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))  
-    total_stock_received = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    serial_no = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    mac_product_no = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
-    received_from = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
     class Meta:
         model = StockInModel
-        fields = [  # Do not include stock_in_date here
-            'product_item', 'manufacturer', 'total_stock_received',
-            'serial_no', 'mac_product_no', 'description', 'received_from'
-        ]
+        fields = ['product_item', 'manufacturer', 'total_stock_received', 'serial_no', 'mac_product_no', 'description', 'comments']
 
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        # No need to manually set stock_in_date, as it will be set automatically
-        if commit:
-            instance.save()
-        return instance
+    total_stock_received = forms.IntegerField(min_value=1)
 
-
-# Form for Stock Out
 class StockOutForm(forms.ModelForm):
-    product_item = forms.ChoiceField(choices=PRODUCT_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
-    manufacturer = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))  
-    total_stock_sent = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    serial_no = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    mac_product_no = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
-    to_user = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    to_client = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    ticket_id = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
-    comments = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 2}), required=False)
-
     class Meta:
         model = StockOutModel
-        fields = [  # Exclude stock_out_date as it's auto-generated
-            'product_item', 'manufacturer', 'total_stock_sent',
-            'serial_no', 'mac_product_no', 'description',
-            'to_user', 'to_client', 'ticket_id', 'comments'
-        ]
+        fields = ['product_item', 'manufacturer', 'total_stock_sent', 'serial_no', 'mac_product_no', 'to_user', 'to_client', 'ticket_id', 'comments']
 
-    def __init__(self, *args, **kwargs):
-        super(StockOutForm, self).__init__(*args, **kwargs)
-        self.fields['product_item'].required = True
-        self.fields['manufacturer'].required = True
-
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        # No need to manually set stock_out_date, it will be set automatically in the model
-        if commit:
-            instance.save()
-        return instance
+    total_stock_sent = forms.IntegerField(min_value=1)
