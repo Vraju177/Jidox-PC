@@ -16,6 +16,51 @@
         tbody tr:nth-child(even) { background-color: #f2f2f2; }
         tbody tr:nth-child(odd) { background-color: #ffffff; }
     </style>
+
+    <style> /* For Inventory Transaction Records Section Table View CSS */
+        /* Ensure the card body doesn't overflow */
+        .card-body {
+            padding: 0;
+            overflow-x: hidden;  /* Prevent horizontal overflow */
+        }
+
+        /* Table should take the full width of its container */
+        #inventoryHistoryTable {
+            width: 100% !important;
+            table-layout: auto; /* Let table adjust column width automatically based on content */
+            overflow-x: hidden; /* Ensure no horizontal overflow */
+        }
+
+        /* Ensure the table header and body are properly aligned and prevent overflow */
+        #inventoryHistoryTable th,
+        #inventoryHistoryTable td {
+            word-wrap: break-word; /* Break long words/strings to fit within the cell */
+            white-space: normal;   /* Allow content to wrap */
+        }
+
+        /* Prevent columns from becoming too wide */
+        #inventoryHistoryTable th {
+            text-align: left;
+            word-wrap: break-word; /* Ensure the header text wraps */
+        }
+
+        /* Add padding and improve text wrapping */
+        #inventoryHistoryTable td {
+            padding: 8px 10px;  /* Add some padding for readability */
+            text-align: left;
+        }
+
+        /* Make sure the table is responsive on smaller screens */
+        @media (max-width: 768px) {
+            #inventoryHistoryTable th, #inventoryHistoryTable td {
+                font-size: 12px; /* Adjust text size for mobile */
+            }
+            
+            .stock-out-btn {
+                font-size: 10px;  /* Make button smaller on mobile */
+            }
+        }
+    </style>
 {% endblock extra_css %}
 
 {% block content %}
@@ -167,9 +212,9 @@
                                 <th>Received From</th>
                                 <th>Delivered To</th>
                                 <th>Transaction Date</th>
-                                <th>Description</th>
+                                <!--th>Description</th-->
                                 <th>Ticket ID</th>
-                                <th>Comments</th>
+                                <!--th>Comments</th-->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -185,9 +230,9 @@
                                 <td>{{ record.received_from }}</td>
                                 <td>{{ record.delivered_to }}</td>
                                 <td>{{ record.transaction_date }}</td>
-                                <td>{{ record.description }}</td>
+                                <!--td>{{ record.description }}</td-->
                                 <td>{{ record.ticket_id }}</td>
-                                <td>{{ record.comments }}</td>
+                                <!--td>{{ record.comments }}</td-->
                                 <td>
                                     {% if record.transaction_type == 'Stock In' %}
                                     <button class="btn btn-danger stock-out-btn" 
@@ -227,10 +272,10 @@
             lengthChange: true
         });
 
-        // Handle Stock Out button click
-        const stockOutButtons = document.querySelectorAll('.stock-out-btn');
-        stockOutButtons.forEach(button => {
-            button.addEventListener('click', function () {
+        // Event delegation for handling Stock Out button click
+        document.querySelector('#inventoryHistoryTable tbody').addEventListener('click', function (event) {
+            if (event.target && event.target.classList.contains('stock-out-btn')) {
+                const button = event.target;
                 const product = button.dataset.product;
                 const manufacturer = button.dataset.manufacturer;
                 const stock = button.dataset.stock;
@@ -243,7 +288,7 @@
                 document.getElementById('total_stock_sent').value = stock;
                 document.getElementById('serial_no_out').value = serialNo;
                 document.getElementById('mac_product_no_out').value = macProductNo;
-            });
+            }
         });
 
         // Handle Stock In form submission
@@ -274,5 +319,6 @@
             });
         });
     });
+
 </script>
 {% endblock extra_js %}
